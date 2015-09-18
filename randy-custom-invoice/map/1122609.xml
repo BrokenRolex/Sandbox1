@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<invoice-batch-map>
+   <name>Public Storage</name>
+   <output>
+      <style>text</style>
+      <fldsep>,</fldsep>
+      <recsep>\r\n</recsep>
+   </output>
+   <group name="batch-header">
+      <sequence>
+         <position num="1" value="Property#" source="value" />
+         <position num="2" value="Account#" source="value" />
+         <position num="3" value="Date" source="value" />
+         <position num="4" value="Invoice#" source="value" />
+         <position num="5" value="PO#" source="value" />
+         <position num="6" value="Part#" source="value" />
+         <position num="7" value="Description" source="value" />
+         <position num="8" value="Price" source="value" />
+         <position num="9" value="Quantity" source="value" />
+         <position num="10" value="Amount" source="value" />
+         <position num="11" value="GLCode" source="value" />
+         <position num="12" value="PurchBy" source="value" />
+      </sequence>
+   </group>
+   <!-- <group name="invoice-header" /> -->
+   <group name="invoice-items">
+      <sequence>
+         <position num="1" value="invoice.propid" source="data">
+         </position>
+         <position num="2" value="invoice.custid" source="data" />
+         <position num="3" value="invoice.invdt" source="data">
+            <macro name="dateformat" value="dd-MMM-yyyy" />
+         </position>
+         <position num="4" value="invoice.id" source="data" />
+         <position num="5" value="invoice.po" source="data">
+         </position>
+         <position num="6" value="invoice.item.itemid" source="data" />
+         <position num="7" value="invoice.item.name" source="data" />
+         <position num="8" value="invoice.item.price" source="data">
+             <macro name="numberformat" value="0.00" />
+         </position>
+         <position num="9" value="invoice.item.shipqty" source="data" />
+         <position num="10" value="invoice.item.amt" source="data">
+             <macro name="numberformat" value="0.00" />
+         </position>
+         <position num="11" value="invoice.item.itemid" source="data">
+           <macro name="decode" value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180" />   
+         </position>
+         <position num="12" value="invoice.purchby" source="data">
+         </position>
+      </sequence>
+   </group>
+   <group name="invoice-taxes">
+      <sequence>
+         <position num="1" value="invoice.propid" source="data">
+         </position>
+         <position num="2" value="invoice.custid" source="data" />
+         <position num="3" value="invoice.invdt" source="data">
+            <macro name="dateformat" value="dd-MMM-yyyy" />
+         </position>
+         <position num="4" value="invoice.id" source="data" />
+         <position num="5" value="invoice.po" source="data">
+         </position>
+         <position num="7" value="invoice.tax.name" source="data" />
+         <position num="8" value="" source="value" />
+         <position num="9" value="" source="value" />
+         <position num="10" value="invoice.tax.amt" source="data">
+            <macro name="numberformat" value="0.00" />
+         </position>
+         <position num="11" value="" source="value" />
+         <position num="12" value="invoice.purchby" source="data">
+         </position>
+      </sequence>
+   </group>
+   <group name="invoice-charges">
+      <sequence>
+         <position num="1" value="invoice.propid" source="data">
+         </position>
+         <position num="2" value="invoice.custid" source="data" />
+         <position num="3" value="invoice.invdt" source="data">
+            <macro name="dateformat" value="dd-MMM-yyyy" />
+         </position>
+         <position num="4" value="invoice.id" source="data" />
+         <position num="5" value="invoice.po" source="data">
+         </position>
+         <position num="7" value="invoice.charge.name" source="data" />
+         <position num="8" value="" source="value" />
+         <position num="9" value="" source="value" />
+         <position num="10" value="invoice.charge.amt" source="data">
+            <macro name="numberformat" value="0.00" />
+         </position>
+         <position num="11" value="" source="value" />
+         <position num="12" value="invoice.purchby" source="data">
+         </position>
+      </sequence>
+   </group>
+   <!-- <group name="invoice-trailer" />
+   <group name="batch-trailer" /> -->
+</invoice-batch-map>

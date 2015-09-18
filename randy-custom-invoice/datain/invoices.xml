@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice-batch>
+
+  <run><type>date-range</type><rundt>20091028</rundt><begdt>20091028</begdt><enddt>20091028</enddt></run>
+  <seller>
+     <name>HD Supply Facilities Maintenance</name><abbr>HDS</abbr>
+     <credit-contact>
+         <name>Jocelyn Vanlandingham</name>
+         <phone>800-798-8888</phone><ext></ext>
+     </credit-contact>
+     <remitto>
+         <address>
+         <name>HD SUPPLY </name><line1>PO BOX 509058</line1><line2></line2><city>SAN DIEGO </city><state>CA</state>
+            <postalcode>92150</postalcode>
+         <phone>858-831-2000</phone>
+         </address>
+     </remitto>
+  </seller>
+  <buyer><custid>1122609</custid>
+      <billto>
+          <address>
+          <name>FRIENDS REHABILITATION, PROGRAM</name>
+          <line1> 704 W GIRARD AVE</line1><line2></line2>
+          <city>PHILADELPHIA</city><state>PA</state><postalcode>19123</postalcode>
+          <phone>(215)825-8800</phone>
+          </address>
+      </billto>
+  </buyer>
+
+  <invoice><id>9000001188</id><type>RV</type>
+    <ordertype>ZTEL</ordertype><orderid>0100030541</orderid><custid>5904940</custid>
+    <parent>406816</parent><propid>8413</propid><orderdt>20091026</orderdt>
+    <invdt>20091026</invdt><duedt>20091125</duedt><po>10005</po><purchby></purchby>
+    <customerref></customerref><balance></balance>
+    <shipvia>HDS Dedicated Delivery</shipvia>
+    <shipdt>20091026</shipdt>
+    <shipto>
+        <job></job>
+        <address><name>GUILD HOUSE WEST II</name>
+        <line1>1221 Fairmount Ave</line1>
+        <line2></line2><city>Philadelphia</city>
+        <state>PA</state><postalcode>19123</postalcode><phone></phone>
+        </address>
+    </shipto>
+    <item>
+        <seq>    1</seq><itemid>822405</itemid>
+        <name>36-63&quot; SHOWER &amp; UTILITY, ROD - BEIGE</name>
+        <uom>EA</uom><pkgqty>1</pkgqty><fob>N</fob><orderqty>1</orderqty>
+        <shipqty>1</shipqty><price>9.99</price>
+        <glacct>1123</glacct>
+        <category>Tools</category><subcat>Shower &amp; Bath Accessories</subcat>
+        <amt>9.99</amt>
+    </item>
+    <charge><seq>1 </seq><type>MSC</type><category>MSC</category><name>Misc</name><amt>5.00</amt></charge>
+</invoice>
+
+<invoice><id>9000001189</id><type>RV</type><ordertype>ZTEL</ordertype><orderid>0100030542</orderid>
+  <custid>5904940</custid><parent>406816</parent><propid>8413</propid>
+  <orderdt>20091026</orderdt><invdt>20091026</invdt><duedt>20091125</duedt><po>1006</po>
+  <purchby></purchby><customerref></customerref><balance></balance><shipvia>HDS Dedicated Delivery</shipvia><shipdt>20091026</shipdt>
+    <shipto><job></job><address><name>GUILD HOUSE WEST II</name><line1>1221 Fairmount Ave</line1><line2></line2><city>Philadelphia</city><state>PA</state><postalcode>19123</postalcode><phone></phone></address></shipto>
+    <item><seq>    1</seq><itemid>855100</itemid><name>STORM DOOR PROTECTOR CHAIN</name><uom>EA</uom><pkgqty>1</pkgqty><fob>N</fob><orderqty>1</orderqty><shipqty>1</shipqty><price>2.39</price><glacct>1124</glacct><category>Hardware</category><subcat>Screen Frame &amp; Wire</subcat><amt>2.39</amt></item>
+    <charge><seq>1 </seq><type>MSC</type><category>MSC</category><name>Misc</name><amt>5.00</amt></charge>
+</invoice>
+
+<invoice><id>9000001190</id><type>RV</type><ordertype>ZTEL</ordertype><orderid>0100030545</orderid><custid>5904940</custid><parent>406816</parent><propid>8413</propid><orderdt>20091026</orderdt><invdt>20091026</invdt><duedt>20091125</duedt><po>1007</po><purchby></purchby><customerref></customerref><balance></balance><shipvia>HDS Dedicated Delivery</shipvia><shipdt>20091026</shipdt><shipto><job></job><address><name>GUILD HOUSE WEST II</name><line1>1221 Fairmount Ave</line1><line2></line2><city>Philadelphia</city><state>PA</state><postalcode>19123</postalcode><phone></phone></address></shipto>
+    <item><seq>    1</seq><itemid>477850</itemid><name>DELTA SHOWER DIVERTER ASSEMBLY</name><uom>EA</uom><pkgqty>1</pkgqty><fob>N</fob><orderqty>1</orderqty><shipqty>1</shipqty><price>7.23</price><glacct>1125</glacct><category>Faucets/Showerheads</category><subcat>Faucet &amp; Shower Valve Repair</subcat><amt>7.23</amt></item>
+    <charge><seq>1 </seq><type>MSC</type><category>MSC</category><name>Misc</name><amt>5.00</amt></charge>
+</invoice>
+
+<invoice><id>9000001210</id><type>RV</type><ordertype>ZTEL</ordertype><orderid>0100030674</orderid><custid>5904940</custid><parent>406816</parent><propid>8413</propid><orderdt>20091026</orderdt><invdt>20091026</invdt><duedt>20091125</duedt><po>1011</po><purchby>Aleyda Zeledon</purchby><customerref>D0052/00202</customerref><balance></balance><shipvia>HDS Dedicated Delivery</shipvia><shipdt>20091026</shipdt><shipto><job></job><address><name>GUILD HOUSE WEST II</name><line1>1221 Fairmount Ave</line1><line2></line2><city>Philadelphia</city><state>PA</state><postalcode>19123</postalcode><phone></phone></address></shipto>
+    <item><seq>    1</seq><itemid>106063</itemid><name>10.3 OZ LIQUID NAILS GUTTER REPAIR</name><uom>EA</uom><pkgqty>1</pkgqty><fob>N</fob><orderqty>1</orderqty><shipqty>1</shipqty><price>2.79</price><glacct>1126</glacct><category>Paint &amp; Sundries</category><subcat>Caulking</subcat><amt>2.79</amt></item>
+    <charge><seq>1 </seq><type>FRT</type><category>FRT</category><name>Freight</name><amt>8.00</amt></charge>
+    <charge><seq>2 </seq><type>MSC</type><category>MSC</category><name>Misc</name><amt>6.00</amt></charge>
+</invoice>
+
+<invoice>
+  <id>9000001234</id><type>RV</type><ordertype>ZTEL</ordertype><orderid>0100030732</orderid><custid>5904940</custid>
+  <parent>406816</parent><propid>8413</propid>
+  <orderdt>20091027</orderdt><invdt>20091027</invdt><duedt>20091126</duedt><po>1012</po><purchby>Aleyda Zeledon</purchby>
+  <customerref>D0052/00202</customerref><balance></balance><shipvia>HDS Dedicated Delivery</shipvia><shipdt>20091027</shipdt>
+  <shipto>
+     <job></job><address><name>GUILD HOUSE WEST II</name><line1>1221 Fairmount Ave</line1><line2></line2><city>Philadelphia</city><state>PA</state><postalcode>19123</postalcode><phone></phone></address>
+  </shipto>
+  <item><seq>    1</seq><itemid>501000</itemid><name>BUNA N RUBBER O-RING &quot;PKG OF 10&quot; OR-015</name><uom>PKG</uom><pkgqty>1</pkgqty><fob>N</fob><orderqty>1</orderqty><shipqty>1</shipqty><price>1.12</price><glacct>8899</glacct><category>Faucets/Showerheads</category><subcat>Faucet &amp; Shower Valve Repair</subcat><amt>1.12</amt></item>
+  <tax><seq>1 </seq><type>TX</type><category>TAX</category><name>Sales Tax</name><amt>0.99</amt></tax>
+  <charge><seq>2 </seq><type>FRT</type><category>FRT</category><name>Freight</name><amt>7.00</amt></charge>
+  <charge><seq>3 </seq><type>MSC</type><category>MSC</category><name>Misc</name><amt>6.00</amt></charge>
+</invoice>
+
+<invoice>
+   <id>9000001271</id>
+   <type>RV</type>
+   <ordertype>ZWEB</ordertype>
+   <orderid>0100030827</orderid>
+   <custid>5904940</custid>
+   <parent>406816</parent>
+   <propid>8413</propid>
+   <orderdt>20091027</orderdt>
+   <invdt>20091027</invdt>
+   <duedt>20091126</duedt>
+   <po>10025</po>
+   <purchby></purchby>
+   <customerref></customerref>
+   <balance></balance>
+   <shipvia>HDS Dedicated Delivery</shipvia>
+   <shipdt>20091027</shipdt>
+   <shipto>
+     <job></job>
+     <address>
+     <name>GUILD HOUSE WEST II</name>
+     <line1>1221 Fairmount Ave</line1><line2></line2>
+     <city>Philadelphia</city><state>PA</state>
+     <postalcode>19123</postalcode>
+     <phone></phone>
+     </address>
+   </shipto>
+   <item><seq>    1</seq><itemid>326150</itemid><name>1,800 WATT ,DIRECTIONAL PHOTOCONTROLLER</name><uom>EA</uom><pkgqty>1</pkgqty><fob>N</fob><orderqty>11</orderqty><shipqty>11</shipqty><price>7.6600003</price><glacct></glacct><category>Lighting Fixtures</category><subcat>Security Lighting</subcat><amt>84.26</amt></item>
+   <item><seq>    2</seq><itemid>106063</itemid><name>10.3 OZ LIQUID NAILS GUTTER REPAIR</name><uom>EA</uom><pkgqty>1</pkgqty><fob>N</fob><orderqty>1</orderqty><shipqty>1</shipqty><price>2.79</price><glacct>1126</glacct><category>Paint &amp; Sundries</category><subcat>Caulking</subcat><amt>2.79</amt></item>
+   <tax><seq>1 </seq><type>TX</type><category>TAX</category><name>Sales Tax</name><amt>6.73</amt></tax>
+   <charge><seq>2 </seq><type>FRT</type><category>FRT</category><name>Freight</name><amt>6.00</amt></charge>
+   <charge><seq>3 </seq><type>SAV</type><category>SAV</category><name>Savings</name><amt>-3</amt></charge>
+</invoice>
+
+</invoice-batch>
