@@ -1,7 +1,7 @@
 package hds.groovy
 
 /**
- * Send an email using the Linux Mutt utility.
+ * Send an email using the Linux Mutt utility. TODO get rid if this
  * <p>
  * Example:
  * <pre>
