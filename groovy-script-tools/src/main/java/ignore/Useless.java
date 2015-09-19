@@ -1,4 +1,4 @@
-package useless;
+package ignore;
 
 public class Useless {
 
