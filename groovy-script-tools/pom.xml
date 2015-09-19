@@ -2,7 +2,6 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ericksn</groupId>
   <artifactId>groovy-script-tools</artifactId>
   <version>4.0</version>
   <packaging>jar</packaging>
@@ -62,4 +61,5 @@
   		<version>1.4.7</version>
     </dependency>
   </dependencies>
+  <groupId>brokenrolex</groupId>
 </project>

@@ -1115,3 +1115,7 @@ Possible solutions: write([B), write(int), write([B), write(int), write(int), wa
 2015-09-18 13:12:28,869 INFO  ScriptTools - script.args [-v]
 2015-09-18 13:12:28,869 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
 2015-09-18 13:12:29,446 INFO  ScriptTools - end [1.184 seconds]
+2015-09-18 23:13:09,849 INFO  ScriptTools - begin
+2015-09-18 23:13:09,914 INFO  ScriptTools - script.args [-v]
+2015-09-18 23:13:09,914 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-18 23:13:11,576 INFO  ScriptTools - end [3.491 seconds]
