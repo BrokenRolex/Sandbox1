@@ -13,17 +13,17 @@ class DataWriter {
     BatchMap batchMap
     Map summary
     File outFile
-	BufferedOutputStream bos
+    BufferedOutputStream bos
     //
     void write_header () {
-		bos = outFile.newOutputStream()
+        bos = outFile.newOutputStream()
         writeGroup('batch-header', summary)
     }
     void write_trailer () {
         writeGroup('batch-trailer', summary)
-		bos.flush()
-		bos.close()
-		bos = null
+        bos.flush()
+        bos.close()
+        bos = null
     }
     void write_invoice (Invoice invoice) {
         writeGroup('invoice-header', summary + invoice.invoice)
@@ -56,8 +56,8 @@ class DataWriter {
                 }
                 String line = record.collect{(it ?: '').replaceAll(Pattern.quote(fldsep),'')}.join(fldsep)
                 println line
-				bos << line
-				bos << recsep
+                bos << line
+                bos << recsep
             }
         }
     }
