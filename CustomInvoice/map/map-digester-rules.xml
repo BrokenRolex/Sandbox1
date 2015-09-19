@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE digester-rules PUBLIC
+         "-//Jakarta Apache //DTD digester-rules XML V1.0//EN"
+         "digester-rules.dtd">
+<digester-rules>
+
+	<pattern value="invoice-batch-map">
+	    <object-create-rule classname="BatchMap" />
+		<bean-property-setter-rule pattern="name" propertyname="name"/>
+    	<bean-property-setter-rule pattern="output/style" propertyname="style"/>
+    	<bean-property-setter-rule pattern="output/fldsep" propertyname="fldsep"/>
+		<bean-property-setter-rule pattern="output/recsep" propertyname="recsep"/>
+		<pattern value="group">
+			<object-create-rule classname="Group" />
+			<set-properties-rule />
+			<set-next-rule methodname="addGroup" />
+			<pattern value="sequence">
+				<object-create-rule classname="Sequence" />
+				<set-next-rule methodname="addSequence" />
+				<pattern value="position">
+					<object-create-rule classname="Position" />
+					<set-properties-rule />
+					<set-next-rule methodname="addPosition" />
+					<pattern value="macro">
+						<factory-create-rule classname="MacroFactory" />
+						<set-next-rule methodname="addMacro" />
+					</pattern>
+				</pattern>
+			</pattern>
+   		</pattern>
+	</pattern>
+
+</digester-rules>

@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<invoice-batch-map>
+   <name>ESA</name>
+   <output>
+      <style>text</style>
+      <fldsep>|</fldsep>
+      <recsep>\n</recsep>
+   </output>
+   <group name="batch-header">
+      <sequence>
+         <position num="1" value="SITE#" source="value" />
+         <position num="2" value="INVOICE#" source="value" />
+         <position num="3" value="INVDT" source="value" />
+         <position num="4" value="GL#" source="value" />
+         <position num="5" value="STOCK#" source="value" />
+         <position num="6" value="FOB" source="value" />
+         <position num="7" value="DESCRIPTION" source="value" />
+         <position num="8" value="PO#" source="value" />
+         <position num="9" value="PRICE" source="value" />
+         <position num="10" value="QTY" source="value" />
+         <position num="11" value="TOTAL" source="value" />
+      </sequence>
+   </group>
+   <group name="invoice-header" />
+   <group name="invoice-items">
+      <sequence>
+         <position num="1" value="invoice.propid" source="data" />
+         <position num="2" value="invoice.id" source="data" />
+         <position num="3" value="invoice.invdt" source="data" />
+         <position num="4" value="invoice.item.glacct" source="data" />
+         <position num="5" value="invoice.item.itemid" source="data" />
+         <position num="6" value="invoice.item.fob" source="data" />
+         <position num="7" value="invoice.item.name" source="data" />
+         <position num="8" value="invoice.po" source="data" />
+         <position num="9" value="invoice.item.price" source="data">
+            <macro name="printformat" value="%.2f" />
+         </position>
+         <position num="10" value="invoice.item.shipqty" source="data" />
+         <position num="11" value="invoice.item.amt" source="data">
+            <macro name="printformat" value="%.2f" />
+         </position>
+      </sequence>
+   </group>
+   <group name="invoice-taxes">
+      <sequence>
+         <position num="1" value="invoice.propid" source="data" />
+         <position num="2" value="invoice.id" source="data" />
+         <position num="3" value="invoice.invdt" source="data" />
+         <position num="7" value="invoice.tax.name" source="data" />
+         <position num="8" value="invoice.po" source="data" />
+         <position num="11" value="invoice.tax.amt" source="data">
+            <macro name="printformat" value="%.2f" />
+         </position>
+      </sequence>
+   </group>
+   <group name="invoice-charges">
+      <sequence>
+         <position num="1" value="invoice.propid" source="data" />
+         <position num="2" value="invoice.id" source="data" />
+         <position num="3" value="invoice.invdt" source="data" />
+         <position num="7" value="invoice.charge.name" source="data" />
+         <position num="8" value="invoice.po" source="data" />
+         <position num="11" value="invoice.charge.amt" source="data">
+            <macro name="printformat" value="%.2f" />
+         </position>
+      </sequence>
+   </group>
+   <group name="invoice-trailer" />
+   <group name="batch-trailer" />
+</invoice-batch-map>
