@@ -191,7 +191,7 @@ class DataReader {
             List taxes = invoice['invoice.tax']
             List charges = invoice['invoice.charge']
             detailPaths.each { invoice.remove(it) }
-			
+
             closure.call(new Invoice(invoice: invoice, items: items, taxes: taxes, charges: charges))
         }
     }
