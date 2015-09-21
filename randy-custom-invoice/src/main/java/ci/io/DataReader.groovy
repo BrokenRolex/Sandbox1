@@ -1,8 +1,10 @@
 package ci.io
 
+import script.*
 import ci.map.BatchMap
 import ci.data.Invoice
 import groovy.util.Node
+import groovy.io.FileType
 import org.apache.commons.digester.Digester
 import org.apache.commons.digester.xmlrules.DigesterLoader
 
@@ -12,18 +14,27 @@ class DataReader {
     Node root
     File mapDir
     File digesterFile
+    File inFile
+    File outFile
+    File inDir = Props.instance.getFileProp('in.dir')
+    File outDir = Props.instance.getFileProp('out.dir')
     Digester digester
     Map summary
-
-    DataReader(File dir) {
-        mapDir = dir
-        digesterFile = new File(mapDir, 'map-digester-rules.xml') // TODO properties
-        digester = DigesterLoader.createDigester(digesterFile.toURI().toURL())
+    BatchMap batchMap
+    String custid
+    
+    DataReader (File f) {
+        this.inFile = f
     }
 
-    void summary (File file, Closure closure) {
+    void readSummary () {
+        if (!digester) {
+            mapDir = Props.instance.getFileProp('map.dir')
+            digesterFile = new File(mapDir, 'map-digester-rules.xml') // TODO properties
+            digester = DigesterLoader.createDigester(digesterFile.toURI().toURL())
+        }
         xp = new XmlParser()
-        root = xp.parse(file)
+        root = xp.parse(inFile)
         Integer invcnt = 0
         Integer itmcnt = 0
         Integer chgcnt = 0
@@ -95,13 +106,16 @@ class DataReader {
         summary.MSCAMT = (chgamt.subtract(frtamt).subtract(savamt)).toString()
         summary.INVAMT = (itmamt.add(chgamt).add(taxamt)).toString()
 
-        String custid = summary['buyer.custid']
-        BatchMap batchMap = (BatchMap) digester.parse(new File(mapDir,"${custid}.xml"))
+        custid = summary['buyer.custid']
+        batchMap = (BatchMap) digester.parse(new File(mapDir,"${custid}.xml"))
+        outFile = new File(outDir, inFile.name - '.xml' + '.dat')
 
-        closure.call(batchMap,  summary)
     }
 
     void eachInvoice (Closure closure) {
+        if (!summary || !inFile  || !digester) {
+            throw new Exception("oops")
+        }
         root.invoice.each { Node i ->
             Map det
             Map invoice = [:].withDefault{ it = ''}

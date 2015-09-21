@@ -18,18 +18,10 @@ props.print()
 
 // ==========================================================================
 
-File mapDir = props.getFileProp('map.dir')
-File inDir = props.getFileProp('in.dir')
-File outDir = props.getFileProp('out.dir')
-inDir.eachFileMatch(FileType.FILES, ~/.+\.xml/) { inFile ->
-    DataReader dr = new DataReader(mapDir)
-    dr.summary(inFile) { batchMap, summary ->
-        File outFile = new File(outDir, inFile.name - '.xml' + '.dat')
-        DataWriter dw = new DataWriter(batchMap: batchMap, summary: summary, outFile: outFile)
-        dw.write_header()
-        dr.eachInvoice() { invoice -> dw.write_invoice(invoice) }
-        dw.write_trailer()
-    }
+props.getFileProp('in.dir').eachFileMatch(FileType.FILES, ~/.+\.xml/) { inFile ->
+    DataReader dr = new DataReader(inFile)
+    DataWriter dw = new DataWriter(dr)
+    dw.write()
 }
 
 // ==========================================================================

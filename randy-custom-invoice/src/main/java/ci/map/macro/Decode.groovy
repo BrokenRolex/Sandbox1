@@ -4,6 +4,7 @@ import ci.map.Macro
 
 @groovy.util.logging.Log4j
 class Decode extends Macro {
+    @Override
     String execute (Map data, String si) {
         String so = si
         if (!obj1) {

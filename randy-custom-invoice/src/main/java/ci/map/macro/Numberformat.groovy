@@ -6,6 +6,7 @@ import java.text.DecimalFormat
 
 @groovy.util.logging.Log4j
 class Numberformat extends Macro {
+    @Override
     String execute (Map data, String si) {
         String so = si
         if (!obj1) {

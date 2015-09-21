@@ -11,25 +11,38 @@ import java.util.regex.*
 @groovy.util.logging.Log4j
 class DataWriter {
 
-    BatchMap batchMap
-    Map summary
-    File outFile
+    DataReader dataReader
     BufferedOutputStream bos
-
+    
+    DataWriter (DataReader dr) {
+        this.dataReader = dr
+    }
+    
+    void write () {
+        write_header()
+        write_invoices()
+        write_trailer()
+    }
+    
     void write_header () {
-        bos = outFile.newOutputStream()
-        writeGroup('batch-header', summary)
+        dataReader.readSummary()
+        bos = dataReader.outFile.newOutputStream()
+        writeGroup('batch-header', dataReader.summary)
     }
 
     void write_trailer () {
-        writeGroup('batch-trailer', summary)
+        writeGroup('batch-trailer', dataReader.summary)
         bos.flush()
         bos.close()
         bos = null
     }
+    
+    void write_invoices () {
+        dataReader.eachInvoice() { invoice -> write_invoice(invoice) }
+    }
 
     void write_invoice (Invoice invoice) {
-        Map data = summary + invoice.invoice
+        Map data = dataReader.summary + invoice.invoice
         writeGroup('invoice-header', data)
         invoice.items.each { item ->
             writeGroup('invoice-items', data + item)
@@ -46,7 +59,7 @@ class DataWriter {
     void writeGroup (String groupName, Map data) {
         String fldsep = ','
         String recsep = "\n"
-        Group group = batchMap.getGroupByName(groupName)
+        Group group = dataReader.batchMap.getGroupByName(groupName)
         if (group) {
             group.sequences.each { Sequence sequence ->
                 List record = []
