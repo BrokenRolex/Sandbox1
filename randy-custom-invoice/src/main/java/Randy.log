@@ -1421,3 +1421,7 @@ Possible solutions: plus(java.util.Map), plus(java.util.Collection), values(), v
 	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
 
 2015-09-20 20:55:53,121 INFO  ScriptTools - end [0.662 seconds]
+2015-09-20 21:06:39,841 INFO  ScriptTools - begin
+2015-09-20 21:06:39,852 INFO  ScriptTools - script.args [-v]
+2015-09-20 21:06:39,852 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 21:06:40,702 INFO  ScriptTools - end [1.505 seconds]

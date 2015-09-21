@@ -16,12 +16,11 @@ import script.*
 
 props.print()
 
+// ==========================================================================
+
 File mapDir = props.getFileProp('map.dir')
 File inDir = props.getFileProp('in.dir')
 File outDir = props.getFileProp('out.dir')
-
-// ==========================================================================
-
 inDir.eachFileMatch(FileType.FILES, ~/.+\.xml/) { inFile ->
     DataReader dr = new DataReader(mapDir)
     dr.summary(inFile) { batchMap, summary ->
