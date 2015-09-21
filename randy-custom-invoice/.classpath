@@ -24,6 +24,6 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
-	<classpathentry kind="lib" path="lib/groovy-script-tools-4.0.jar"/>
+	<classpathentry kind="lib" path="/groovy-script-tools/target/groovy-script-tools-4.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

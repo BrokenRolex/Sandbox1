@@ -1119,3 +1119,305 @@ Possible solutions: write([B), write(int), write([B), write(int), write(int), wa
 2015-09-18 23:13:09,914 INFO  ScriptTools - script.args [-v]
 2015-09-18 23:13:09,914 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
 2015-09-18 23:13:11,576 INFO  ScriptTools - end [3.491 seconds]
+2015-09-20 14:42:10,505 INFO  ScriptTools - begin
+2015-09-20 14:42:10,552 INFO  ScriptTools - script.args [-v]
+2015-09-20 14:42:10,552 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 14:42:11,738 FATAL ScriptTools - groovy.lang.MissingPropertyException: No such property: xmlFile for class: Randy
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.unwrap(ScriptBytecodeAdapter.java:51)
+	at org.codehaus.groovy.runtime.callsite.PogoGetPropertySite.getProperty(PogoGetPropertySite.java:49)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callGroovyObjectGetProperty(AbstractCallSite.java:231)
+	at Randy$_runUserScript_closure1_closure2.doCall(Randy.groovy:29)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)
+	at ci.io.DataReader.summary(DataReader.groovy:101)
+	at ci.io.DataReader$summary.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)
+	at Randy$_runUserScript_closure1.doCall(Randy.groovy:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at groovy.lang.Closure.call(Closure.java:423)
+	at groovy.lang.Closure.call(Closure.java:439)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1390)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at Randy.runUserScript(Randy.groovy:26)
+	at hds.groovy.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+
+2015-09-20 14:42:11,801 INFO  ScriptTools - end [2.810 seconds]
+2015-09-20 14:42:42,927 INFO  ScriptTools - begin
+2015-09-20 14:42:42,943 INFO  ScriptTools - script.args [-v]
+2015-09-20 14:42:42,943 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 14:42:43,677 FATAL ScriptTools - groovy.lang.MissingMethodException: No signature of method: java.util.LinkedHashMap.plus() is applicable for argument types: (ci.data.Invoice) values: [ci.data.Invoice@5c64a90d]
+Possible solutions: plus(java.util.Map), plus(java.util.Collection), values(), values(), put(java.lang.Object, java.lang.Object), put(java.lang.Object, java.lang.Object)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.unwrap(ScriptBytecodeAdapter.java:56)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaClassSite.call(PojoMetaClassSite.java:46)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at ci.io.DataWriter.write_invoice(DataWriter.groovy:32)
+	at ci.io.DataWriter$write_invoice$1.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy$_runUserScript_closure1_closure2_closure3.doCall(Randy.groovy:32)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at ci.io.DataReader$_eachInvoice_closure4.doCall(DataReader.groovy:195)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at groovy.lang.Closure.call(Closure.java:423)
+	at groovy.lang.Closure.call(Closure.java:439)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:1379)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:1372)
+	at org.codehaus.groovy.runtime.dgm$149.doMethodInvoke(Unknown Source)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1206)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at groovy.lang.DelegatingMetaClass.invokeMethod(DelegatingMetaClass.java:149)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaClassSite.call(PojoMetaClassSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at ci.io.DataReader.eachInvoice(DataReader.groovy:105)
+	at ci.io.DataReader$eachInvoice$0.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy$_runUserScript_closure1_closure2.doCall(Randy.groovy:32)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:39)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)
+	at ci.io.DataReader.summary(DataReader.groovy:101)
+	at ci.io.DataReader$summary.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:120)
+	at Randy$_runUserScript_closure1.doCall(Randy.groovy:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at groovy.lang.Closure.call(Closure.java:423)
+	at groovy.lang.Closure.call(Closure.java:439)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1390)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at Randy.runUserScript(Randy.groovy:26)
+	at hds.groovy.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+
+2015-09-20 14:42:43,724 INFO  ScriptTools - end [1.592 seconds]
+2015-09-20 14:44:28,759 INFO  ScriptTools - begin
+2015-09-20 14:44:28,775 INFO  ScriptTools - script.args [-v]
+2015-09-20 14:44:28,775 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 14:44:29,478 INFO  ScriptTools - end [1.421 seconds]
+2015-09-20 14:50:06,807 INFO  ScriptTools - begin
+2015-09-20 14:50:06,807 INFO  ScriptTools - script.args [-v]
+2015-09-20 14:50:06,807 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:05:45,807 INFO  ScriptTools - begin
+2015-09-20 20:05:45,847 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:05:45,848 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:11:37,830 INFO  ScriptTools - begin
+2015-09-20 20:11:37,839 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:11:37,839 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:16:00,470 INFO  ScriptTools - begin
+2015-09-20 20:16:00,478 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:16:00,478 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:18:25,281 INFO  ScriptTools - begin
+2015-09-20 20:18:25,291 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:18:25,291 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:38:16,151 INFO  ScriptTools - begin
+2015-09-20 20:38:16,159 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:38:16,159 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:41:15,062 INFO  ScriptTools - begin
+2015-09-20 20:41:15,071 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:41:15,072 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:42:25,249 INFO  ScriptTools - begin
+2015-09-20 20:42:25,259 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:42:25,259 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:43:00,719 INFO  ScriptTools - begin
+2015-09-20 20:43:00,729 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:43:00,729 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:43:32,634 INFO  ScriptTools - begin
+2015-09-20 20:43:32,642 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:43:32,642 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:44:13,045 INFO  ScriptTools - begin
+2015-09-20 20:44:13,056 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:44:13,056 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:44:13,072 FATAL ScriptTools - java.io.FileNotFoundException: D:\Sandbox1\randy-custom-invoice\src\main\java\datain
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.checkDir(ResourceGroovyMethods.java:1011)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1380)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at Randy.runUserScript(Randy.groovy:24)
+	at script.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+
+2015-09-20 20:44:13,108 INFO  ScriptTools - end [0.803 seconds]
+2015-09-20 20:45:38,825 INFO  ScriptTools - begin
+2015-09-20 20:45:38,835 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:45:38,835 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:52:09,362 INFO  ScriptTools - begin
+2015-09-20 20:52:09,370 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:52:09,370 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:52:28,063 INFO  ScriptTools - begin
+2015-09-20 20:52:28,073 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:52:28,073 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:52:47,553 INFO  ScriptTools - begin
+2015-09-20 20:52:47,563 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:52:47,563 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:52:47,581 FATAL ScriptTools - java.io.FileNotFoundException: D:\ws3\randy-custom-invoice\datain
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.checkDir(ResourceGroovyMethods.java:1011)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1380)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at Randy.runUserScript(Randy.groovy:25)
+	at script.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+
+2015-09-20 20:52:47,596 INFO  ScriptTools - end [0.717 seconds]
+2015-09-20 20:55:53,067 INFO  ScriptTools - begin
+2015-09-20 20:55:53,077 INFO  ScriptTools - script.args [-v]
+2015-09-20 20:55:53,077 INFO  ScriptTools - cli options [verbose = true, debug = false, test = false, help = false]
+2015-09-20 20:55:53,100 FATAL ScriptTools - java.io.FileNotFoundException: D:\ws3\randy-custom-invoice\datain
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.checkDir(ResourceGroovyMethods.java:1011)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1380)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at Randy.runUserScript(Randy.groovy:25)
+	at script.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+
+2015-09-20 20:55:53,121 INFO  ScriptTools - end [0.662 seconds]

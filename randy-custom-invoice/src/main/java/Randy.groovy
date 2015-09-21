@@ -4,27 +4,28 @@
  @Grab('commons-digester:commons-digester:2.1'),
  @Grab('commons-beanutils:commons-beanutils:1.9.2'),
  @Grab('log4j:log4j:1.2.17'),
- @Grab('commons-lang:commons-lang:2.6'),
+ @Grab('commons-/lang:commons-lang:2.6'),
  ])
  */
 import groovy.io.FileType
 import ci.io.DataReader
 import ci.io.DataWriter
 //@Grab('com.hdsupply:hds-groovy:4.0')
-@groovy.transform.BaseScript(hds.groovy.ScriptWrapper)
-import hds.groovy.*
+@groovy.transform.BaseScript(script.ScriptWrapper)
+import script.*
 
-File dir = Env.scriptFile.parentFile.parentFile.parentFile.parentFile
-File mapDir = new File(dir, 'map')
-File inDir = new File(dir, 'datain')
-File outDir = new File(dir, 'dataout')
+props.print()
+
+File mapDir = props.getFileProp('map.dir')
+File inDir = props.getFileProp('in.dir')
+File outDir = props.getFileProp('out.dir')
 
 // ==========================================================================
 
-inDir.eachFileMatch(FileType.FILES, ~/.+\.xml/) { xmlFile ->
+inDir.eachFileMatch(FileType.FILES, ~/.+\.xml/) { inFile ->
     DataReader dr = new DataReader(mapDir)
-    dr.summary(xmlFile) { batchMap, summary ->
-        File outFile = new File(outDir, xmlFile.name - '.xml' + '.dat')
+    dr.summary(inFile) { batchMap, summary ->
+        File outFile = new File(outDir, inFile.name - '.xml' + '.dat')
         DataWriter dw = new DataWriter(batchMap: batchMap, summary: summary, outFile: outFile)
         dw.write_header()
         dr.eachInvoice() { invoice -> dw.write_invoice(invoice) }

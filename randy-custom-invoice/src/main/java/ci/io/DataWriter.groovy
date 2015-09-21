@@ -10,38 +10,43 @@ import java.util.regex.*
 
 @groovy.util.logging.Log4j
 class DataWriter {
+
     BatchMap batchMap
     Map summary
     File outFile
     BufferedOutputStream bos
-    //
+
     void write_header () {
         bos = outFile.newOutputStream()
         writeGroup('batch-header', summary)
     }
+
     void write_trailer () {
         writeGroup('batch-trailer', summary)
         bos.flush()
         bos.close()
         bos = null
     }
+
     void write_invoice (Invoice invoice) {
-        writeGroup('invoice-header', summary + invoice.invoice)
+        Map data = summary + invoice.invoice
+        writeGroup('invoice-header', data)
         invoice.items.each { item ->
-            writeGroup('invoice-items', summary + invoice.invoice + item)
+            writeGroup('invoice-items', data + item)
         }
         invoice.taxes.each { tax ->
-            writeGroup('invoice-taxes', summary + invoice.invoice + tax)
+            writeGroup('invoice-taxes', data + tax)
         }
         invoice.charges.each { charge ->
-            writeGroup('invoice-charges', summary + invoice.invoice + charge)
+            writeGroup('invoice-charges', data + charge)
         }
-        writeGroup('invoice-trailer', summary + invoice.invoice)
+        writeGroup('invoice-trailer', data)
     }
-    void writeGroup (String name, Map data) {
+
+    void writeGroup (String groupName, Map data) {
         String fldsep = ','
         String recsep = "\n"
-        Group group = batchMap.getGroupByName(name)
+        Group group = batchMap.getGroupByName(groupName)
         if (group) {
             group.sequences.each { Sequence sequence ->
                 List record = []
@@ -61,4 +66,5 @@ class DataWriter {
             }
         }
     }
+
 }
