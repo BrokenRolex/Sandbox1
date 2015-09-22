@@ -7,10 +7,8 @@ import ci.map.Macro
 class Subtract extends Macro {
 
     @Override
-    public String execute(Map data, String si) {
-        String so = si
-        log.debug "in=[$si], out=[$so], " + this.toString()
-        so
+    public String execute(Map data, String s) {
+        s.to_BigDecimal().subtract(sourceData(data).to_BigDecimal()).toString()
     }
 
 }

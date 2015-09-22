@@ -7,8 +7,8 @@ import java.text.DecimalFormat
 @groovy.util.logging.Log4j
 class Numberformat extends Macro {
     @Override
-    String execute (Map data, String si) {
-        String so = si
+    String execute (Map data, String s) {
+        String so = s
         if (!obj1) {
             try {
                 obj1 = new DecimalFormat(value)
@@ -19,13 +19,12 @@ class Numberformat extends Macro {
         }
         if (obj1) {
             try {
-                so = ((DecimalFormat) (obj1)).format(si.to_BigDecimal())
+                so = ((DecimalFormat) (obj1)).format(s.to_BigDecimal())
             }
             catch (e) {
-                log.error "cannot format [$si] using format [$value] : " + e.message
+                log.error "cannot format [$s] using format [$value] : " + e.message
             }
         }
-        log.debug "in=[$si], out=[$so], " + this.toString()
         so
     }
 }

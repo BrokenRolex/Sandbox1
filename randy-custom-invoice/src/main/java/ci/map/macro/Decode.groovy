@@ -5,8 +5,8 @@ import ci.map.Macro
 @groovy.util.logging.Log4j
 class Decode extends Macro {
     @Override
-    String execute (Map data, String si) {
-        String so = si
+    String execute (Map data, String s) {
+        String so = s
         if (!obj1) {
             Map map = [:]
             (value.split(/,/) as List).collate(2).each { tuple ->
@@ -21,9 +21,8 @@ class Decode extends Macro {
         }
         if (obj1) {
             Map map = (Map) obj1
-            so = map.containsKey(si) ? map[data] : map[null]
+            so = map.containsKey(s) ? map[data] : map[null]
         }
-        log.debug "in=[$si], out=[$so], " + this.toString()
         so
     }
 }

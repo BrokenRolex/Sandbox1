@@ -7,9 +7,7 @@ import groovy.util.logging.Log4j
 class Trim extends Macro {
 
     @Override
-    public String execute(Map data, String si) {
-        String so = si?.trim()
-        log.debug "in=[$si], out=[$so], " + this
-        so
+    public String execute(Map data, String s) {
+        s == null ? '' : s.trim()
     }
 }
