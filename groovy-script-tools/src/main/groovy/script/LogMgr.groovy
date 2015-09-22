@@ -57,59 +57,61 @@ class LogMgr {
     static void overrideLoggerLevels() {
 
         // don't let email class logging be finer than info
-        JulLogger.getLogger('com.sun.mail').setLevel(JulLevel.INFO)
+        //JulLogger.getLogger('com.sun.mail').setLevel(JulLevel.INFO)
         Logger.getLogger('com.sun.mail').setLevel(Level.INFO)
-        JulLogger.getLogger('javax.activation').setLevel(JulLevel.INFO)
-        Logger.getLogger('javax.activation').setLevel(Level.INFO)
-        JulLogger.getLogger('javax.mail').setLevel(JulLevel.INFO)
-        Logger.getLogger('javax.mail').setLevel(Level.INFO)
-        JulLogger.getLogger('groovy.sql').setLevel(JulLevel.INFO)
+        //JulLogger.getLogger('javax').setLevel(JulLevel.INFO)
+        Logger.getLogger('javax').setLevel(Level.INFO)
+        //JulLogger.getLogger('groovy.sql').setLevel(JulLevel.INFO)
         Logger.getLogger('groovy.sql').setLevel(Level.INFO)
-        JulLogger.getLogger('javax.management.mbeanserver').setLevel(JulLevel.INFO)
-        Logger.getLogger('javax.management.mbeanserver').setLevel(Level.INFO)
-        JulLogger.getLogger('javax.management.misc').setLevel(JulLevel.INFO)
-        Logger.getLogger('javax.management.misc').setLevel(Level.INFO)
 
         // logger.override.{class}={level}
-        def p1 = ~/logger\.override\.(.+)=(TRACE|DEBUG|INFO|WARN|ERROR|FATAL|FINEST|FINER|FINE|WARNING|SEVERE)/
+        //def p1 = ~/logger\.override\.(.+)=(TRACE|DEBUG|INFO|WARN|ERROR|FATAL|FINEST|FINER|FINE|WARNING|SEVERE)/
+        Set levels = ['TRACE','DEBUG','INFO','WARN','ERROR','FATAL','FINEST','FINER','FINE','WARNING','SEVERE']
         Props.instance.each { String key, String val ->
-            def m1 = key =~ p1
-            if (m1.matches()) {
-                String clazz = m1.group(1)
-                String level = m1.group(2)
-                Logger logger = Logger.getLogger(clazz)
-                logger.setAdditivity(true) // necessary ?
-                JulLogger jlogger = JulLogger.getLogger('')
-                switch (level) {
-                    case 'TRACE':
-                    case 'FINEST':
-                        logger.setLevel(Level.TRACE)
-                        jlogger.setLevel(JulLevel.FINEST)
-                        break
-                    case 'DEBUG':
-                    case 'FINER':
-                    case 'FINE':
-                        logger.setLevel(Level.DEBUG)
-                        jlogger.setLevel(JulLevel.FINER)
-                        break
-                    case 'INFO':
-                        logger.setLevel(Level.INFO)
-                        jlogger.setLevel(JulLevel.INFO)
-                        break
-                    case 'WARN':
-                    case 'WARNING':
-                        logger.setLevel(Level.WARN)
-                        jlogger.setLevel(JulLevel.WARNING)
-                        break
-                    case 'ERROR':
-                    case 'SEVERE':
-                        logger.setLevel(Level.ERROR)
-                        jlogger.setLevel(JulLevel.SEVERE)
-                        break
-                    case 'FATAL':
-                        logger.setLevel(Level.FATAL)
-                        jlogger.setLevel(JulLevel.SEVERE)
-                }
+            if (!key.startsWith('logger.override.')) {
+                return
+            }
+            String level = val.toUpperCase()
+            if (!levels.contains(level)) {
+                return
+            }
+            String clazz = key - 'logger.override.'
+            println '-'*80
+            println key
+            println val
+            println '-'*80
+            Logger logger = Logger.getLogger(clazz)
+            logger.setAdditivity(true) // necessary ?
+            JulLogger jlogger = JulLogger.getLogger('')
+            switch (level) {
+                case 'TRACE':
+                case 'FINEST':
+                    logger.setLevel(Level.TRACE)
+                    //jlogger.setLevel(JulLevel.FINEST)
+                    break
+                case 'DEBUG':
+                case 'FINER':
+                case 'FINE':
+                    logger.setLevel(Level.DEBUG)
+                    //jlogger.setLevel(JulLevel.FINER)
+                    break
+                case 'INFO':
+                    logger.setLevel(Level.INFO)
+                    //jlogger.setLevel(JulLevel.INFO)
+                    break
+                case 'WARN':
+                case 'WARNING':
+                    logger.setLevel(Level.WARN)
+                    //jlogger.setLevel(JulLevel.WARNING)
+                    break
+                case 'ERROR':
+                case 'SEVERE':
+                    logger.setLevel(Level.ERROR)
+                    //jlogger.setLevel(JulLevel.SEVERE)
+                    break
+                case 'FATAL':
+                    logger.setLevel(Level.FATAL)
+                    //jlogger.setLevel(JulLevel.SEVERE)
             }
         }
     }
