@@ -1,0 +1,2 @@
+customer_filename_template=$custid/_/$begdt/_/$enddt/.csv
+

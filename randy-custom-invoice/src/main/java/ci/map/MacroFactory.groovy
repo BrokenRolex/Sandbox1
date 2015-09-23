@@ -33,7 +33,6 @@ class MacroFactory implements ObjectCreationFactory {
 		loader.close()
 
 		Macro macro = (Macro) o
-		macro.name = className
 		macro.value = map.value
 		macro.source = map.source ?: 'value'
 

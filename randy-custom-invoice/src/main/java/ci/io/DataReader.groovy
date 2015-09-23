@@ -5,35 +5,26 @@ import ci.map.BatchMap
 import ci.data.Invoice
 import groovy.util.Node
 import groovy.io.FileType
-import org.apache.commons.digester.Digester
-import org.apache.commons.digester.xmlrules.DigesterLoader
+import groovy.util.logging.Log4j
 
+@Log4j
 class DataReader {
     List detailPaths = ['invoice.item', 'invoice.tax', 'invoice.charge']
     XmlParser xp = new XmlParser()
     Node root
-    File mapDir
-    File digesterFile
     File inFile
-    File outFile
     File inDir = Props.instance.getFileProp('in.dir')
-    File outDir = Props.instance.getFileProp('out.dir')
-    Digester digester
     Map summary
     BatchMap batchMap
     String custid
     
     DataReader (File f) {
         this.inFile = f
+        log.info "reading [$f]"
     }
 
     void readSummary () {
-        if (!digester) {
-            mapDir = Props.instance.getFileProp('map.dir')
-            digesterFile = new File(mapDir, 'map-digester-rules.xml') // TODO properties
-            digester = DigesterLoader.createDigester(digesterFile.toURI().toURL())
-        }
-        xp = new XmlParser()
+        log.info "reading summary data"
         root = xp.parse(inFile)
         Integer invcnt = 0
         Integer itmcnt = 0
@@ -107,15 +98,16 @@ class DataReader {
         summary.INVAMT = (itmamt.add(chgamt).add(taxamt)).toString()
 
         custid = summary['buyer.custid']
-        batchMap = (BatchMap) digester.parse(new File(mapDir,"${custid}.xml"))
-        outFile = new File(outDir, inFile.name - '.xml' + '.dat')
+        log.info "custid = $custid"
+        batchMap = DataDigester.instance.buildBatchMap(custid)
 
     }
 
     void eachInvoice (Closure closure) {
-        if (!summary || !inFile  || !digester) {
+        if (!summary) {
             throw new Exception("oops")
         }
+        log.info "reading invoices"
         root.invoice.each { Node i ->
             Map det
             Map invoice = [:].withDefault{ it = ''}

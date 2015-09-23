@@ -76,10 +76,6 @@ class LogMgr {
                 return
             }
             String clazz = key - 'logger.override.'
-            println '-'*80
-            println key
-            println val
-            println '-'*80
             Logger logger = Logger.getLogger(clazz)
             logger.setAdditivity(true) // necessary ?
             JulLogger jlogger = JulLogger.getLogger('')
