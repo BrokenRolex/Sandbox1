@@ -7,34 +7,51 @@ import ci.map.Sequence
 import ci.map.Position
 import ci.map.Macro
 import java.util.regex.*
+import groovy.util.logging.Log4j
+import script.Props
 
-@groovy.util.logging.Log4j
+@Log4j
 class DataWriter {
 
     DataReader dataReader
-    BufferedOutputStream bos
+    Writer wtr
+    File outDir = Props.instance.getFileProp('out.dir')
+    File outFile
+    File datFile
+    File sumFile
     
     DataWriter (DataReader dr) {
         this.dataReader = dr
+        dataReader.readSummary()
     }
     
     void write () {
+        datFile = new File(outDir, dataReader.inFile.name - '.xml' + '.dat')
+        sumFile = new File(outDir, datFile.name - '.dat' + '.sum')
+        List files = [dataReader.inFile,datFile,sumFile]
+        if ((files.collect{it.name} as Set).size() != 3) {
+            throw new Exception("")
+        }
+        log.info "writing [$sumFile]"
+        sumFile.withWriter('UTF-8') { wtr ->
+            dataReader.summary.each { k, v -> wtr << "$k=$v\n" }
+        }
+        log.info "writing [$datFile]"
         write_header()
         write_invoices()
         write_trailer()
     }
     
     void write_header () {
-        dataReader.readSummary()
-        bos = dataReader.outFile.newOutputStream()
+        wtr = datFile.newWriter('UTF-8')
         writeGroup('batch-header', dataReader.summary)
     }
 
     void write_trailer () {
         writeGroup('batch-trailer', dataReader.summary)
-        bos.flush()
-        bos.close()
-        bos = null
+        wtr.flush()
+        wtr.close()
+        wtr = null
     }
     
     void write_invoices () {
@@ -61,21 +78,25 @@ class DataWriter {
         String recsep = "\n"
         Group group = dataReader.batchMap.getGroupByName(groupName)
         if (group) {
+            log.debug group.toString()
             group.sequences.each { Sequence sequence ->
+                log.debug '..' + sequence
                 List record = []
                 sequence.positions.each { Position position ->
-                    String field = ''
-                    if (position.source == 'value') { field = position.value }
-                    else if (position.source == 'data') { field = data[position.value] }
+
+                    String field = position.sourceData(data)
+
+                    log.debug '....' + position + ' = ' + field
                     position.macros.each { Macro macro ->
                         field = macro.execute(data, field)
+                        log.debug '......' + macro + ' = ' + field
                     }
                     record[position.num-1] = field
                 }
                 String line = record.collect{(it ?: '').replaceAll(Pattern.quote(fldsep),'')}.join(fldsep)
-                println line
-                bos << line
-                bos << recsep
+                log.debug "data [$line]"
+                wtr << line
+                wtr << recsep
             }
         }
     }
