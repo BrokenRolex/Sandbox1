@@ -9,18 +9,19 @@ import groovy.util.logging.Log4j
 @Singleton
 @Log4j
 class DataDigester {
+    File mapDir = Props.instance.getFileProp('map.dir')
     Digester digester
     File digesterFile
-    File mapDir = Props.instance.getFileProp('map.dir')
+    File mapFile
     
     BatchMap buildBatchMap (String custid) {
+        mapFile = new File(mapDir, "${custid}.xml")
+        log.info "digesting [$mapFile]"
         if (digester == null) {
-            digesterFile = new File(mapDir, 'map-digester-rules.xml') // TODO properties
-            log.info "loading [$digesterFile]"
+            digesterFile = new File(mapDir, Props.instance.getProp('digester.rules'))
+            log.info "loading digester rules [$digesterFile]"
             digester = DigesterLoader.createDigester(digesterFile.toURI().toURL())
         }
-        File mapFile = new File(mapDir, "${custid}.xml")
-        log.info "digesting [$mapFile]"
         (BatchMap) digester.parse(mapFile)
     }
 

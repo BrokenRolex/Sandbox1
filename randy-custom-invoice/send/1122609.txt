@@ -1,2 +1,6 @@
 customer_filename_template=$custid/_/$begdt/_/$enddt/.csv
 
+email=To:erick.nelson@hdsupply.com
+#ftp=ftp info
+#copy=/path/to/dir
+#call=/path/script

@@ -6,7 +6,8 @@ import groovy.io.FileType
 
 @Log4j
 class DataBuilder {
-    
+    DataReader dr
+    DataWriter dw
     
     void eachFile (Closure c) {
         Props.instance.getFileProp('in.dir').eachFileMatch(FileType.FILES, ~/.+\.xml/, c)
@@ -14,8 +15,8 @@ class DataBuilder {
 
     void build (File file) {
         log.debug "build [$file]"
-        def dr = new DataReader(file)
-        def dw = new DataWriter(dr)
+        dr = new DataReader(file)
+        dw = new DataWriter(dr)
         dw.write()
     }
     

@@ -1,6 +1,5 @@
 package ci.io
 
-import org.apache.commons.net.ftp.*
 import groovy.io.FileType
 import groovy.util.logging.Log4j
 import script.*
@@ -12,6 +11,10 @@ import javax.mail.internet.MimeMessage
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeBodyPart
 import javax.mail.internet.MimeMultipart
+
+import ci.send.Emailer;
+import ci.send.Ftper;
+
 import javax.activation.FileDataSource
 import javax.activation.DataHandler
 
@@ -21,9 +24,10 @@ class DataSender {
     File sumFile
     Map summary
     Map sendRules
-    String custFileName
-    Integer errors = 0
-    
+    String cfn // customer file name
+    Emailer emailer = new Emailer()
+    Ftper ftper = new Ftper()
+
     void eachFile (Closure c) {
         Props.instance.getFileProp('out.dir').eachFileMatch(FileType.FILES, ~/.+\.dat/, c)
     }
@@ -39,142 +43,76 @@ class DataSender {
         summary = load_properties_file(sumFile)
         load_send_rules_file()
         build_customer_filename()
+        def errors = 0
         sendRules.each { k, v ->
             switch (k) {
                 case 'email' :
-                    emailIt(v)
+                    errors += emailer.send(f, cfn, summary, v)
                     break
                 case 'ftp' :
-                    ftpIt(v)
+                    errors += ftper.send(f, v)
                     break
                 case 'call' :
-                    callIt(v)
+                    errors += callIt(v)
                     break
                 case 'copy' :
-                    copyIt(v)
+                    errors += copyIt(v)
             }
+        }
+        if (errors == 0) {
+            log.info "archive"
         }
     }
 
-    void ftpIt (s) {
-        def url = new URL(s)
-        def (user, pass) = url.userInfo.split(/:/, 2)
-        def path = url.path.drop(1)
-        def ftp = new FTPClient()
+    def callIt (s) {
+        def errors = 0
         try {
-            ftp.connect(url.host, url.port == -1 ? url.defaultPort : url.port)
-            ftp.enterLocalPassiveMode()
-            //ftp.setFileType(FTP.BINARY_FILE_TYPE)
-            //ftp.setFileType(FTP.ASCII_FILE_TYPE)
-            if (ftp.login(user, pass)) {
-                def ok2send = true
-                if (path) {
-                    if (!ftp.changeWorkingDirectory(path)) {
-                        log.error "ftp cwd failed: path [$path] data file [$datFile] not delivered"
-                        ok2send = false
-                        errors++
-                    }
-                }
-                if (ok2send) {
-                    datFile.withInputStream { is -> ftp.storeFile(custFileName, is) }
-                    ftp.disconnect()
+            File script = new File(s)
+            if (script.isFile()) {
+                String cmd = "${Env.isWindows ? 'cmd /c ' : ''}$script $datFile $cfn"
+                log.info "running [$cmd]"
+                def proc = cmd.execute()
+                proc.waitFor()
+                def exitValue = proc.exitValue()
+                if (exitValue != 0) {
+                    log.error "call to [$cmd] exit value [$exitValue]"
+                    errors++
                 }
             }
             else {
-                log.error "ftp login failed: data file [$datFile] not delivered"
+                log.error "call file [$s] does not exist, data file [$datFile] not delivered"
                 errors++
             }
         }
         catch (e) {
-            log.error "ftp connect failed: $e.message"
+            log.error e.message
             errors++
         }
+        errors
     }
 
-    void emailIt (s) {
+    def copyIt (s) {
+        def errors = 0
         try {
-            Properties p = new Properties()
-            //p['mail.smtp.host'] = 'mailhost.mwh.com'
-            p['mail.smtp.host'] = 'localhost'
-            p['mail.smtp.port'] = '25'
-            Session session = Session.getInstance(p)
-            MimeMessage mimeMessage = new MimeMessage(session)
-            mimeMessage.setSubject(email_subject())
-            def fromAddr = new InternetAddress('do_not_reply@hdsupply.com')
-            mimeMessage.setFrom(fromAddr)
-            mimeMessage.setReplyTo(fromAddr)
-            s.split(/,/).each {
-                def (type, addr) = it.trim().split(/:/, 2)
-                def ia = new InternetAddress(addr.trim())
-                type = type.trim().toUpperCase()
-                if (type == 'TO') {
-                    mimeMessage.addRecipient(Message.RecipientType.TO, ia)
-                }
-                else if (type == 'CC') {
-                    mimeMessage.addRecipient(Message.RecipientType.CC, ia)
-                }
-                else if (type == 'BCC') {
-                    mimeMessage.addRecipient(Message.RecipientType.BCC, ia)
+            File dir = new File(s)
+            if (dir.isFile()) {
+                log.error "cannot copy [$datFile] as [$cfn] to [$dir] destination dir is a file"
+                errors++
+            }
+            if (!dir.isDirectory()) {
+                if (!dir.mkdirs()) {
+                    log.error "cannot copy [$datFile] as [$cfn] to [$dir] destination dir does not exist"
+                    errors++
                 }
             }
-            MimeBodyPart mimeBodyPart = new MimeBodyPart()
-            mimeBodyPart.setText(email_body())
-            MimeMultipart multipart = new MimeMultipart()
-            multipart.addBodyPart(mimeBodyPart)
-            MimeBodyPart attachment = new MimeBodyPart()
-            attachment.setDataHandler(new DataHandler(new FileDataSource(datFile)))
-            attachment.setFileName(custFileName)
-            multipart.addBodyPart(attachment)
-            mimeMessage.setContent(multipart)
-            Transport.send(mimeMessage)
+            File toFile = new File(dir, cfn)
+            datFile.withInputStream { toFile << it } // perform the copy
         }
         catch (e) {
-            log.error "email failed [${e.message}] data file [$datFile] not delivered as [$custFileName] to [$s]"   
+            log.error e.message
             errors++
         }
-    }
-
-    String email_subject () {
-        'subject'
-    }
-
-    String email_body () {
-        'body'
-    }
-
-    void callIt (s) {
-        File script = new File(s)
-        if (script.isFile()) {
-            String cmd = "${Env.isWindows ? 'cmd /c ' : ''}$script $datFile $custFileName"
-            log.info "running [$cmd]"
-            def proc = cmd.execute()
-            proc.waitFor()
-            def exitValue = proc.exitValue()
-            if (exitValue != 0) {
-                log.error "call to [$cmd] exit value [$exitValue]"
-                errors++
-            }
-        }
-        else {
-            log.error "call file [$s] does not exist, data file [$datFile] not delivered"
-            errors++
-        }
-    }
-
-    void copyIt (s) {
-        File dir = new File(s)
-        if (dir.isFile()) {
-            log.error "cannot copy [$datFile] as [custFileName] to [$dir] destination dir is a file"
-            errors++
-        }
-        if (!dir.isDirectory()) {
-            if (!dir.mkdirs()) {
-                log.error "cannot copy [$datFile] as [custFileName] to [$dir] destination dir does not exist"
-                errors++
-            }
-        }
-        File toFile = new File(dir, custFileName)
-        datFile.withInputStream { toFile << it } // perform the copy
+        errors
     }
 
     Map load_properties_file (File f) {
@@ -248,8 +186,8 @@ class DataSender {
                 name << str
             }
         }
-        custFileName = name.join('')
-        log.info "customer file name [$custFileName]"
+        cfn = name.join('')
+        log.info "customer file name [$cfn]"
     }
-    
+
 }

@@ -8,8 +8,6 @@ import org.apache.log4j.PatternLayout
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
 import org.slf4j.bridge.SLF4JBridgeHandler as BridgeHandler
-import java.util.logging.Logger as JulLogger
-import java.util.logging.Level as JulLevel
 
 class LogMgr {
 
@@ -21,6 +19,7 @@ class LogMgr {
     static final String FILE_PATTERN_LAYOUT = '%d %-5p %c{1} - %m%n'
     static final String MAX_FILE_SIZE = '5MB'
     static final int MAX_BACKUP_INDEX = 2
+    static final Map levels = ['TRACE': Level.TRACE,'DEBUG': Level.DEBUG,'INFO':Level.INFO,'WARN':Level.WARN,'ERROR':Level.ERROR,'FATAL':Level.FATAL]
 
     static void addDefaultConsoleAppender () {
         // tell log4j not to initialize... we will do it manually
@@ -38,7 +37,7 @@ class LogMgr {
     }
 
     /**
-     * Create a JUL to SLF4J bridge
+     * Create a JUL to Slf4j bridge (Slf4J uses Log4j)
      */
     static void createJulBridge () {
         try {
@@ -53,67 +52,26 @@ class LogMgr {
     }
 
     // look for class loggers in properties to override level
-    // logger.log4j.override.class=level
+    // property pattern to look for = logger.override.{class}={level}
     static void overrideLoggerLevels() {
-
         // don't let email class logging be finer than info
-        //JulLogger.getLogger('com.sun.mail').setLevel(JulLevel.INFO)
         Logger.getLogger('com.sun.mail').setLevel(Level.INFO)
-        //JulLogger.getLogger('javax').setLevel(JulLevel.INFO)
-        Logger.getLogger('javax').setLevel(Level.INFO)
-        //JulLogger.getLogger('groovy.sql').setLevel(JulLevel.INFO)
-        Logger.getLogger('groovy.sql').setLevel(Level.INFO)
-
-        // logger.override.{class}={level}
-        //def p1 = ~/logger\.override\.(.+)=(TRACE|DEBUG|INFO|WARN|ERROR|FATAL|FINEST|FINER|FINE|WARNING|SEVERE)/
-        Set levels = ['TRACE','DEBUG','INFO','WARN','ERROR','FATAL','FINEST','FINER','FINE','WARNING','SEVERE']
+        Logger.getLogger('com.sun.activation').setLevel(Level.INFO)
+        Logger.getLogger('javax.mail').setLevel(Level.INFO)
+        Logger.getLogger('javax.activation').setLevel(Level.INFO)
+        //Logger.getLogger('groovy.sql').setLevel(Level.INFO)
+        String logger_override_ = 'logger.override.'
         Props.instance.each { String key, String val ->
-            if (!key.startsWith('logger.override.')) {
-                return
-            }
-            String level = val.toUpperCase()
-            if (!levels.contains(level)) {
-                return
-            }
-            String clazz = key - 'logger.override.'
-            Logger logger = Logger.getLogger(clazz)
-            logger.setAdditivity(true) // necessary ?
-            JulLogger jlogger = JulLogger.getLogger('')
-            switch (level) {
-                case 'TRACE':
-                case 'FINEST':
-                    logger.setLevel(Level.TRACE)
-                    //jlogger.setLevel(JulLevel.FINEST)
-                    break
-                case 'DEBUG':
-                case 'FINER':
-                case 'FINE':
-                    logger.setLevel(Level.DEBUG)
-                    //jlogger.setLevel(JulLevel.FINER)
-                    break
-                case 'INFO':
-                    logger.setLevel(Level.INFO)
-                    //jlogger.setLevel(JulLevel.INFO)
-                    break
-                case 'WARN':
-                case 'WARNING':
-                    logger.setLevel(Level.WARN)
-                    //jlogger.setLevel(JulLevel.WARNING)
-                    break
-                case 'ERROR':
-                case 'SEVERE':
-                    logger.setLevel(Level.ERROR)
-                    //jlogger.setLevel(JulLevel.SEVERE)
-                    break
-                case 'FATAL':
-                    logger.setLevel(Level.FATAL)
-                    //jlogger.setLevel(JulLevel.SEVERE)
+            if (key.startsWith(logger_override_)) {
+                String level = val.toUpperCase()
+                if (levels.containsKey(level)) {
+                    String clazz = key - logger_override_
+                    Logger logger = Logger.getLogger(clazz)
+                    logger.setAdditivity(true) // necessary ?
+                    logger.setLevel(levels[level])
+                }
             }
         }
-    }
-
-    static void JULOff () {
-        JulLogger.getLogger('').setLevel(JulLevel.OFF)
     }
 
     static void addConsoleAppender () {
@@ -252,32 +210,26 @@ class LogMgr {
     }
 
     static void setTraceLevel () {
-        JulLogger.getLogger('').setLevel(JulLevel.FINEST)
         Logger.getRootLogger().setLevel(Level.TRACE)
     }
 
     static void setDebugLevel () {
-        JulLogger.getLogger('').setLevel(JulLevel.FINER)
         Logger.getRootLogger().setLevel(Level.DEBUG)
     }
 
     static void setInfoLevel () {
-        JulLogger.getLogger('').setLevel(JulLevel.INFO)
         Logger.getRootLogger().setLevel(Level.INFO)
     }
 
     static void setWarnLevel () {
-        JulLogger.getLogger('').setLevel(JulLevel.WARNING)
         Logger.getRootLogger().setLevel(Level.WARN)
     }
 
     static void setErrorLevel () {
-        JulLogger.getLogger('').setLevel(JulLevel.SEVERE)
         Logger.getRootLogger().setLevel(Level.ERROR)
     }
 
     static void setFatalLevel () {
-        JulLogger.getLogger('').setLevel(JulLevel.SEVERE)
         Logger.getRootLogger().setLevel(Level.FATAL)
     }
 

@@ -1,18 +1,23 @@
 package erick
 
-String s = 'erick'
-println s.take(1)
-println s
+import javax.mail.*
+import javax.mail.internet.*
 
-
-/*
-//URI uri = new URI('ftp://user:pass@hostname.com')
-//URI uri = new URI('mailto:erickn@gmail.com')
-URI uri = new URI('sftp://user:pass@hostname.com')
-URL url = uri.toURL()
-println url.defaultPort
-println url.path
-println url.userInfo
-println url.host
-println url.protocol
-*/
+Properties p = new Properties()
+//p['mail.smtp.host'] = 'mailhost.mwh.com'
+p['mail.smtp.host'] = 'mailrelay.hsi.hughessupply.com'
+p['mail.smtp.port'] = '25'
+Session session = Session.getInstance(p)
+MimeMessage mimeMessage = new MimeMessage(session)
+mimeMessage.setSubject('test')
+InternetAddress fromAddr = new InternetAddress('do_not_reply@hdsupply.com')
+mimeMessage.setFrom(fromAddr)
+mimeMessage.setReplyTo(fromAddr)
+mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress('erick.nelson@hdsupply.com'))
+MimeBodyPart mimeBodyPart = new MimeBodyPart()
+mimeBodyPart.setText('test')
+MimeMultipart multipart = new MimeMultipart()
+multipart.addBodyPart(mimeBodyPart)
+MimeBodyPart attachment = new MimeBodyPart()
+mimeMessage.setContent(multipart)
+Transport.send(mimeMessage)
