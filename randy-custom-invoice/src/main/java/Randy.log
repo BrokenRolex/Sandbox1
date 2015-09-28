@@ -23316,3 +23316,1125 @@
 2015-09-25 10:10:38,719 DEBUG ScriptTools - user [2.238 seconds] user start time -> user end time
 2015-09-25 10:10:38,719 DEBUG ScriptTools - total [4.633 seconds] jvm start time -> user end time
 2015-09-25 10:10:38,720 INFO  ScriptTools - end [2.922 seconds]
+2015-09-28 07:25:55,736 INFO  ScriptTools - begin
+2015-09-28 07:25:55,743 INFO  ScriptTools - script.args [-d]
+2015-09-28 07:25:55,743 INFO  ScriptTools - cli options [verbose = true, debug = true, test = false, help = false]
+2015-09-28 07:25:55,782 DEBUG DataBuilder - build [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 07:25:55,835 INFO  DataReader - reading summary data from [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 07:25:55,952 INFO  DataReader - custid [1122609]
+2015-09-28 07:25:55,974 INFO  DataDigester - digesting [D:\Sandbox1\randy-custom-invoice\map\1122609.xml]
+2015-09-28 07:25:55,975 INFO  DataDigester - loading digester rules [D:\Sandbox1\randy-custom-invoice\map\map-digester-rules.xml]
+2015-09-28 07:25:56,233 DEBUG BatchMap - adding to map: group[name=batch-header]
+2015-09-28 07:25:56,343 DEBUG BatchMap - adding to map: group[name=invoice-items]
+2015-09-28 07:25:56,349 DEBUG BatchMap - adding to map: group[name=invoice-taxes]
+2015-09-28 07:25:56,355 DEBUG BatchMap - adding to map: group[name=invoice-charges]
+2015-09-28 07:25:56,369 INFO  DataWriter - writing [D:\Sandbox1\randy-custom-invoice\dataout\invoices.sum]
+2015-09-28 07:25:56,394 INFO  DataWriter - writing [D:\Sandbox1\randy-custom-invoice\dataout\invoices.dat]
+2015-09-28 07:25:56,400 DEBUG DataWriter - group[name=batch-header]
+2015-09-28 07:25:56,411 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,427 DEBUG DataWriter - ....position[num='1', value='Property#', source='value'] = Property#
+2015-09-28 07:25:56,441 DEBUG DataWriter - ....position[num='2', value='Account#', source='value'] = Account#
+2015-09-28 07:25:56,442 DEBUG DataWriter - ....position[num='3', value='Date', source='value'] = Date
+2015-09-28 07:25:56,442 DEBUG DataWriter - ....position[num='4', value='Invoice#', source='value'] = Invoice#
+2015-09-28 07:25:56,442 DEBUG DataWriter - ....position[num='5', value='PO#', source='value'] = PO#
+2015-09-28 07:25:56,442 DEBUG DataWriter - ....position[num='6', value='Part#', source='value'] = Part#
+2015-09-28 07:25:56,443 DEBUG DataWriter - ....position[num='7', value='Description', source='value'] = Description
+2015-09-28 07:25:56,443 DEBUG DataWriter - ....position[num='8', value='Price', source='value'] = Price
+2015-09-28 07:25:56,443 DEBUG DataWriter - ....position[num='9', value='Quantity', source='value'] = Quantity
+2015-09-28 07:25:56,443 DEBUG DataWriter - ....position[num='10', value='Amount', source='value'] = Amount
+2015-09-28 07:25:56,443 DEBUG DataWriter - ....position[num='11', value='GLCode', source='value'] = GLCode
+2015-09-28 07:25:56,444 DEBUG DataWriter - ....position[num='12', value='PurchBy', source='value'] = PurchBy
+2015-09-28 07:25:56,452 DEBUG DataWriter - data [Property#,Account#,Date,Invoice#,PO#,Part#,Description,Price,Quantity,Amount,GLCode,PurchBy]
+2015-09-28 07:25:56,463 INFO  DataReader - reading invoices from [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 07:25:56,590 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 07:25:56,590 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,590 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,591 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,591 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,595 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,595 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001188
+2015-09-28 07:25:56,596 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10005
+2015-09-28 07:25:56,596 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 822405
+2015-09-28 07:25:56,597 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = 36-63" SHOWER & UTILITY, ROD - BEIGE
+2015-09-28 07:25:56,597 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 9.99
+2015-09-28 07:25:56,613 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 9.99
+2015-09-28 07:25:56,613 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 07:25:56,613 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 9.99
+2015-09-28 07:25:56,614 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 9.99
+2015-09-28 07:25:56,614 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 822405
+2015-09-28 07:25:56,627 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 07:25:56,627 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,628 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001188,10005,822405,36-63" SHOWER & UTILITY ROD - BEIGE,9.99,1,9.99,5160.0180,]
+2015-09-28 07:25:56,642 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,642 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,642 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,643 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,643 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,643 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,643 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001188
+2015-09-28 07:25:56,644 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10005
+2015-09-28 07:25:56,644 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 07:25:56,644 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,644 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,644 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 5.00
+2015-09-28 07:25:56,644 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 5.00
+2015-09-28 07:25:56,645 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,645 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,645 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001188,10005,,Misc,,,5.00,,]
+2015-09-28 07:25:56,653 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 07:25:56,653 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,653 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,654 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,654 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,654 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,654 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001189
+2015-09-28 07:25:56,654 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1006
+2015-09-28 07:25:56,655 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 855100
+2015-09-28 07:25:56,655 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = STORM DOOR PROTECTOR CHAIN
+2015-09-28 07:25:56,655 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 2.39
+2015-09-28 07:25:56,655 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.39
+2015-09-28 07:25:56,655 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 07:25:56,655 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 2.39
+2015-09-28 07:25:56,656 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.39
+2015-09-28 07:25:56,656 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 855100
+2015-09-28 07:25:56,656 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 07:25:56,656 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,657 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001189,1006,855100,STORM DOOR PROTECTOR CHAIN,2.39,1,2.39,5160.0180,]
+2015-09-28 07:25:56,657 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,657 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,657 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,657 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,658 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,658 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,658 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001189
+2015-09-28 07:25:56,658 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1006
+2015-09-28 07:25:56,658 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 07:25:56,659 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,659 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,659 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 5.00
+2015-09-28 07:25:56,659 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 5.00
+2015-09-28 07:25:56,659 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,659 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,660 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001189,1006,,Misc,,,5.00,,]
+2015-09-28 07:25:56,667 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 07:25:56,668 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,668 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,668 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,668 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,669 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,669 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001190
+2015-09-28 07:25:56,669 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1007
+2015-09-28 07:25:56,669 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 477850
+2015-09-28 07:25:56,669 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = DELTA SHOWER DIVERTER ASSEMBLY
+2015-09-28 07:25:56,669 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 7.23
+2015-09-28 07:25:56,670 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 7.23
+2015-09-28 07:25:56,670 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 07:25:56,670 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 7.23
+2015-09-28 07:25:56,670 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 7.23
+2015-09-28 07:25:56,670 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 477850
+2015-09-28 07:25:56,671 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 07:25:56,671 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,671 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001190,1007,477850,DELTA SHOWER DIVERTER ASSEMBLY,7.23,1,7.23,5160.0180,]
+2015-09-28 07:25:56,672 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,672 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,672 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,672 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,672 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,673 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,673 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001190
+2015-09-28 07:25:56,673 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1007
+2015-09-28 07:25:56,673 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 07:25:56,673 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,673 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,673 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 5.00
+2015-09-28 07:25:56,674 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 5.00
+2015-09-28 07:25:56,674 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,674 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,675 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001190,1007,,Misc,,,5.00,,]
+2015-09-28 07:25:56,684 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 07:25:56,684 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,684 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,684 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,684 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,685 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,685 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001210
+2015-09-28 07:25:56,685 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1011
+2015-09-28 07:25:56,685 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 106063
+2015-09-28 07:25:56,686 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = 10.3 OZ LIQUID NAILS GUTTER REPAIR
+2015-09-28 07:25:56,686 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 2.79
+2015-09-28 07:25:56,686 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.79
+2015-09-28 07:25:56,686 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 07:25:56,686 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 2.79
+2015-09-28 07:25:56,687 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.79
+2015-09-28 07:25:56,687 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 106063
+2015-09-28 07:25:56,687 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 07:25:56,687 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 07:25:56,687 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001210,1011,106063,10.3 OZ LIQUID NAILS GUTTER REPAIR,2.79,1,2.79,5160.0180,Aleyda Zeledon]
+2015-09-28 07:25:56,688 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,688 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,688 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,689 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,689 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,689 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,689 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001210
+2015-09-28 07:25:56,689 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1011
+2015-09-28 07:25:56,690 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Freight
+2015-09-28 07:25:56,690 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,690 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,690 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 8.00
+2015-09-28 07:25:56,690 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 8.00
+2015-09-28 07:25:56,690 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,691 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 07:25:56,691 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001210,1011,,Freight,,,8.00,,Aleyda Zeledon]
+2015-09-28 07:25:56,691 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,692 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,692 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,692 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,692 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 07:25:56,693 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 07:25:56,693 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001210
+2015-09-28 07:25:56,693 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1011
+2015-09-28 07:25:56,694 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 07:25:56,694 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,694 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,694 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 6.00
+2015-09-28 07:25:56,695 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 6.00
+2015-09-28 07:25:56,695 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,695 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 07:25:56,696 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001210,1011,,Misc,,,6.00,,Aleyda Zeledon]
+2015-09-28 07:25:56,715 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 07:25:56,715 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,715 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,715 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,715 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,716 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,716 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001234
+2015-09-28 07:25:56,716 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1012
+2015-09-28 07:25:56,716 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 501000
+2015-09-28 07:25:56,716 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = BUNA N RUBBER O-RING "PKG OF 10" OR-015
+2015-09-28 07:25:56,716 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 1.12
+2015-09-28 07:25:56,717 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 1.12
+2015-09-28 07:25:56,717 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 07:25:56,717 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 1.12
+2015-09-28 07:25:56,717 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 1.12
+2015-09-28 07:25:56,717 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 501000
+2015-09-28 07:25:56,717 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 07:25:56,718 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 07:25:56,718 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001234,1012,501000,BUNA N RUBBER O-RING "PKG OF 10" OR-015,1.12,1,1.12,5160.0180,Aleyda Zeledon]
+2015-09-28 07:25:56,719 DEBUG DataWriter - group[name=invoice-taxes]
+2015-09-28 07:25:56,719 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,719 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,719 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,719 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,720 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,720 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001234
+2015-09-28 07:25:56,720 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1012
+2015-09-28 07:25:56,720 DEBUG DataWriter - ....position[num='7', value='invoice.tax.name', source='data'] = Sales Tax
+2015-09-28 07:25:56,720 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,720 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,720 DEBUG DataWriter - ....position[num='10', value='invoice.tax.amt', source='data'] = 0.99
+2015-09-28 07:25:56,721 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 0.99
+2015-09-28 07:25:56,721 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,721 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 07:25:56,721 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001234,1012,,Sales Tax,,,0.99,,Aleyda Zeledon]
+2015-09-28 07:25:56,722 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,722 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,722 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,722 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,722 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,723 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,723 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001234
+2015-09-28 07:25:56,723 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1012
+2015-09-28 07:25:56,723 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Freight
+2015-09-28 07:25:56,723 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,723 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,723 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 7.00
+2015-09-28 07:25:56,724 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 7.00
+2015-09-28 07:25:56,724 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,724 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 07:25:56,724 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001234,1012,,Freight,,,7.00,,Aleyda Zeledon]
+2015-09-28 07:25:56,725 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,725 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,725 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,725 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,725 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,726 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,726 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001234
+2015-09-28 07:25:56,726 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1012
+2015-09-28 07:25:56,726 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 07:25:56,726 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,726 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,726 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 6.00
+2015-09-28 07:25:56,727 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 6.00
+2015-09-28 07:25:56,727 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,727 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 07:25:56,727 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001234,1012,,Misc,,,6.00,,Aleyda Zeledon]
+2015-09-28 07:25:56,738 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 07:25:56,738 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,738 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,739 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,739 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,739 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,739 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 07:25:56,739 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 07:25:56,740 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 326150
+2015-09-28 07:25:56,740 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = 1,800 WATT ,DIRECTIONAL PHOTOCONTROLLER
+2015-09-28 07:25:56,740 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 7.6600003
+2015-09-28 07:25:56,740 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 7.66
+2015-09-28 07:25:56,740 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 11
+2015-09-28 07:25:56,741 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 84.26
+2015-09-28 07:25:56,741 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 84.26
+2015-09-28 07:25:56,741 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 326150
+2015-09-28 07:25:56,741 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 07:25:56,742 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,742 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,326150,1800 WATT DIRECTIONAL PHOTOCONTROLLER,7.66,11,84.26,5160.0180,]
+2015-09-28 07:25:56,743 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 07:25:56,743 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,744 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,744 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,744 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,745 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,745 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 07:25:56,745 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 07:25:56,745 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 106063
+2015-09-28 07:25:56,746 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = 10.3 OZ LIQUID NAILS GUTTER REPAIR
+2015-09-28 07:25:56,746 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 2.79
+2015-09-28 07:25:56,746 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.79
+2015-09-28 07:25:56,746 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 07:25:56,746 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 2.79
+2015-09-28 07:25:56,747 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.79
+2015-09-28 07:25:56,747 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 106063
+2015-09-28 07:25:56,747 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 07:25:56,747 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,747 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,106063,10.3 OZ LIQUID NAILS GUTTER REPAIR,2.79,1,2.79,5160.0180,]
+2015-09-28 07:25:56,748 DEBUG DataWriter - group[name=invoice-taxes]
+2015-09-28 07:25:56,748 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,748 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,748 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,749 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,749 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,750 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 07:25:56,750 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 07:25:56,750 DEBUG DataWriter - ....position[num='7', value='invoice.tax.name', source='data'] = Sales Tax
+2015-09-28 07:25:56,750 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,750 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,750 DEBUG DataWriter - ....position[num='10', value='invoice.tax.amt', source='data'] = 6.73
+2015-09-28 07:25:56,751 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 6.73
+2015-09-28 07:25:56,751 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,751 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,751 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,,Sales Tax,,,6.73,,]
+2015-09-28 07:25:56,752 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,752 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,752 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,752 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,752 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,753 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,753 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 07:25:56,753 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 07:25:56,753 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Freight
+2015-09-28 07:25:56,753 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,753 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,753 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 6.00
+2015-09-28 07:25:56,754 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 6.00
+2015-09-28 07:25:56,754 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,754 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,754 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,,Freight,,,6.00,,]
+2015-09-28 07:25:56,755 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 07:25:56,755 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 07:25:56,755 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 07:25:56,755 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 07:25:56,755 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 07:25:56,756 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 07:25:56,756 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 07:25:56,756 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 07:25:56,756 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Savings
+2015-09-28 07:25:56,756 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 07:25:56,756 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 07:25:56,756 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = -3
+2015-09-28 07:25:56,757 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = -3.00
+2015-09-28 07:25:56,757 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 07:25:56,757 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 07:25:56,757 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,,Savings,,,-3.00,,]
+2015-09-28 07:25:56,800 INFO  DataSender - sending [D:\Sandbox1\randy-custom-invoice\dataout\invoices.dat]
+2015-09-28 07:25:56,847 INFO  DataSender - customer file name [1122609_20091228_20091228.csv]
+2015-09-28 07:25:58,366 ERROR Emailer - email failed [Could not connect to SMTP host: localhost, port: 25] data file [D:\Sandbox1\randy-custom-invoice\dataout\invoices.dat] not delivered as [1122609_20091228_20091228.csv] to [To:erick.nelson@hdsupply.com]
+2015-09-28 07:25:58,453 DEBUG ScriptTools - jvm start time [2015-09-28 07:25:53.022]
+2015-09-28 07:25:58,454 DEBUG ScriptTools - framework start time [2015-09-28 07:25:55.191]
+2015-09-28 07:25:58,455 DEBUG ScriptTools - user start time [2015-09-28 07:25:55.743]
+2015-09-28 07:25:58,455 DEBUG ScriptTools - user end time [2015-09-28 07:25:58.410]
+2015-09-28 07:25:58,465 DEBUG ScriptTools - groovy startup [2.169 seconds] jvm start -> groovy compile
+2015-09-28 07:25:58,466 DEBUG ScriptTools - framework startup [0.552 seconds] load properties + setup logging + parse options
+2015-09-28 07:25:58,466 DEBUG ScriptTools - user [2.667 seconds] user start time -> user end time
+2015-09-28 07:25:58,466 DEBUG ScriptTools - total [5.388 seconds] jvm start time -> user end time
+2015-09-28 07:25:58,466 INFO  ScriptTools - end [3.275 seconds]
+2015-09-28 11:53:54,095 INFO  ScriptTools - begin
+2015-09-28 11:53:54,123 INFO  ScriptTools - script.args [-d]
+2015-09-28 11:53:54,123 INFO  ScriptTools - cli options [verbose = true, debug = true, test = false, help = false]
+2015-09-28 11:53:54,148 DEBUG DataBuilder - build [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 11:53:54,184 INFO  DataReader - reading summary data from [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 11:53:54,276 INFO  DataReader - custid [1122609]
+2015-09-28 11:53:54,288 INFO  DataDigester - digesting [D:\Sandbox1\randy-custom-invoice\map\1122609.xml]
+2015-09-28 11:53:54,289 INFO  DataDigester - loading digester rules [D:\Sandbox1\randy-custom-invoice\map\map-digester-rules.xml]
+2015-09-28 11:53:54,422 ERROR Digester - Begin event threw exception
+java.lang.ClassNotFoundException: ci.map.BatchMap
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at org.apache.commons.digester.ObjectCreateRule.begin(ObjectCreateRule.java:205)
+	at org.apache.commons.digester.Rule.begin(Rule.java:175)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1563)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:509)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:745)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1363)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDriver.scanRootElementHook(XMLDocumentScannerImpl.java:1292)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3138)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:880)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:648)
+	at org.apache.commons.digester.Digester.parse(Digester.java:1842)
+	at org.apache.commons.digester.Digester$parse.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at custom_invoices.io.DataDigester.buildBatchMap(DataDigester.groovy:24)
+	at custom_invoices.io.DataDigester$buildBatchMap.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at custom_invoices.io.DataReader.readSummary(DataReader.groovy:100)
+	at custom_invoices.io.DataReader$readSummary.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+	at custom_invoices.io.DataWriter.<init>(DataWriter.groovy:20)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:102)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)
+	at custom_invoices.io.DataBuilder.build(DataBuilder.groovy:18)
+	at custom_invoices.io.DataBuilder$build$0.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy$_runUserScript_closure1.doCall(Randy.groovy:19)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at groovy.lang.Closure.call(Closure.java:423)
+	at groovy.lang.Closure.call(Closure.java:439)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1390)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at custom_invoices.io.DataBuilder.eachFile(DataBuilder.groovy:12)
+	at custom_invoices.io.DataBuilder$eachFile.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy.runUserScript(Randy.groovy:18)
+	at script.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+2015-09-28 11:53:54,431 FATAL ScriptTools - org.xml.sax.SAXParseException; systemId: file:/D:/Sandbox1/randy-custom-invoice/map/1122609.xml; lineNumber: 2; columnNumber: 20; Error at line 2 char 20: ci.map.BatchMap
+	at org.apache.commons.digester.Digester.createSAXException(Digester.java:3333)
+	at org.apache.commons.digester.Digester.createSAXException(Digester.java:3359)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1566)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:509)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:745)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1363)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDriver.scanRootElementHook(XMLDocumentScannerImpl.java:1292)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3138)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:880)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:648)
+	at org.apache.commons.digester.Digester.parse(Digester.java:1842)
+	at org.apache.commons.digester.Digester$parse.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at custom_invoices.io.DataDigester.buildBatchMap(DataDigester.groovy:24)
+	at custom_invoices.io.DataDigester$buildBatchMap.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at custom_invoices.io.DataReader.readSummary(DataReader.groovy:100)
+	at custom_invoices.io.DataReader$readSummary.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+	at custom_invoices.io.DataWriter.<init>(DataWriter.groovy:20)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:102)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)
+	at custom_invoices.io.DataBuilder.build(DataBuilder.groovy:18)
+	at custom_invoices.io.DataBuilder$build$0.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy$_runUserScript_closure1.doCall(Randy.groovy:19)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at groovy.lang.Closure.call(Closure.java:423)
+	at groovy.lang.Closure.call(Closure.java:439)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1390)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at custom_invoices.io.DataBuilder.eachFile(DataBuilder.groovy:12)
+	at custom_invoices.io.DataBuilder$eachFile.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy.runUserScript(Randy.groovy:18)
+	at script.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+Caused by: java.lang.ClassNotFoundException: ci.map.BatchMap
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at org.apache.commons.digester.ObjectCreateRule.begin(ObjectCreateRule.java:205)
+	at org.apache.commons.digester.Rule.begin(Rule.java:175)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1563)
+	... 82 more
+
+2015-09-28 11:53:54,499 DEBUG ScriptTools - jvm start time [2015-09-28 11:53:50.861]
+2015-09-28 11:53:54,500 DEBUG ScriptTools - framework start time [2015-09-28 11:53:53.411]
+2015-09-28 11:53:54,500 DEBUG ScriptTools - user start time [2015-09-28 11:53:54.123]
+2015-09-28 11:53:54,501 DEBUG ScriptTools - user end time [2015-09-28 11:53:54.439]
+2015-09-28 11:53:54,512 DEBUG ScriptTools - groovy startup [2.550 seconds] jvm start -> groovy compile
+2015-09-28 11:53:54,512 DEBUG ScriptTools - framework startup [0.712 seconds] load properties + setup logging + parse options
+2015-09-28 11:53:54,512 DEBUG ScriptTools - user [0.316 seconds] user start time -> user end time
+2015-09-28 11:53:54,512 DEBUG ScriptTools - total [3.578 seconds] jvm start time -> user end time
+2015-09-28 11:53:54,513 INFO  ScriptTools - end [1.102 seconds]
+2015-09-28 11:54:33,534 INFO  ScriptTools - begin
+2015-09-28 11:54:33,544 INFO  ScriptTools - script.args [-d]
+2015-09-28 11:54:33,544 INFO  ScriptTools - cli options [verbose = true, debug = true, test = false, help = false]
+2015-09-28 11:54:33,575 DEBUG DataBuilder - build [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 11:54:33,606 INFO  DataReader - reading summary data from [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 11:54:33,676 INFO  DataReader - custid [1122609]
+2015-09-28 11:54:33,689 INFO  DataDigester - digesting [D:\Sandbox1\randy-custom-invoice\map\1122609.xml]
+2015-09-28 11:54:33,690 INFO  DataDigester - loading digester rules [D:\Sandbox1\randy-custom-invoice\map\map-digester-rules.xml]
+2015-09-28 11:54:33,775 ERROR Digester - Begin event threw exception
+java.lang.ClassNotFoundException: ci.map.BatchMap
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at org.apache.commons.digester.ObjectCreateRule.begin(ObjectCreateRule.java:205)
+	at org.apache.commons.digester.Rule.begin(Rule.java:175)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1563)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:509)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:745)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1363)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDriver.scanRootElementHook(XMLDocumentScannerImpl.java:1292)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3138)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:880)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:648)
+	at org.apache.commons.digester.Digester.parse(Digester.java:1842)
+	at org.apache.commons.digester.Digester$parse.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at custom_invoices.io.DataDigester.buildBatchMap(DataDigester.groovy:24)
+	at custom_invoices.io.DataDigester$buildBatchMap.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at custom_invoices.io.DataReader.readSummary(DataReader.groovy:100)
+	at custom_invoices.io.DataReader$readSummary.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+	at custom_invoices.io.DataWriter.<init>(DataWriter.groovy:20)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:102)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)
+	at custom_invoices.io.DataBuilder.build(DataBuilder.groovy:18)
+	at custom_invoices.io.DataBuilder$build$0.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy$_runUserScript_closure1.doCall(Randy.groovy:19)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at groovy.lang.Closure.call(Closure.java:423)
+	at groovy.lang.Closure.call(Closure.java:439)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1390)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at custom_invoices.io.DataBuilder.eachFile(DataBuilder.groovy:12)
+	at custom_invoices.io.DataBuilder$eachFile.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy.runUserScript(Randy.groovy:18)
+	at script.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+2015-09-28 11:54:33,784 FATAL ScriptTools - org.xml.sax.SAXParseException; systemId: file:/D:/Sandbox1/randy-custom-invoice/map/1122609.xml; lineNumber: 2; columnNumber: 20; Error at line 2 char 20: ci.map.BatchMap
+	at org.apache.commons.digester.Digester.createSAXException(Digester.java:3333)
+	at org.apache.commons.digester.Digester.createSAXException(Digester.java:3359)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1566)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:509)
+	at com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.startElement(XMLDTDValidator.java:745)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1363)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$ContentDriver.scanRootElementHook(XMLDocumentScannerImpl.java:1292)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3138)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:880)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:606)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:848)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:777)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1213)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:648)
+	at org.apache.commons.digester.Digester.parse(Digester.java:1842)
+	at org.apache.commons.digester.Digester$parse.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at custom_invoices.io.DataDigester.buildBatchMap(DataDigester.groovy:24)
+	at custom_invoices.io.DataDigester$buildBatchMap.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at custom_invoices.io.DataReader.readSummary(DataReader.groovy:100)
+	at custom_invoices.io.DataReader$readSummary.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:112)
+	at custom_invoices.io.DataWriter.<init>(DataWriter.groovy:20)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:102)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:182)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)
+	at custom_invoices.io.DataBuilder.build(DataBuilder.groovy:18)
+	at custom_invoices.io.DataBuilder$build$0.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy$_runUserScript_closure1.doCall(Randy.groovy:19)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:90)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:324)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:292)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1015)
+	at groovy.lang.Closure.call(Closure.java:423)
+	at groovy.lang.Closure.call(Closure.java:439)
+	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileMatch(ResourceGroovyMethods.java:1390)
+	at org.codehaus.groovy.runtime.dgm$793.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:271)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:124)
+	at custom_invoices.io.DataBuilder.eachFile(DataBuilder.groovy:12)
+	at custom_invoices.io.DataBuilder$eachFile.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at Randy.runUserScript(Randy.groovy:18)
+	at script.ScriptWrapper.run(ScriptWrapper.groovy:27)
+	at groovy.lang.GroovyShell.runScriptOrMainOrTestOrRunnable(GroovyShell.java:258)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:502)
+	at groovy.lang.GroovyShell.run(GroovyShell.java:491)
+	at groovy.ui.GroovyMain.processOnce(GroovyMain.java:650)
+	at groovy.ui.GroovyMain.run(GroovyMain.java:381)
+	at groovy.ui.GroovyMain.process(GroovyMain.java:367)
+	at groovy.ui.GroovyMain.processArgs(GroovyMain.java:126)
+	at groovy.ui.GroovyMain.main(GroovyMain.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.codehaus.groovy.tools.GroovyStarter.rootLoader(GroovyStarter.java:106)
+	at org.codehaus.groovy.tools.GroovyStarter.main(GroovyStarter.java:128)
+Caused by: java.lang.ClassNotFoundException: ci.map.BatchMap
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	at org.apache.commons.digester.ObjectCreateRule.begin(ObjectCreateRule.java:205)
+	at org.apache.commons.digester.Rule.begin(Rule.java:175)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1563)
+	... 82 more
+
+2015-09-28 11:54:33,814 DEBUG ScriptTools - jvm start time [2015-09-28 11:54:31.407]
+2015-09-28 11:54:33,816 DEBUG ScriptTools - framework start time [2015-09-28 11:54:32.909]
+2015-09-28 11:54:33,816 DEBUG ScriptTools - user start time [2015-09-28 11:54:33.544]
+2015-09-28 11:54:33,816 DEBUG ScriptTools - user end time [2015-09-28 11:54:33.796]
+2015-09-28 11:54:33,829 DEBUG ScriptTools - groovy startup [1.502 seconds] jvm start -> groovy compile
+2015-09-28 11:54:33,830 DEBUG ScriptTools - framework startup [0.635 seconds] load properties + setup logging + parse options
+2015-09-28 11:54:33,830 DEBUG ScriptTools - user [0.252 seconds] user start time -> user end time
+2015-09-28 11:54:33,830 DEBUG ScriptTools - total [2.389 seconds] jvm start time -> user end time
+2015-09-28 11:54:33,831 INFO  ScriptTools - end [0.922 seconds]
+2015-09-28 11:55:09,007 INFO  ScriptTools - begin
+2015-09-28 11:55:09,017 INFO  ScriptTools - script.args [-d]
+2015-09-28 11:55:09,018 INFO  ScriptTools - cli options [verbose = true, debug = true, test = false, help = false]
+2015-09-28 11:55:09,049 DEBUG DataBuilder - build [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 11:55:09,081 INFO  DataReader - reading summary data from [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 11:55:09,157 INFO  DataReader - custid [1122609]
+2015-09-28 11:55:09,171 INFO  DataDigester - digesting [D:\Sandbox1\randy-custom-invoice\map\1122609.xml]
+2015-09-28 11:55:09,172 INFO  DataDigester - loading digester rules [D:\Sandbox1\randy-custom-invoice\map\map-digester-rules.xml]
+2015-09-28 11:55:09,384 DEBUG BatchMap - adding to map: group[name=batch-header]
+2015-09-28 11:55:09,458 DEBUG BatchMap - adding to map: group[name=invoice-items]
+2015-09-28 11:55:09,463 DEBUG BatchMap - adding to map: group[name=invoice-taxes]
+2015-09-28 11:55:09,469 DEBUG BatchMap - adding to map: group[name=invoice-charges]
+2015-09-28 11:55:09,474 INFO  DataWriter - writing [D:\Sandbox1\randy-custom-invoice\dataout\invoices.sum]
+2015-09-28 11:55:09,483 INFO  DataWriter - writing [D:\Sandbox1\randy-custom-invoice\dataout\invoices.dat]
+2015-09-28 11:55:09,489 DEBUG DataWriter - group[name=batch-header]
+2015-09-28 11:55:09,492 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,501 DEBUG DataWriter - ....position[num='1', value='Property#', source='value'] = Property#
+2015-09-28 11:55:09,505 DEBUG DataWriter - ....position[num='2', value='Account#', source='value'] = Account#
+2015-09-28 11:55:09,506 DEBUG DataWriter - ....position[num='3', value='Date', source='value'] = Date
+2015-09-28 11:55:09,506 DEBUG DataWriter - ....position[num='4', value='Invoice#', source='value'] = Invoice#
+2015-09-28 11:55:09,506 DEBUG DataWriter - ....position[num='5', value='PO#', source='value'] = PO#
+2015-09-28 11:55:09,506 DEBUG DataWriter - ....position[num='6', value='Part#', source='value'] = Part#
+2015-09-28 11:55:09,506 DEBUG DataWriter - ....position[num='7', value='Description', source='value'] = Description
+2015-09-28 11:55:09,507 DEBUG DataWriter - ....position[num='8', value='Price', source='value'] = Price
+2015-09-28 11:55:09,507 DEBUG DataWriter - ....position[num='9', value='Quantity', source='value'] = Quantity
+2015-09-28 11:55:09,507 DEBUG DataWriter - ....position[num='10', value='Amount', source='value'] = Amount
+2015-09-28 11:55:09,507 DEBUG DataWriter - ....position[num='11', value='GLCode', source='value'] = GLCode
+2015-09-28 11:55:09,507 DEBUG DataWriter - ....position[num='12', value='PurchBy', source='value'] = PurchBy
+2015-09-28 11:55:09,510 DEBUG DataWriter - data [Property#,Account#,Date,Invoice#,PO#,Part#,Description,Price,Quantity,Amount,GLCode,PurchBy]
+2015-09-28 11:55:09,512 INFO  DataReader - reading invoices from [D:\Sandbox1\randy-custom-invoice\datain\invoices.xml]
+2015-09-28 11:55:09,543 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 11:55:09,543 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,543 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,544 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,544 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,546 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,547 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001188
+2015-09-28 11:55:09,547 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10005
+2015-09-28 11:55:09,547 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 822405
+2015-09-28 11:55:09,548 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = 36-63" SHOWER & UTILITY, ROD - BEIGE
+2015-09-28 11:55:09,548 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 9.99
+2015-09-28 11:55:09,565 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 9.99
+2015-09-28 11:55:09,565 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 11:55:09,565 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 9.99
+2015-09-28 11:55:09,565 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 9.99
+2015-09-28 11:55:09,566 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 822405
+2015-09-28 11:55:09,571 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 11:55:09,572 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,573 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001188,10005,822405,36-63" SHOWER & UTILITY ROD - BEIGE,9.99,1,9.99,5160.0180,]
+2015-09-28 11:55:09,576 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,577 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,577 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,577 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,577 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,578 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,578 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001188
+2015-09-28 11:55:09,578 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10005
+2015-09-28 11:55:09,579 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 11:55:09,579 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,579 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,579 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 5.00
+2015-09-28 11:55:09,580 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 5.00
+2015-09-28 11:55:09,580 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,580 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,581 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001188,10005,,Misc,,,5.00,,]
+2015-09-28 11:55:09,591 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 11:55:09,591 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,591 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,592 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,592 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,593 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,593 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001189
+2015-09-28 11:55:09,593 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1006
+2015-09-28 11:55:09,594 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 855100
+2015-09-28 11:55:09,594 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = STORM DOOR PROTECTOR CHAIN
+2015-09-28 11:55:09,594 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 2.39
+2015-09-28 11:55:09,594 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.39
+2015-09-28 11:55:09,594 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 11:55:09,595 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 2.39
+2015-09-28 11:55:09,595 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.39
+2015-09-28 11:55:09,596 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 855100
+2015-09-28 11:55:09,596 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 11:55:09,596 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,597 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001189,1006,855100,STORM DOOR PROTECTOR CHAIN,2.39,1,2.39,5160.0180,]
+2015-09-28 11:55:09,597 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,597 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,598 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,598 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,598 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,599 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,599 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001189
+2015-09-28 11:55:09,599 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1006
+2015-09-28 11:55:09,599 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 11:55:09,600 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,600 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,600 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 5.00
+2015-09-28 11:55:09,600 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 5.00
+2015-09-28 11:55:09,601 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,601 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,601 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001189,1006,,Misc,,,5.00,,]
+2015-09-28 11:55:09,609 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 11:55:09,609 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,609 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,610 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,610 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,610 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,611 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001190
+2015-09-28 11:55:09,611 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1007
+2015-09-28 11:55:09,611 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 477850
+2015-09-28 11:55:09,611 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = DELTA SHOWER DIVERTER ASSEMBLY
+2015-09-28 11:55:09,611 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 7.23
+2015-09-28 11:55:09,612 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 7.23
+2015-09-28 11:55:09,612 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 11:55:09,612 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 7.23
+2015-09-28 11:55:09,612 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 7.23
+2015-09-28 11:55:09,612 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 477850
+2015-09-28 11:55:09,613 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 11:55:09,613 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,613 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001190,1007,477850,DELTA SHOWER DIVERTER ASSEMBLY,7.23,1,7.23,5160.0180,]
+2015-09-28 11:55:09,614 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,614 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,614 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,614 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,614 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,615 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,615 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001190
+2015-09-28 11:55:09,615 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1007
+2015-09-28 11:55:09,615 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 11:55:09,615 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,615 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,615 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 5.00
+2015-09-28 11:55:09,616 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 5.00
+2015-09-28 11:55:09,616 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,616 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,617 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001190,1007,,Misc,,,5.00,,]
+2015-09-28 11:55:09,628 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 11:55:09,628 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,629 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,629 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,629 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,630 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,631 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001210
+2015-09-28 11:55:09,631 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1011
+2015-09-28 11:55:09,631 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 106063
+2015-09-28 11:55:09,631 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = 10.3 OZ LIQUID NAILS GUTTER REPAIR
+2015-09-28 11:55:09,632 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 2.79
+2015-09-28 11:55:09,632 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.79
+2015-09-28 11:55:09,632 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 11:55:09,633 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 2.79
+2015-09-28 11:55:09,633 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.79
+2015-09-28 11:55:09,633 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 106063
+2015-09-28 11:55:09,633 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 11:55:09,633 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 11:55:09,634 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001210,1011,106063,10.3 OZ LIQUID NAILS GUTTER REPAIR,2.79,1,2.79,5160.0180,Aleyda Zeledon]
+2015-09-28 11:55:09,635 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,635 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,635 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,636 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,636 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,636 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,637 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001210
+2015-09-28 11:55:09,637 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1011
+2015-09-28 11:55:09,637 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Freight
+2015-09-28 11:55:09,637 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,637 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,638 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 8.00
+2015-09-28 11:55:09,638 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 8.00
+2015-09-28 11:55:09,638 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,638 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 11:55:09,639 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001210,1011,,Freight,,,8.00,,Aleyda Zeledon]
+2015-09-28 11:55:09,640 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,640 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,640 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,640 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,640 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091026
+2015-09-28 11:55:09,641 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 26-Oct-2009
+2015-09-28 11:55:09,642 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001210
+2015-09-28 11:55:09,642 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1011
+2015-09-28 11:55:09,642 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 11:55:09,642 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,642 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,643 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 6.00
+2015-09-28 11:55:09,643 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 6.00
+2015-09-28 11:55:09,643 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,643 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 11:55:09,644 DEBUG DataWriter - data [8413,5904940,26-Oct-2009,9000001210,1011,,Misc,,,6.00,,Aleyda Zeledon]
+2015-09-28 11:55:09,661 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 11:55:09,662 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,662 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,662 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,663 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,663 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,664 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001234
+2015-09-28 11:55:09,664 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1012
+2015-09-28 11:55:09,664 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 501000
+2015-09-28 11:55:09,664 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = BUNA N RUBBER O-RING "PKG OF 10" OR-015
+2015-09-28 11:55:09,665 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 1.12
+2015-09-28 11:55:09,665 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 1.12
+2015-09-28 11:55:09,665 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 11:55:09,666 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 1.12
+2015-09-28 11:55:09,666 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 1.12
+2015-09-28 11:55:09,666 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 501000
+2015-09-28 11:55:09,666 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 11:55:09,667 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 11:55:09,668 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001234,1012,501000,BUNA N RUBBER O-RING "PKG OF 10" OR-015,1.12,1,1.12,5160.0180,Aleyda Zeledon]
+2015-09-28 11:55:09,669 DEBUG DataWriter - group[name=invoice-taxes]
+2015-09-28 11:55:09,669 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,669 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,669 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,670 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,670 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,671 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001234
+2015-09-28 11:55:09,671 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1012
+2015-09-28 11:55:09,671 DEBUG DataWriter - ....position[num='7', value='invoice.tax.name', source='data'] = Sales Tax
+2015-09-28 11:55:09,672 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,672 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,672 DEBUG DataWriter - ....position[num='10', value='invoice.tax.amt', source='data'] = 0.99
+2015-09-28 11:55:09,673 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 0.99
+2015-09-28 11:55:09,673 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,673 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 11:55:09,674 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001234,1012,,Sales Tax,,,0.99,,Aleyda Zeledon]
+2015-09-28 11:55:09,675 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,675 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,675 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,675 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,675 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,677 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,677 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001234
+2015-09-28 11:55:09,677 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1012
+2015-09-28 11:55:09,678 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Freight
+2015-09-28 11:55:09,678 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,678 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,680 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 7.00
+2015-09-28 11:55:09,681 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 7.00
+2015-09-28 11:55:09,681 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,681 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 11:55:09,682 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001234,1012,,Freight,,,7.00,,Aleyda Zeledon]
+2015-09-28 11:55:09,682 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,682 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,682 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,683 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,683 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,683 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,684 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001234
+2015-09-28 11:55:09,684 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 1012
+2015-09-28 11:55:09,684 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Misc
+2015-09-28 11:55:09,685 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,685 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,685 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 6.00
+2015-09-28 11:55:09,686 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 6.00
+2015-09-28 11:55:09,686 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,686 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = Aleyda Zeledon
+2015-09-28 11:55:09,687 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001234,1012,,Misc,,,6.00,,Aleyda Zeledon]
+2015-09-28 11:55:09,703 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 11:55:09,703 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,703 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,703 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,704 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,704 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,704 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 11:55:09,705 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 11:55:09,705 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 326150
+2015-09-28 11:55:09,705 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = 1,800 WATT ,DIRECTIONAL PHOTOCONTROLLER
+2015-09-28 11:55:09,705 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 7.6600003
+2015-09-28 11:55:09,706 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 7.66
+2015-09-28 11:55:09,706 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 11
+2015-09-28 11:55:09,706 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 84.26
+2015-09-28 11:55:09,706 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 84.26
+2015-09-28 11:55:09,706 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 326150
+2015-09-28 11:55:09,707 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 11:55:09,707 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,707 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,326150,1800 WATT DIRECTIONAL PHOTOCONTROLLER,7.66,11,84.26,5160.0180,]
+2015-09-28 11:55:09,708 DEBUG DataWriter - group[name=invoice-items]
+2015-09-28 11:55:09,709 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,709 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,709 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,710 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,710 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,710 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 11:55:09,711 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 11:55:09,711 DEBUG DataWriter - ....position[num='6', value='invoice.item.itemid', source='data'] = 106063
+2015-09-28 11:55:09,711 DEBUG DataWriter - ....position[num='7', value='invoice.item.name', source='data'] = 10.3 OZ LIQUID NAILS GUTTER REPAIR
+2015-09-28 11:55:09,711 DEBUG DataWriter - ....position[num='8', value='invoice.item.price', source='data'] = 2.79
+2015-09-28 11:55:09,711 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.79
+2015-09-28 11:55:09,712 DEBUG DataWriter - ....position[num='9', value='invoice.item.shipqty', source='data'] = 1
+2015-09-28 11:55:09,712 DEBUG DataWriter - ....position[num='10', value='invoice.item.amt', source='data'] = 2.79
+2015-09-28 11:55:09,712 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 2.79
+2015-09-28 11:55:09,712 DEBUG DataWriter - ....position[num='11', value='invoice.item.itemid', source='data'] = 106063
+2015-09-28 11:55:09,713 DEBUG DataWriter - ......macro[Decode, value="131354,5180,135237,5180,135156,5180,141074,5180,141072,5180,141014,5180,139625,5180,132509,5180,118315,5180,118317,5180,129374,5180,5160.0180", source="value"] = 5160.0180
+2015-09-28 11:55:09,713 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,713 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,106063,10.3 OZ LIQUID NAILS GUTTER REPAIR,2.79,1,2.79,5160.0180,]
+2015-09-28 11:55:09,714 DEBUG DataWriter - group[name=invoice-taxes]
+2015-09-28 11:55:09,714 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,714 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,714 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,715 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,715 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,716 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 11:55:09,716 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 11:55:09,716 DEBUG DataWriter - ....position[num='7', value='invoice.tax.name', source='data'] = Sales Tax
+2015-09-28 11:55:09,716 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,716 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,716 DEBUG DataWriter - ....position[num='10', value='invoice.tax.amt', source='data'] = 6.73
+2015-09-28 11:55:09,717 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 6.73
+2015-09-28 11:55:09,717 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,718 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,718 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,,Sales Tax,,,6.73,,]
+2015-09-28 11:55:09,718 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,718 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,718 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,719 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,719 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,719 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,719 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 11:55:09,719 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 11:55:09,720 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Freight
+2015-09-28 11:55:09,720 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,720 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,720 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = 6.00
+2015-09-28 11:55:09,720 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = 6.00
+2015-09-28 11:55:09,720 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,721 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,721 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,,Freight,,,6.00,,]
+2015-09-28 11:55:09,721 DEBUG DataWriter - group[name=invoice-charges]
+2015-09-28 11:55:09,721 DEBUG DataWriter - ..sequence[num=0]
+2015-09-28 11:55:09,722 DEBUG DataWriter - ....position[num='1', value='invoice.propid', source='data'] = 8413
+2015-09-28 11:55:09,722 DEBUG DataWriter - ....position[num='2', value='invoice.custid', source='data'] = 5904940
+2015-09-28 11:55:09,722 DEBUG DataWriter - ....position[num='3', value='invoice.invdt', source='data'] = 20091027
+2015-09-28 11:55:09,722 DEBUG DataWriter - ......macro[Dateformat, value="dd-MMM-yyyy", source="value"] = 27-Oct-2009
+2015-09-28 11:55:09,722 DEBUG DataWriter - ....position[num='4', value='invoice.id', source='data'] = 9000001271
+2015-09-28 11:55:09,722 DEBUG DataWriter - ....position[num='5', value='invoice.po', source='data'] = 10025
+2015-09-28 11:55:09,723 DEBUG DataWriter - ....position[num='7', value='invoice.charge.name', source='data'] = Savings
+2015-09-28 11:55:09,723 DEBUG DataWriter - ....position[num='8', value='', source='value'] = 
+2015-09-28 11:55:09,723 DEBUG DataWriter - ....position[num='9', value='', source='value'] = 
+2015-09-28 11:55:09,723 DEBUG DataWriter - ....position[num='10', value='invoice.charge.amt', source='data'] = -3
+2015-09-28 11:55:09,723 DEBUG DataWriter - ......macro[Numberformat, value="0.00", source="value"] = -3.00
+2015-09-28 11:55:09,723 DEBUG DataWriter - ....position[num='11', value='', source='value'] = 
+2015-09-28 11:55:09,723 DEBUG DataWriter - ....position[num='12', value='invoice.purchby', source='data'] = 
+2015-09-28 11:55:09,724 DEBUG DataWriter - data [8413,5904940,27-Oct-2009,9000001271,10025,,Savings,,,-3.00,,]
+2015-09-28 11:55:09,753 INFO  DataSender - sending [D:\Sandbox1\randy-custom-invoice\dataout\invoices.dat]
+2015-09-28 11:55:09,798 INFO  DataSender - customer file name [1122609_20091228_20091228.csv]
+2015-09-28 11:55:11,225 ERROR Emailer - email failed [Could not connect to SMTP host: localhost, port: 25] data file [D:\Sandbox1\randy-custom-invoice\dataout\invoices.dat] not delivered as [1122609_20091228_20091228.csv] to [To:erick.nelson@hdsupply.com]
+2015-09-28 11:55:11,265 DEBUG ScriptTools - jvm start time [2015-09-28 11:55:06.896]
+2015-09-28 11:55:11,266 DEBUG ScriptTools - framework start time [2015-09-28 11:55:08.434]
+2015-09-28 11:55:11,266 DEBUG ScriptTools - user start time [2015-09-28 11:55:09.018]
+2015-09-28 11:55:11,267 DEBUG ScriptTools - user end time [2015-09-28 11:55:11.227]
+2015-09-28 11:55:11,278 DEBUG ScriptTools - groovy startup [1.538 seconds] jvm start -> groovy compile
+2015-09-28 11:55:11,278 DEBUG ScriptTools - framework startup [0.584 seconds] load properties + setup logging + parse options
+2015-09-28 11:55:11,278 DEBUG ScriptTools - user [2.209 seconds] user start time -> user end time
+2015-09-28 11:55:11,278 DEBUG ScriptTools - total [4.331 seconds] jvm start time -> user end time
+2015-09-28 11:55:11,279 INFO  ScriptTools - end [2.844 seconds]
