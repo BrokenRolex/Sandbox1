@@ -15,7 +15,8 @@ class LogMgr {
     static final String FILE_APPENDER_NAME = 'appender.file'
     static final String EMAIL_APPENDER_NAME = 'appender.email'
     static final String LOGFILE_EXT = '.log'
-    static final String CONSOLE_PATTERN_LAYOUT = '%d{HH:mm:ss,SSS} %-5p %c{1} - %m%n'
+    //static final String CONSOLE_PATTERN_LAYOUT = '%d{HH:mm:ss,SSS} %-5p %c{1} - %m%n'
+    static final String CONSOLE_PATTERN_LAYOUT = '%d{HH:mm:ss,SSS} %-5p %c - %m%n'
     static final String FILE_PATTERN_LAYOUT = '%d %-5p %c{1} - %m%n'
     static final String MAX_FILE_SIZE = '5MB'
     static final int MAX_BACKUP_INDEX = 2
