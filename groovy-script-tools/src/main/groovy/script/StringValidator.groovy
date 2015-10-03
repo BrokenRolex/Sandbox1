@@ -1,206 +1,116 @@
 package script
 
-import hds.groovy.db.*
+import script.sql.*
 import java.util.regex.Pattern
 
 class StringValidator {
-    
-    int hostIsReachableTimeout = 2000
+
+    Integer hostIsReachableTimeout = 2000
 
     // map of validation rules
     Map rules = [
-        'HOST': { String s ->
-            if (s == null || s.length() == 0) return false
-            isaHost(s)
-        },
-        'HOST_LIST': { String s ->
-            if (s == null || s.length() == 0) return false
-            Boolean result = true
-            for (String ss in s.split(',')) {
-                result = result && isaHost(ss)
-            }
-            result
-        },
         'host': { String s ->
-            if (s == null || s.length() == 0) return true
-            isaHost(s)
+            isEmpty(s) ? true : isaHost(s)
+        },
+        'HOST': { String s ->
+            isEmpty(s) ? false : isaHost(s)
         },
         'host_list': { String s ->
-            if (s == null || s.length() == 0) return true
-            Boolean result = true
-            for (String ss in s.split(',')) {
-                if (!isaHost(ss)) return false
-            }
-            true
+            isEmpty(s) ? true : (s.split(/,/,-1).every{isaHost(it)})
         },
-        'FILE': { String s ->
-            if (s == null || s.length() == 0) return false
-            new File(s).isFile()
+        'HOST_LIST': { String s ->
+            isEmpty(s) ? false : (s.split(/,/,-1).every{isaHost(it)})
         },
         'file': { String s ->
-            if (s == null || s.length() == 0) return true
-            new File(s).isFile()
+            isEmpty(s) ? true : new File(s).isFile()
         },
-        'FILE_LIST': { String s ->
-            if (s == null || s.length() == 0) return false
-            for (String ss in s.split(',')) {
-                if (!new File(ss).isFile()) return false
-            }
-            true
+        'FILE': { String s ->
+            isEmpty(s) ? false : new File(s).isFile()
         },
         'file_list': { String s ->
-            if (s == null || s.length() == 0) return true
-            for (String ss in s.split(',')) {
-                if (!new File(ss).isFile()) return false
-            }
-            true
+            isEmpty(s) ? true : (s.split(/,/,-1).every{new File(it).isFile()})
         },
-        'DIR': { String s ->
-            if (s == null || s.length() == 0) return false
-            new File(s).isDirectory()
+        'FILE_LIST': { String s ->
+            isEmpty(s) ? false : (s.split(/,/,-1).every{new File(it).isFile()})
         },
         'dir': { String s ->
-            if (s == null || s.length() == 0) return true
-            new File(s).isDirectory()
+            isEmpty(s) ? true : new File(s).isDirectory()
         },
-        'DIR_LIST': { String s ->
-            if (s == null || s.length() == 0) return false
-            for (String ss in s.split(',')) {
-                if (!new File(ss).isDirectory()) return false
-            }
-            true
+        'DIR': { String s ->
+            isEmpty(s) ? false : new File(s).isDirectory()
         },
         'dir_list': { String s ->
-            if (s == null || s.length() == 0) return true
-            for (String ss in s.split(',')) {
-                if (!new File(ss).isDirectory()) return false
-            }
-            true
+            isEmpty(s) ? true : (s.split(/,/,-1).every{new File(it).isDirectory()})
         },
-        'MKDIR': { String s ->
-            if (s == null || s.length() == 0) return false
-            makeDirectory(s)
+        'DIR_LIST': { String s ->
+            isEmpty(s) ? false : (s.split(/,/,-1).every{new File(it).isDirectory()})
         },
         'mkdir': { String s ->
-            if (s == null || s.length() == 0) return true
-            makeDirectory(s)
+            isEmpty(s) ? true : mkdirs(s)
         },
-        'MKDIR_LIST': { String s ->
-            if (s == null || s.length() == 0) return false
-            for (String ss in s.split(',')) {
-                if (!makeDirectory(ss)) return false
-            }
-            true
+        'MKDIR': { String s ->
+            isEmpty(s) ? false : mkdirs(s)
         },
         'mkdir_list': { String s ->
-            if (s == null || s.length() == 0) return true
-            for (String ss in s.split(',')) {
-                if (!makeDirectory(ss)) return false
-            }
-            true
+            isEmpty(s) ? true : (s.split(/,/,-1).every{mkdirs(it)})
         },
-        'LONG': { String s ->
-            if (s == null || s.length() == 0) return false
-            isLong(s)
+        'MKDIR_LIST': { String s ->
+            isEmpty(s) ? false : (s.split(/,/,-1).every{mkdirs(it)})
         },
         'long': { String s ->
-            if (s == null || s.length() == 0) return true
-            isLong(s)
+            isEmpty(s) ? true : isLong(s)
         },
-        'LONG_LIST': { String s ->
-            if (s == null || s.length() == 0) return false
-            for (String ss in s.split(',')) {
-                if (!isLong(ss)) return false
-            }
-            true
+        'LONG': { String s ->
+            isEmpty(s) ? false : isLong(s)
         },
         'long_list': { String s ->
-            if (s == null || s.length() == 0) return true
-            for (String ss in s.split(',')) {
-                if (!isLong(ss)) return false
-            }
-            true
+            isEmpty(s) ? true : (s.split(/,/,-1).every{isLong(it)})
         },
-        'INTEGER': { String s ->
-            if (s == null || s.length() == 0) return false
-            isInteger(s)
+        'LONG_LIST': { String s ->
+            isEmpty(s) ? false : (s.split(/,/,-1).every{isLong(it)})
         },
         'integer': { String s ->
-            if (s == null || s.length() == 0) return true
-            isInteger(s)
+            isEmpty(s) ? true : isInteger(s)
         },
-        'INTEGER_LIST': { String s ->
-            if (s == null || s.length() == 0) return false
-            for (String ss in s.split(',')) {
-                if (!isInteger(ss)) return false
-            }
-            true
+        'INTEGER': { String s ->
+            isEmpty(s) ? false : isInteger(s)
         },
         'integer_list': { String s ->
-            if (s == null || s.length() == 0) return true
-            for (String ss in s.split(',')) {
-                if (!isInteger(ss)) return false
-            }
-            true
+            isEmpty(s) ? true : (s.split(/,/,-1).every{isInteger(it)})
+        },
+        'INTEGER_LIST': { String s ->
+            isEmpty(s) ? false : (s.split(/,/,-1).every{isInteger(it)})
         },
         'EMPTY': { String s ->
-            s == null || s.length() == 0 ? true : false
+            isEmpty(s) ? true : false
         },
         'NOTEMPTY': { String s ->
-            s == null || s.length() == 0 ? false : true
-        },
-        'DATABASE': { String s ->
-            if (s == null || s.length() == 0) return false
-            isaDatabase(s)
+            isEmpty(s) ? false : true
         },
         'database': { String s ->
-            if (s == null || s.length() == 0) return true
-            isaDatabase(s)
+            isEmpty(s) ? true : isaDatabase(s)
         },
-        'DATABASE_LIST': { String s ->
-            if (s == null || s.length() == 0) return false
-            for (String ss in s.split(',')) {
-                if (!isaDatabase(ss)) return false
-            }
-            true
+        'DATABASE': { String s ->
+            isEmpty(s) ? false : isaDatabase(s)
         },
         'database_list': { String s ->
-            if (s == null || s.length() == 0) return true
-            for (String ss in s.split(',')) {
-                if (!isaDatabase(ss)) return false
-            }
-            true
+            isEmpty(s) ? true : (s.split(/,/,-1).every{isaDatabase(it)})
         },
-        'DIGITS': { String s ->
-            if (s == null || s.length() == 0) return false
-            s =~ /\D/ ? false : true
+        'DATABASE_LIST': { String s ->
+            isEmpty(s) ? false : (s.split(/,/,-1).every{isaDatabase(it)})
         },
         'digits': { String s ->
-            if (s == null || s.length() == 0) return true
-            s =~ /\D/ ? false : true
+            isEmpty(s) ? true : (s ==~ /\d+/ ? true : false)
         },
-        'DIGITS_LIST': { String s ->
-            if (s == null || s.length() == 0) return true
-            for (String ss in s.split(',')) {
-                if (s =~ /\D/) return false
-            }
-            true
+        'DIGITS': { String s ->
+            isEmpty(s) ? false : (s ==~ /\d+/ ? true : false)
         },
         'digits_list': { String s ->
-            if (s == null || s.length() == 0) return true
-            for (String ss in s.split(',')) {
-                if (s =~ /\D/) return false
-            }
-            true
+            isEmpty(s) ? true : (s.split(/,/,-1).every{it ==~ /\d+/})
         },
-        'REGEX': { String s, Pattern pattern ->
-            if (s == null || s.length() == 0) return false
-            pattern.matcher(s).matches()
+        'DIGITS_LIST': { String s ->
+            isEmpty(s) ? false : (s.split(/,/,-1).every{it ==~ /\d+/})
         },
-        'regex': { String s, Pattern pattern ->
-            if (s == null || s.length() == 0) return true
-            pattern.matcher(s).matches()
-        }
     ]
 
     StringValidator () {
@@ -220,79 +130,64 @@ class StringValidator {
         rules['MKDIRS_LIST'] = rules['MKDIR_LIST']
         rules['mkdirs_list'] = rules['mkdir_list']
     }
-    
-    Set rules () {
-        rules.keySet()
-    }
 
     Boolean validate (String data, String rule) {
-        if (data == null || rule == null) {
-            return false
-        }
-        if (rules.containsKey(rule)) {
-            return rules[rule](data)
-        }
-        String[] ruleAry= rule.split(':', 2)
-        if (ruleAry.length == 2) {
-            if (ruleAry[0].equalsIgnoreCase('regex')) {
-                if (rules.containsKey(ruleAry[0])) {
-                    return rules[ruleAry[0]](data, ~ruleAry[1])
-                }
-            }
-        }
-        false
-    }
-
-    private Boolean makeDirectory (String s) {
-        File f = new File(s)
-        if (f.exists()) {
-            if (!f.isDirectory()) {
-                return false
-            }
+        if (!rules.containsKey(rule)) {
+            false
         }
         else {
-            f.mkdirs()
-            if (!f.isDirectory()) {
-                return false
-            }
+            rules[rule].call(data)
         }
-        true
     }
 
-    private Boolean isaDatabase (String s) {
-        //println "isaDatabase($s)"
+    Boolean mkdirs (String s) {
+        File f = new File(s)
+        if (!f.exists()) {
+            f.mkdirs()
+        }
+        f.isDirectory()
+    }
+
+    Boolean isaDatabase (String s) {
         try {
             OracleTnsnames.instance.getAlias(s)
-            return true
+            true
         }
         catch (e) {
-            //println e.message
-            return false
+            false
         }
     }
 
-    private Boolean isInteger (String s) {
+    Boolean isInteger (String s) {
         try {
             Integer.valueOf(s)
-            return true
+            true
         }
         catch (e) {
-            return false
+            false
         }
     }
 
-    private Boolean isLong (String s) {
+    Boolean isLong (String s) {
         try {
             Long.valueOf(s)
-            return true
+            true
         }
         catch (e) {
-            return false
+            false
         }
     }
 
-    private Boolean isaHost (String s) {
+    Boolean isaHost (String s) {
         Host.isReachable(s, hostIsReachableTimeout) ? true : false
+    }
+
+    Boolean isEmpty (String s) {
+        s == null || s.length() == 0
+    }
+
+    Boolean isaRule (String s) {
+        rules.containsKey(s)
     }
 
 }

@@ -12,9 +12,7 @@ package script
  */
 abstract class MailerBase {
 
-    static final String DEFAULT_FROM_ADDR = 'do_not_reply@hdsupply.com'
-    static final String EMPTY_STRING = ''
-
+    String default_from = 'do_not_reply@hdsupply.com'
     String from
     String subject
     String message
@@ -22,7 +20,6 @@ abstract class MailerBase {
     List cc
     List bcc
     List attach
-    //Map attach
 
     /**
      * Constructor
@@ -31,21 +28,6 @@ abstract class MailerBase {
      */
     MailerBase() {
         reset()
-    }
-
-    Map getMap () {
-        Map map = [
-            Email: [
-                Subject: subject,
-                From: from,
-                To: to,
-                Cc: cc,
-                Bcc: bcc,
-                Body: message,
-                Attach: attach,
-            ]
-        ]
-        map
     }
 
     /**
@@ -59,9 +41,9 @@ abstract class MailerBase {
      * </ul>
      */
     void reset() {
-        from = Props.instance.getProperty('Mailer.default_from', DEFAULT_FROM_ADDR)
-        subject = EMPTY_STRING
-        message = EMPTY_STRING
+        from = Props.instance.getProperty('Mailer.default_from', default_from)
+        subject = ''
+        message = ''
         to = []
         cc = []
         bcc = []
@@ -118,13 +100,13 @@ abstract class MailerBase {
 
     private final void addString2List (List list, String string) {
         if (string == null || string.length() == 0) return
-        // the input string might be a csv...
-        string.split(',').each {
-            String s = it.trim()
-            if (s.length() > 0) {
-                list << it.trim()
+            // the input string might be a csv...
+            string.split(',').each {
+                String s = it.trim()
+                if (s.length() > 0) {
+                    list << it.trim()
+                }
             }
-        }
     }
 
 
@@ -194,12 +176,17 @@ abstract class MailerBase {
         setSubject(s)
     }
 
-    void setSubjectPlus (String s) {
-        setSubject(MailUtils.buildSubject(s))
-    }
-
     void subjectPlus (String s) {
         setSubject(MailUtils.buildSubject(s))
+        Props props = Props.instance
+        s = s == null ? '?' :s
+        String env = (props.getProperty('env', '?')).toUpperCase()
+        String title = props.getProperty('program.title', '?')
+        String program = '?'
+        if (Env.scriptFile != null) {
+            program = Env.scriptFile.path
+        }
+        setSubject("${s} [$title] [$env] [${Host.name}:$program]")
     }
 
     /**
@@ -229,11 +216,7 @@ abstract class MailerBase {
      */
     void attach (File file, String name = null) {
         if (file != null && file.isFile()) {
-            //attach[file] = name == null ? file.name : name
-            attach << [
-                file,
-                name == null ? file.name : name
-            ]
+            attach << [file, name == null ? file.name : name]
         }
     }
 
@@ -265,49 +248,19 @@ abstract class MailerBase {
         attach.clear()
     }
 
-    ///**
-    // * Send an email
-    // * @param json JsonBuilder
-    // */
-    //void send (groovy.json.JsonBuilder json) {
-    //    send(json.toString())
-    //}
-
-    ///**
-    // * Send an email
-    // * @param json string
-    // */
-    //void send (String json) {
-    //    send(new groovy.json.JsonSlurper().parseText(json) as Map)
-    //}
-
-    ///**
-    // * Send an email
-    // * @param map produced by JsonSlurper.parseText
-    // */
-    //void send (Map map) {
-    //    reset()
-    //    setSubject(map.Email.Subject)
-    //    setMessage(map.Email.Body)
-    //    setFrom(map.Email.From)
-    //    map.Email.To.each { addTo(it) }
-    //    map.Email.Cc.each { addCc(it) }
-    //    map.Email.Attach.each { String filepath, String name ->
-    //        attachFile(new File(filepath), name)
-    //    }
-    //    send()
-    //}
-
-    /**
-     * For debugging
-     */
-    void dump () {
-        println getMap()
-    }
-    
     @Override
-    public String toString() {
-        return getMap().toString()
+    String toString() {
+        [ Email:
+            [
+                Subject: subject,
+                From: from,
+                To: to,
+                Cc: cc,
+                Bcc: bcc,
+                Body: message,
+                Attach: attach,
+            ]
+        ].toString()
     }
 
     /**

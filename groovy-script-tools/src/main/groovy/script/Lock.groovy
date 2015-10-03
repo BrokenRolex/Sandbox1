@@ -28,9 +28,9 @@ import java.nio.channels.FileLock
 @groovy.util.logging.Log4j
 class Lock {
 
-    private FileLock lock
-    private File lockFile
-    private static final String MASSLOAD_LOCK_NAME = ".massload.lock"
+    FileLock lock
+    File lockFile
+    static final String MASSLOAD_LOCK_NAME = ".massload.lock"
 
     /**
      * Wait for a lock to become available on the script lock file.<br/>
@@ -45,22 +45,7 @@ class Lock {
             throw new Exception("cannot acquire lock, Env.scriptFile is not available")
         }
         String lockName = ".${Env.scriptFile.name}.lock"
-        return waitAcquire(new File(Env.scriptFile.parentFile, lockName), wait, sleep)
-    }
-
-    /**
-     * @deprecated misspelled method, use acquire
-     * Wait for a lock to become available on the script lock file.<br/>
-     * Similar to {@link #acquireHiddenForBin()} except it waits for the lock
-     * to become available.
-     * @param wait Maximum seconds to wait. (default = 3600)
-     * @param sleep Number of seconds to wait between checks. (default = 60)
-     * @return Lock object
-     */
-    @Deprecated
-    Lock waitAquireHiddenForBin (int wait = 3600, int sleep = 60) {
-        log.warn "waitAquireHiddenForBin(int, int) is deprecated"
-        return waitAquireHiddenForBin(wait, sleep)
+        waitAcquire(new File(Env.scriptFile.parentFile, lockName), wait, sleep)
     }
 
     /**
@@ -90,21 +75,7 @@ class Lock {
                 }
             }
         }
-        return acquire(file)
-    }
-
-    /**
-     * @deprecated misspelled method, use acquire
-     * Wait for a lock on a file to become available.
-     * @param file to create a lock on
-     * @param wait Maximum seconds to wait. (default = 3600)
-     * @param sleep Number of seconds to sleep between checks. (default = 60)
-     * @return Lock object
-     */
-    @Deprecated
-    Lock waitAquire (File file, int wait = 3600, int sleep = 60) {
-        log.warn "waitAquire(File, int, int) is deprecated"
-        return waitAcquire(file, wait, sleep)
+        acquire(file)
     }
 
     /**
@@ -120,23 +91,7 @@ class Lock {
         if (Env.scriptFile == null) {
             throw new Exception("cannot acquire lock, Env.scriptFile not available")
         }
-        return acquireHiddenForFile(Env.scriptFile)
-    }
-
-    /**
-     * @deprecated misspelled method, use acquire
-     * Get a lock on the script.<p>
-     * This is typically called at the begining of a script to ensure
-     * that it cannot be run simultaneously. To accomplish this,
-     * a lock is created on a hidden file <i>.scriptName.lock</i>.
-     * So, if your script is <i>/some/dir/run</i> then a lock would
-     * be acquired on the file <i>/some/dir/.run.lock</i>
-     * @return Lock object
-     */
-    @Deprecated
-    Lock aquireHiddenForBin () {
-        log.warn "aquireHiddenForBin() is deprecated"
-        return acquireHiddenForBin()
+        acquireHiddenForFile(Env.scriptFile)
     }
 
     /**
@@ -150,21 +105,7 @@ class Lock {
         if (file == null || !file.isFile()) {
             throw new Exception("file [${file}] does not exist")
         }
-        return acquire(new File(file.parentFile, ".${file.name}.lock"))
-    }
-
-    /**
-     * @deprecated misspelled method, use acquire
-     * Acquire a lock for a file.<p>
-     * This is done be creating a hidden file in the same directory as
-     * the file called ".file.lock". 
-     * @param file to acquire lock for
-     * @return Lock object
-     */
-    @Deprecated
-    Lock aquireHiddenForFile (File file) {
-        log.warn "aquireHiddenForBin(File) is deprecated"
-        return acquireHiddenForFile(file)
+        acquire(new File(file.parentFile, ".${file.name}.lock"))
     }
 
     /**
@@ -180,49 +121,7 @@ class Lock {
             throw new Exception("cannot acquire lock on [$lockFile]")
         }
         log.debug "acquired a lock on file [$lockFile]"
-        return this
-    }
-
-    /**
-     * @deprecated misspelled method, use acquire
-     * Attempt to acquire a lock on a file.
-     * @param file to lock
-     * @return Lock object
-     */
-    @Deprecated
-    Lock aquire (File file) {
-        log.warn "aquire(File) is deprecated"
-        return acquire(file)
-    }
-    
-    /**
-     * @deprecated 
-     * Many processes that update a WCS database use the massload process.
-     * These processes may need to synchronize so that they do not hang due
-     * to conflicting database locks. This method will wait to aquie a lock
-     * on the file USER_HOME/.massload.lock file.
-     * @param maxwaitSeconds max time to wait to aquire lock
-     * @param sleepSeconds time to wait between checks to see if lock is available
-     * @return this
-     */
-    @Deprecated
-    Lock waitAquireForMassload (int maxwaitSeconds, int sleepSeconds) {
-        return waitAquire(new File(Env.homeDir, MASSLOAD_LOCK_NAME), maxwaitSeconds, sleepSeconds)
-    }
-
-    /**
-     * @deprecated 
-     * Many processes that update a WCS database use the massload process. <br/>
-     * These processes may need to synchronize so that they do not hang due
-     * to conflicting database locks.<br/>
-     * This method will wait to aquie a lock on the file USER_HOME/.massload.lock file.<br/>
-     * Wait for 1 hour checking every minute for the lock to become available.
-     * @return Lock object
-     */
-    @Deprecated
-    Lock waitAquireForMassload () {
-        log.warn "waitAquireForMassload() is deprecated"
-        return waitAquireForMassload (3600, 60)
+        this
     }
 
     /**

@@ -1,6 +1,5 @@
 package script
 
-import groovy.json.JsonSlurper
 import org.apache.commons.cli.Option
 
 @groovy.util.logging.Log4j

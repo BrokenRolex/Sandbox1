@@ -62,7 +62,7 @@ class Template {
 // date         who       comment
 // ${today}  unknown    created -- TODO please edit the 'who' so we know who created me
 
-@Grab('com.hdsupply:hds-groovy:${FrameWork.version}')
+@Grab('com.hdsupply:hds-groovy:4.0')
 @groovy.transform.BaseScript(script.ScriptWrapper)
 import script.*
 

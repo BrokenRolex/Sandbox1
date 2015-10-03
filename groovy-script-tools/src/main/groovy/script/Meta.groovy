@@ -76,48 +76,44 @@ class Meta {
     static void addStringMethods () {
 
         String.metaClass.isTrue = { StringUtils.isTrue(delegate) }
-
-        String.metaClass.random = { int len ->
-            StringUtils.random(delegate, len)
-        }
-
+        String.metaClass.random = { Integer len -> StringUtils.random(delegate, len) }
+        String.metaClass.static.random = { Integer len -> StringUtils.random(len) }
         String.metaClass.shuffle = { StringUtils.shuffle(delegate) }
 
-        String.metaClass.static.randomAlnum = { int len ->
-            StringUtils.randomAlnum(len)
-        }
-
-        String.metaClass.to_BigDecimal { BigDecimal a = 0 ->
+        String.metaClass.to_BigDecimal { BigDecimal dv = BigDecimal.ZERO ->
             try {
-                ((String) delegate).toBigDecimal()
-            } catch (e) {
-                a
+                delegate.toBigDecimal()
+            }
+            catch (e) {
+                dv
             }
         }
 
-        String.metaClass.to_Integer { Integer a = 0 ->
+        String.metaClass.to_Integer { Integer dv = 0 ->
             try {
-                ((String) delegate).toInteger()
-            } catch (e) {
-                a
+                delegate.toInteger()
+            }
+            catch (e) {
+                dv
             }
         }
 
-        String.metaClass.to_Long { Long a = 0L ->
+        String.metaClass.to_Long { Long dv = 0L ->
             try {
-                ((String) delegate).toLong()
-            } catch (e) {
-                a
+                delegate.toLong()
+            }
+            catch (e) {
+                dv
             }
         }
 
-        String.metaClass.to_BigInteger { BigInteger a = 0 ->
+        String.metaClass.to_BigInteger { BigInteger dv = BigInteger.ZERO ->
             try {
-                ((String) delegate).toBigInteger()
-            } catch (e) {
-                a
+                delegate.toBigInteger()
+            }
+            catch (e) {
+                dv
             }
         }
-
     }
 }

@@ -30,6 +30,9 @@ class ScriptTools {
         try {
             scriptStartTime = System.currentTimeMillis()
             //
+            Meta.addFileMethods()
+            Meta.addStringMethods()
+            //
             // Create a console appender for the RootLogger
             // so we can at least see warn or error messages
             // before proper logging gets setup below.
@@ -46,9 +49,6 @@ class ScriptTools {
             if (errors.size() > 0) {
                 fatal("framework startup errors = ${errors.join(', ')}")
             }
-            //
-            Meta.addFileMethods()
-            Meta.addStringMethods()
             //
             log.info "begin"
             List cliInfo = cli.info()

@@ -17,7 +17,7 @@ class DateString {
     static final String ISO = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     static final String ISOZ = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
-    private DateString() {
+    DateString() {
         throw new Exception("DateString is a static class")
     }
 

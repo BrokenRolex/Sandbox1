@@ -85,8 +85,7 @@ class LogMgr {
             Logger.getRootLogger().addAppender(appender)
         }
         catch (Exception e) {
-            String errm = "failed to setup a console appender [${e.message}]"
-            throw new Exception(errm)
+            throw new Exception("failed to setup a console appender [${e.message}]")
         }
     }
 
@@ -105,8 +104,7 @@ class LogMgr {
                 Logger.getRootLogger().addAppender(appender)
             }
             catch (e) {
-                String errm = "email appender was not created [${e.message}]"
-                throw new Exception(errm)
+                throw new Exception("email appender was not created [${e.message}]")
             }
         }
     }
@@ -169,18 +167,17 @@ class LogMgr {
     }
 
     static File getLogFile () {
-        if (fileAppenderExists() == false) {
-            return null
+        File logFile = null
+        if (fileAppenderExists()) {
+            RollingFileAppender fileAppender = (RollingFileAppender) Logger.getRootLogger().getAppender(FILE_APPENDER_NAME)
+            if (fileAppender) {
+                String file = fileAppender.getFile()
+                if (file) {
+                    logFile = new File(file)
+                }
+            }
         }
-        RollingFileAppender fileAppender = (RollingFileAppender) Logger.getRootLogger().getAppender(FILE_APPENDER_NAME)
-        if (fileAppender == null) {
-            return null
-        }
-        String file = fileAppender.getFile()
-        if (file == null) {
-            return null
-        }
-        new File(fileAppender.getFile())
+        logFile
     }
 
     static void setLevel (String level) {

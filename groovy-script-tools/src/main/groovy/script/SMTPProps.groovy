@@ -22,12 +22,13 @@ class SMTPProps {
     static void setHostPort (String host = 'localhost', String port = '25') {
         SMTPProps.instance.props = [(MAIL_SMTP_HOST): 'localhost', (MAIL_SMTP_PORT): '25'] 
     }
+
     /**
      * Get cached SMTP properties.
      * @return Properties object of SMTP properties
      */
     Properties getSmtpProps () {
-        return props == null ? load() : props
+        props == null ? load() : props
     }
 
     /**
@@ -117,7 +118,7 @@ class SMTPProps {
 
         validate()
 
-        return props
+        props
     }
 
     /*
@@ -141,14 +142,11 @@ class SMTPProps {
     }
     
     String getHost () {
-        if (props.containsKey(MAIL_SMTP_HOST)) {
-            return props[MAIL_SMTP_HOST]
-        }
-        return null
+        props.containsKey(MAIL_SMTP_HOST) ? props[MAIL_SMTP_HOST] : null
     }
 
     Properties getProps () {
-        return props
+        props
     }
     
 }

@@ -142,14 +142,59 @@ class Properties2 extends Properties {
         println '}'
     }
 
-    List<String> validate () {
-        PropertyValidator pv = new PropertyValidator()
-        pv.validate(Props.instance)
+    List validate () {
+        String validation_prefix = 'validate.'
+        List errors = []
+        StringValidator validator = new StringValidator()
+        this.each { String vkey, String rule ->
+            if (vkey.startsWith(validation_prefix)) {
+                if (rule && validator.isaRule(rule)) {
+                    String key = vkey - validation_prefix
+                    if (key && this.containsKey(key) {
+                        String data = this.getProperty(key)
+                        if (!validator.validate(data, rule)) {
+                            errors << "property [$key] value [$data] does not validate as [$rule]"
+                        }
+                    }
+                }
+            }
+        }
+        errors
     }
 
-    List<String> interpolate () {
-        PropertyInterpolator pi = new PropertyInterpolator()
-        pi.interpolate(Props.instance)
+    List interpolate () {
+        List errors = []
+        def interpolate_pattern = ~/(\$\{([^\$\{\}]+)\})/
+        for (String key in properties.keySet()) {
+            String val = this.getProperty(key) // property value to interpolate
+            if (val?.contains('${')) {
+                try {
+                    String interpolatedValue = val
+                    int matchAttempts = 0
+                    while (true) {
+                        def matcher = interpolatedValue =~ interpolate_pattern
+                        if (matcher.find()) {
+                            String key1 = matcher.group(1) // full replacement var (e.g. ${var})
+                            String key2 = matcher.group(2) // replacement var name (e.g. var)
+                            String val2 = this.getProperty(key2) // replacement value
+                            if (val2 == null) {
+                                break // stop if a key is not found
+                            }
+                            interpolatedValue = interpolatedValue.replace(key1, val2)
+                            this.setProperty(key, interpolatedValue)
+                            if ((matchAttempts++) > 99) {
+                                errors << "interpolation: possible circular reference detected in property [$key] value [$val]"
+                                break // stop if infinite loop detected
+                            }
+                        }
+                    }
+                }
+                catch (Exception e) {
+                    errors << "cannot interpolate property [$key] value [$val] error [${e.message}]"
+                }
+            }
+        }
+        errors
     }
 
     void addDefaultProps () {

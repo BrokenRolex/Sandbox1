@@ -1,9 +1,5 @@
 package script
 
-import java.io.File;
-import java.util.Map;
-
-import groovy.lang.Script;
 import groovy.xml.*
 
 /**
@@ -11,11 +7,11 @@ import groovy.xml.*
  */
 @groovy.transform.CompileStatic
 class Env {
-    
+
     Env () {
         throw new Exception("Env is a static class")
     }
-    
+
     // vars to cache results
     static File homeDir // from system property user.home
     static File userDir // from system property user.dir
@@ -25,7 +21,7 @@ class Env {
     static Boolean isLinux // from system property os.name
     static Boolean isOSX // from system property os.name
     static String pid // jvm process id
-   
+
     /**
      * Find the File of the script<br/>
      * Useful for finding resources relative to the script file.
@@ -52,7 +48,7 @@ class Env {
         }
         scriptFile
     }
-    
+
     /**
      * Return the script name.<br/>
      * The .groovy extension, if it exists, will be removed.
@@ -62,83 +58,80 @@ class Env {
         String nm = scriptFile?.name
         nm ? (nm - '.groovy') : '?'
     }
-    
+
     /**
      * Get the Java version 
      * @return version string
      */
     static String getJavaVersion () {
-        return System.properties['java.version']
+        System.properties['java.version']
     }
-    
+
     /**
      * Get the Groovy version
      * @return version string
      */
     static String getGroovyVersion () {
-        return GroovySystem.getVersion()
+        GroovySystem.getVersion()
     }
-    
+
     /**
      * Get the users home directory from the System property 'user.home'
      * @return current user's home directory as a File Object
      */
     static File getHomeDir () {
-        if (homeDir != null) {
-            return homeDir // return cached value
+        if (homeDir) {
+            homeDir // return cached value
         }
-        final String propkey = 'user.home'
-        String propval = System.getProperty(propkey)
-        if (propval != null && propval.length() > 0) {
-            File dir = new File(propval)
-            if (dir.isDirectory()) {
-                homeDir = dir
-                return dir
+        else {
+            String propval = System.getProperty('user.home')
+            if (propval) {
+                homeDir = new File(propval)
+            }
+            else {
+                null
             }
         }
-        throw new Exception("cannot get the current user's home directory from system property [$propkey]")
     }
-    
+
     /**
      * Get the users current directory from the System property 'user.dir'
      * @return the current directory as a File Object
      */
     static File getUserDir () {
-        if (userDir != null) {
-            return userDir // return cached value
+        if (userDir) {
+            userDir // return cached value
         }
-        final String propkey = 'user.dir'
-        String propval = System.getProperty(propkey)
-        if (propval != null && propval.length() > 0) {
-            File dir = new File(propval)
-            if (dir.isDirectory()) {
-                userDir = dir
-                return dir
+        else {
+            String propval = System.getProperty('user.dir')
+            if (propval) {
+                userDir = new File(propval)
+            }
+            else {
+                null
             }
         }
-        throw new Exception("cannot get the current user's current directory from system property [$propkey]")
     }
-    
+
     /**
      * Get the temporary directory from the System property 'java.io.tmpdir'
      * @return the system temporary directory as a File Object
      */
     static File getTmpDir () {
         if (tmpDir != null) {
-            return tmpDir // return cached value
+            tmpDir // return cached value
         }
-        final String propkey = 'java.io.tmpdir'
-        String propval = System.getProperty(propkey)
-        if (propval != null && propval.length() > 0) {
-            File dir = new File(propval)
-            if (dir.isDirectory()) {
-                tmpDir = dir
-                return dir
+        else {
+            String propval = System.getProperty('java.io.tmpdir')
+            if (propval) {
+                tmpDir = new File(propval)
+            }
+            else {
+                null
             }
         }
-        throw new Exception("cannot get the temporary directory from the system property [$propkey]")
     }
-    
+
     /**
      * Determine if we are on a Windows computer by evaluating the os.name system property.
      * @return true if os.name (converted to lower case) contains 'windows'
@@ -155,16 +148,16 @@ class Env {
                 }
             }
         }
-        return isWindows
+        isWindows
     }
-    
+
     /**
      * Determine if we are on a Linux computer by evaluating the os.name system property.
      * @return true if os.name (converted to lower case) contains 'linux'
      */
     static Boolean getIsLinux () {
         if (isLinux == null) {
-            isLinux = false 
+            isLinux = false
             final String propval = System.getProperty('os.name')
             if (propval != null && propval.length() > 0) {
                 if (propval.toLowerCase().contains('linux')) {
@@ -174,16 +167,16 @@ class Env {
                 }
             }
         }
-        return isLinux
+        isLinux
     }
-    
+
     /**
      * Determine if we are on an OS X computer by evaluating the os.name system property.
      * @return true if os.name (converted to lower case) contains 'os x'
      */
     static Boolean getIsOSX () {
         if (isOSX == null) {
-            isOSX = false 
+            isOSX = false
             final String propval = System.getProperty('os.name')
             if (propval != null && propval.length() > 0) {
                 if (propval.toLowerCase().contains('os x')) {
@@ -193,9 +186,9 @@ class Env {
                 }
             }
         }
-        return isLinux
+        isOSX
     }
-    
+
     /**
      * Currently there is no support in Java to get the jvm process id.
      * However, there is a 'hack' that seems to work.

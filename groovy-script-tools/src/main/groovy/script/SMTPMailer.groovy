@@ -29,7 +29,7 @@ import javax.activation.DataHandler
 @groovy.util.logging.Log4j
 class SMTPMailer extends MailerBase {
 
-    private Session session
+    Session session
 
     /**
      * Create a new SMTPMailer instance.<br/>
@@ -110,7 +110,6 @@ class SMTPMailer extends MailerBase {
             attach.each { List attachThis ->
                 File file = attachThis[0]
                 String name = attachThis[1]
-                log.debug "added file attachment [$file] as [$name]"
                 if (!file.exists()) {
                     log.warn "cannot attach file [$file] because it does not exist"
                 }
@@ -124,7 +123,6 @@ class SMTPMailer extends MailerBase {
             // javax.mail.Transport t = session.getTransport('smtp')
             // t.send(mimeMessage)
             // t.close()
-            log.debug 'send complete'
         }
         catch (e) {
             log.error e

@@ -12,10 +12,10 @@ package script
 @groovy.transform.CompileStatic
 class Host {
 
-    private static String canonicalName
-    private static String name
+    static String canonicalName
+    static String name
 
-    private Host () {
+    Host () {
         throw new Exception("Host is a static class")
     }
 
@@ -27,7 +27,7 @@ class Host {
         if (canonicalName == null) {
             getName()
         }
-        return canonicalName
+        canonicalName
     }
 
     /**
@@ -40,7 +40,7 @@ class Host {
             int dot = canonicalName.indexOf('.')
             name = (dot == -1) ? canonicalName : canonicalName.substring(0, dot)
         }
-        return name
+        name
     }
     
     /**
@@ -59,7 +59,7 @@ class Host {
             // this method to return false (the host is unreachable)
             // which is what we want.
         }
-        return result
+        result
     }
     
     /**
@@ -68,14 +68,14 @@ class Host {
      * @return boolean value indicating if the host is reachable
      */
     static Boolean isReachable (String host) {
-        return isReachable(host, 5000) // 5 seconds
+        isReachable(host, 5000) // 5 seconds
     }
     
     static Boolean isLocal (String host) {
         if (host == 'localhost') {
             return true
         }
-        return host == Host.getName() ? true : false
+        host == Host.getName() ? true : false
     }
     
 }
