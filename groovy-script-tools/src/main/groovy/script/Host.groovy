@@ -75,7 +75,7 @@ class Host {
         if (host == 'localhost') {
             return true
         }
-        host == Host.getName() ? true : false
+        host == getName() ? true : false
     }
     
 }

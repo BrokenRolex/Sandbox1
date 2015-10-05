@@ -1,44 +1,25 @@
 package script
 
 /**
- * This class all mailers in this scripting frame work should extend.
- * <br>
- * A class that extends Mailer need only implement the send method. If you
- * have special setup code create a default constructor but don't forget to
- * call the super (this class) default constructor.<br/>
- * See classes {@link Mutt} and {@link SMTPMailer} for examples.
+ * Base class for sending email.
  * 
  * @author en032339
  */
+@groovy.util.logging.Log4j
 abstract class MailerBase {
 
     String default_from = 'do_not_reply@hdsupply.com'
-    String from
-    String subject
-    String message
-    List to
-    List cc
-    List bcc
-    List attach
-
-    /**
-     * Constructor
-     * <p>
-     * Initialize object by calling {@link #reset()}
-     */
-    MailerBase() {
-        reset()
-    }
+    String from = Props.instance.getProperty('Mailer.default_from', default_from)
+    String subject = ''
+    String message = ''
+    def to  = []
+    def cc = []
+    def bcc = []
+    def attach = []
+    Boolean smartSubject = true // assemble subject
 
     /**
      * Reset the internal state
-     * <p>
-     * <ul>
-     * <li>Set From: back to default</li>
-     * <li>Clear Subject and Message</li>
-     * <li>Clear all To:, Cc: and Bcc: addresses</li>
-     * <li>Clear all attachments</li>
-     * </ul>
      */
     void reset() {
         from = Props.instance.getProperty('Mailer.default_from', default_from)
@@ -48,7 +29,6 @@ abstract class MailerBase {
         cc = []
         bcc = []
         attach = []
-        //attach = [:]
     }
 
     /**
@@ -56,10 +36,11 @@ abstract class MailerBase {
      * @param addr from email address
      */
     void setFrom (String addr) {
-        if (!(addr == null || addr.length() == 0)) {
+        if (addr) {
             from = addr
         }
     }
+
     void from (String addr) {
         setFrom(addr)
     }
@@ -69,72 +50,41 @@ abstract class MailerBase {
      * Clears the any email addresses in the list first.
      * @param list of email addresses to add to the To list
      */
-    void setTo (List list) {
-        if (list == null) list = []
-        to = list
-    }
-    void to (List list) {
-        setTo(list)
-    }
-
-    void addTo (List list) {
-        list.each { to << it }
-    }
-
-    /**
-     * Set a email To address.
-     * Clears the any email addresses in the list first.
-     * @param addr
-     */
-    void setTo (String addr) {
-        addString2List(to, addr)
+    void setTo (arg) {
+        if (arg == null) {
+            to = []
+        }
+        else if ([Collection, Object[]].any { it.isAssignableFrom(arg.getClass()) }) {
+            to = arg as List
+        }
+        else {
+            to = (arg.toString()).split(/,/) as List
+        }
     }
 
-    void to (String addr) {
-        setTo(addr)
+    void to (arg) {
+        setTo(arg)
     }
-
-    void addTo (String addr) {
-        to << addr
-    }
-
-    private final void addString2List (List list, String string) {
-        if (string == null || string.length() == 0) return
-            // the input string might be a csv...
-            string.split(',').each {
-                String s = it.trim()
-                if (s.length() > 0) {
-                    list << it.trim()
-                }
-            }
-    }
-
 
     /**
      * Set a list of email addresses to the Cc list.
      * Clears the Cc list first.
      * @param list of email addresses to add to the Cc list
      */
-    void setCc (List list) {
-        if (list == null) list = []
-        cc = list
+    void setCc (arg) {
+        if (arg == null) {
+            cc = []
+        }
+        else if ([Collection, Object[]].any { it.isAssignableFrom(arg.getClass()) }) {
+            cc = arg as List
+        }
+        else {
+            cc = (arg.toString()).split(/,/) as List
+        }
     }
 
-    void cc (List list) {
-        setCc(list)
-    }
-
-    /**
-     * Set a Cc email address.
-     * Clears the Cc list first.
-     * @param addr email address
-     */
-    void setCc (String addr) {
-        addString2List(cc, addr)
-    }
-
-    void cc (String addr) {
-        setCc(addr)
+    void cc (arg) {
+        setCc(arg)
     }
 
     /**
@@ -142,26 +92,20 @@ abstract class MailerBase {
      * Clears the Bcc list first.
      * @param list of email addresses to add to the Bcc list
      */
-    void setBcc (List list) {
-        if (list == null) list = []
-        bcc = list
+    void setBcc (arg) {
+        if (arg == null) {
+            bcc = []
+        }
+        else if ([Collection, Object[]].any { it.isAssignableFrom(arg.getClass()) }) {
+            bcc = arg as List
+        }
+        else {
+            bcc = (arg.toString()).split(/,/) as List
+        }
     }
 
-    void bcc (List list) {
-        setBcc(list)
-    }
-
-    /**
-     * Set a BCC email address.
-     * Clears the bcc list first.
-     * @param addr email address
-     */
-    void setBcc (String addr) {
-        addString2List(bcc, addr)
-    }
-
-    void bcc (String addr) {
-        setBcc(addr)
+    void bcc (arg) {
+        setBcc(arg)
     }
 
     /**
@@ -169,24 +113,20 @@ abstract class MailerBase {
      * @param subject of the email
      */
     void setSubject (String s) {
-        subject = s
+        if (s) {
+            subject = s
+            if (smartSubject) {
+                String env = Env.name ?: '?'
+                String host = Env.hostname ?: '?'
+                String program = Env.scriptFile?.path ?: '?'
+                String title = Props.instance.getProperty('program.title','?')
+                subject = "$s [$title] [$env] [$host:$program]"
+            }
+        }
     }
 
     void subject (String s) {
         setSubject(s)
-    }
-
-    void subjectPlus (String s) {
-        setSubject(MailUtils.buildSubject(s))
-        Props props = Props.instance
-        s = s == null ? '?' :s
-        String env = (props.getProperty('env', '?')).toUpperCase()
-        String title = props.getProperty('program.title', '?')
-        String program = '?'
-        if (Env.scriptFile != null) {
-            program = Env.scriptFile.path
-        }
-        setSubject("${s} [$title] [$env] [${Host.name}:$program]")
     }
 
     /**
@@ -194,7 +134,9 @@ abstract class MailerBase {
      * @param message
      */
     void setMessage (String m) {
-        message = m
+        if (m) {
+            message = m
+        }
     }
 
     void message (String m) {
@@ -214,59 +156,31 @@ abstract class MailerBase {
      * <p>
      * @param file to attach
      */
-    void attach (File file, String name = null) {
-        if (file != null && file.isFile()) {
-            attach << [file, name == null ? file.name : name]
+    void setAttach (File file, String name = null) {
+        if (file?.isFile()) {
+            attach << [file: file, name: (name ?: file.name)]
         }
     }
 
-    void attach (String file, String name = null) {
-        attach(new File(file), name)
-    }
-
-    void attachFile (File file, String name = null) {
+    void attach (File file, String name = null) {
         attach(file, name)
-    }
-
-    void attachFile (String file, String name = null) {
-        attach(file, name)
-    }
-
-    void setAttach (File file, String name = null) {
-        attach(file, name)
-    }
-
-    void setAttach (String file, String name = null) {
-        attach(file, name)
-    }
-
-    /**
-     * 
-     * Clear all attachments.
-     */
-    void clearAttachments () {
-        attach.clear()
     }
 
     @Override
     String toString() {
-        [ Email:
-            [
-                Subject: subject,
-                From: from,
-                To: to,
-                Cc: cc,
-                Bcc: bcc,
-                Body: message,
-                Attach: attach,
-            ]
+        [
+            Subject: subject,
+            From: from,
+            To: to,
+            Cc: cc,
+            Bcc: bcc,
+            Message: message,
+            Attach: attach,
         ].toString()
     }
 
     /**
-     * Send the email.
-     * <p>
-     * Classes that extend this class must implement this method.
+     * Send the email. Must be implemented.
      */
     abstract void send()
 }

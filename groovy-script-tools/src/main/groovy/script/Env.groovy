@@ -5,7 +5,6 @@ import groovy.xml.*
 /**
  * Static class to get current environment settings.
  */
-@groovy.transform.CompileStatic
 class Env {
 
     Env () {
@@ -21,6 +20,20 @@ class Env {
     static Boolean isLinux // from system property os.name
     static Boolean isOSX // from system property os.name
     static String pid // jvm process id
+    static String name // environment name
+    
+    static String getName () {
+        if (name) {
+            name   
+        }
+        else {
+            name = Props.instance.getProperty('env')
+        }
+    }
+
+    static String getHostname () {
+        Host.getName()
+    }
 
     /**
      * Find the File of the script<br/>

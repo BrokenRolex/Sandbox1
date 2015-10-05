@@ -1,28 +1,38 @@
 package script
 
-import org.apache.log4j.Logger
-import groovy.lang.Closure
-
+/**
+ * A simple static closure to send email through a mailer.<p/>
+ * The default delivery method is through SMTPMailer.<p/>
+ * To change this set mailer to an instance of a class that extends MailerBase.<p/>
+ * Example...<p/>
+ * <pre>
+ * Mailer.mailer = new MyMailer() // MyMailer extends MailerBase
+ * 
+ * Mailer.send {
+ *     to = 'someone@somewhere.com'
+ *     subject = 'test'
+ *     message = 'hello'
+ * }
+ * </pre>
+ * Mailer properties include:
+ * <ul>
+ * <li>subject : String</li>
+ * <li>message : String</li>
+ * <li>from : String </li>
+ * <li>to : String (csv), List, Array, Collection of String</li>
+ * <li>cc : String (csv), List, Array, Collection of String</li>
+ * <li>bcc : String (csv), List, Array, Collection of String</li>
+ * <li>attach : File or List, Array, Collection of File</li>
+ * </ul>
+ * <p/>
+ * See MailerBase for more details.<p/>
+ * @author en032339
+ *
+ */
 class Mailer {
-
-    private static MailerBase mailerImpl
-
-    Mailer () {
-        throw new Exception("Mailer is a static class")
-    }
-
+    static MailerBase mailer = new SMTPMailer()
     static void send (Closure block) {
-        def mailer = (mailerImpl == null) ? new SMTPMailer() : mailerImpl
         mailer.with block
-        int recipients = 0
-        recipients += mailer.to == null ? 0 : mailer.to.size()
-        recipients += mailer.cc == null ? 0 : mailer.cc.size()
-        recipients += mailer.bcc == null ? 0 : mailer.bcc.size()
-        if (recipients > 0) {
-            if (!mailer.subject) {
-                mailer.subjectPlus('')
-            }
-            mailer.send()
-        }
+        mailer.send()
     }
 }

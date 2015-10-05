@@ -80,9 +80,9 @@ class SMTPMailer extends MailerBase {
     void send () {
         try {
             def recipientList = [
-                [id: 'to',  type: Message.RecipientType.TO,  list: to],
-                [id: 'cc',  type: Message.RecipientType.CC,  list: cc],
-                [id: 'bcc', type: Message.RecipientType.BCC, list: bcc],
+                [type: Message.RecipientType.TO,  list: to],
+                [type: Message.RecipientType.CC,  list: cc],
+                [type: Message.RecipientType.BCC, list: bcc],
             ]
             log.debug "subject [$subject] from [$from] " + recipientList.collect{ "${it.id} [${it.list.join(',')}]" }.join(' ') + " message [$message]"
             MimeMessage mimeMessage = new MimeMessage(session)
@@ -92,10 +92,13 @@ class SMTPMailer extends MailerBase {
             mimeMessage.setReplyTo(fromAddr)
             int validEmailAddresses = 0
             recipientList.each { Map map ->
-                if (map.list.size()) {
-                    map.list.each { String email ->
+                map.list.each { String email ->
+                    try {
                         mimeMessage.addRecipient(map.type, new InternetAddress(email))
                         validEmailAddresses++
+                    }
+                    catch (e) {
+                        log.warn "invalid email address [$email]"
                     }
                 }
             }
@@ -108,8 +111,8 @@ class SMTPMailer extends MailerBase {
             MimeMultipart multipart = new MimeMultipart()
             multipart.addBodyPart(mimeBodyPart)
             attach.each { List attachThis ->
-                File file = attachThis[0]
-                String name = attachThis[1]
+                File file = attachThis.file
+                String name = attachThis.name
                 if (!file.exists()) {
                     log.warn "cannot attach file [$file] because it does not exist"
                 }
@@ -125,7 +128,7 @@ class SMTPMailer extends MailerBase {
             // t.close()
         }
         catch (e) {
-            log.error e
+            log.warn e.message
         }
     }
 
@@ -142,5 +145,4 @@ class SMTPMailer extends MailerBase {
             return authentication
         }
     }
-
 }
