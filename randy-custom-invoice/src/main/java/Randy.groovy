@@ -2,7 +2,7 @@
 //@Grab('com.hdsupply:hds-groovy:4.0')
 @groovy.transform.BaseScript(script.ScriptWrapper)
 import script.*
-@Grab('commons-net:commons-net:3.3')
+
 /*
 @Grapes([
   @Grab('hdsupply.com:custom-invoices:1.0'),

@@ -41,7 +41,7 @@ class Mutt extends MailerBase {
 
             attach.each { String it ->
                 cmd << '-a'
-                cmd << it
+                cmd << it.file.path
             }
 
             to.each { String it ->

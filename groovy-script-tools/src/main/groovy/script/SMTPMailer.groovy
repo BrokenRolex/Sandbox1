@@ -9,6 +9,7 @@ import javax.mail.internet.MimeBodyPart
 import javax.mail.internet.MimeMultipart
 import javax.activation.FileDataSource
 import javax.activation.DataHandler
+import groovy.transform.Synchronized
 
 /**
  * Send an email using SMTP.
@@ -30,6 +31,7 @@ import javax.activation.DataHandler
 class SMTPMailer extends MailerBase {
 
     Session session
+    Properties smtp
 
     /**
      * Create a new SMTPMailer instance.<br/>
@@ -61,24 +63,48 @@ class SMTPMailer extends MailerBase {
      * and port (25) will be used with no authentication.<br/>
      * <b>Please do not use this default behavior in a production environment.</b>
      */
-    SMTPMailer() {
-        super()
-        java.util.Properties props = SMTPProps.instance.getSmtpProps()
-        String auth = props.getProperty('mail.smtp.auth')
-        String username = props.getProperty('mail.smtp.user')
-        String password = props.getProperty('mail.smtp.user.password')
-        if (auth == 'true' && username && password) {
-            SMTPAuthenticator authenticator = new SMTPAuthenticator(username, password)
-            session = Session.getInstance(props, authenticator)
-        }
-        else {
-            session = Session.getInstance(props)
+
+    @Synchronized
+    void getSmtpSession () {
+        if (smtp == null || session == null) {
+            smtp = new Properties()
+            if (Props.instance.containsKey('mail.smtp.host')) {
+                Props.instance.each { String k, String v ->
+                    if (k.startsWith('mail.smtp.'))  {
+                        smtp.setProperty(k, v)
+                    }
+                }
+            }
+            else {
+                String _smtp = '.smtp'
+                File f = new File(Env.scriptFile.parent,_smtp)
+                if (f.isFile()) {
+                    f.withInputStream { smtp.load(it) }
+                }
+                else {
+                    f = new File(Env.homeDir.parent,_smtp)
+                    if (f.isFile()) {
+                        f.withInputStream { smtp.load(it) }
+                    }
+                }
+            }
+            String auth = smtp.getProperty('mail.smtp.auth')
+            String username = smtp.getProperty('mail.smtp.user')
+            String password = smtp.getProperty('mail.smtp.user.password')
+            if (auth == 'true' && username && password) {
+                SMTPAuthenticator authenticator = new SMTPAuthenticator(username, password)
+                session = Session.getInstance(smtp, authenticator)
+            }
+            else {
+                session = Session.getInstance(smtp)
+            }
         }
     }
 
     @Override
     void send () {
         try {
+            getSmtpSession()
             def recipientList = [
                 [type: Message.RecipientType.TO,  list: to],
                 [type: Message.RecipientType.CC,  list: cc],
