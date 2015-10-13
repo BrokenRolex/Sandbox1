@@ -72,21 +72,21 @@ class OracleAccounts {
     static final String _ACCOUNTS_ORA = '.accounts.ora'
 
     Set filesLoaded = []
-    Map data
+    Map config
     
     synchronized void load (File file) {
         if (file.isFile()) {
-            data ?: [:]
+            config ?: [:]
             Properties2 props = new Properties2()
             props.load(new FileInputStream(file))
-            props.each { String k, String v -> data[k] = v }
+            props.each { String k, String v -> config[k] = v }
             filesLoaded << file
         }
     }
 
     synchronized void load () {
-        if (data == null) {
-            data = [:]
+        if (config == null) {
+            config = [:]
             // look for a properties file in the app directory
             if (Env.scriptFile != null) {
                 load(new File(Env.scriptFile.parentFile, _ACCOUNTS_ORA))
@@ -116,7 +116,7 @@ class OracleAccounts {
             keys << "${type}.${alias.toLowerCase()}.${user.toLowerCase()}" as String
             keys << "${type}.${alias.toLowerCase()}.${user.toUpperCase()}" as String
             for (key in keys) {
-                password = data[key]
+                password = config[key]
                 if (password != null) {
                     break
                 }
@@ -198,7 +198,7 @@ class OracleAccounts {
             keys << "default_user.${alias.toUpperCase()}" as String
             keys << "default_user.${alias.toLowerCase()}" as String
             for (key in keys) {
-                user = data[key]
+                user = config[key]
                 if (user != null) {
                     break
                 }
@@ -218,7 +218,7 @@ class OracleAccounts {
     String getDefaultAlias () {
         load()
         final String key = 'default_alias'
-        String alias = data[key]
+        String alias = config[key]
         if (alias == null) {
             log.warn "cannot get the default alias, property [$key] does not exist"
         }

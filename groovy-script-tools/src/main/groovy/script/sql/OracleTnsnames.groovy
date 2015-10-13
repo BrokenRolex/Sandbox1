@@ -95,11 +95,11 @@ class OracleTnsnames {
         service  : SERVICE_PAT,
     ]
 
-    Map data // key = alias, value = map of connection properties
+    Map config // key = alias, value = map of connection properties
 
     synchronized void load () {
         //println "OracleTnsnames.instance.load()"
-        if (data == null) {
+        if (config == null) {
             // look for tnsnames.ora in the usual oracle places
             System.getenv().each { envName, envValue ->
                 if (envName == 'ORACLE_HOME') {
@@ -116,13 +116,13 @@ class OracleTnsnames {
             load(new File(Env.scriptFile.parentFile, _TNSNAMES_ORA))
             load(new File(Env.scriptFile.parentFile, TNSNAMES_ORA))
         }
-        //println data.keySet()
+        //println config.keySet()
     }
 
     synchronized void load (File file) {
         //println "OracleTnsnames loading [$file]"
         if (file == null || !file.isFile()) { return }
-        data = (data == null) ? [:] : data
+        config = (config == null) ? [:] : config
         String aliasName = null
         String aliasStr = null
         file.eachLine { String line ->
@@ -170,7 +170,7 @@ class OracleTnsnames {
                 log.warn "alias [$aliasName] cannot find property [$key]"
             }
             aliasProps['name'] = aliasName
-            data[aliasName] = aliasProps
+            config[aliasName] = aliasProps
             aliasProps['def'] = aliasStr.trim()
             // reset... get ready for the next alias
             aliasName = aliasStr = null
@@ -196,13 +196,13 @@ class OracleTnsnames {
     Map getAlias (String alias) {
         //println "OracleTnsnames.instance.getAlias($alias)"
         load()
-        if (data != null && alias != null) {
+        if (config != null && alias != null) {
             Set aliasSet = new LinkedHashSet()
             aliasSet << alias
             aliasSet << alias.toUpperCase()
             aliasSet << alias.toLowerCase()
             for (String key in aliasSet) {
-                if (data.containsKey(key)) return data[key]
+                if (config.containsKey(key)) return config[key]
             }
         }
         throw new Exception("tnsname alias [$alias] does not exist")
