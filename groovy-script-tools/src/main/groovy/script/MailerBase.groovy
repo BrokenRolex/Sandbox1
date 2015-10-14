@@ -125,8 +125,17 @@ abstract class MailerBase {
         }
     }
 
+    void setSubject (String s, String m) {
+         setSubject(s)
+         subject += ' ' + m
+    }
+
     void subject (String s) {
         setSubject(s)
+    }
+
+    void subject (String s, String m) {
+        setSubject(s, m)
     }
 
     /**

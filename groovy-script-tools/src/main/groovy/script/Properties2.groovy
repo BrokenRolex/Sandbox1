@@ -1,5 +1,6 @@
 package script
 
+@groovy.transform.CompileStatic
 class Properties2 extends Properties {
 
     void load (File file) {
@@ -15,34 +16,19 @@ class Properties2 extends Properties {
     }
 
     // get property value as a list (csv)
-    List<String> getListProp (String key) {
-        getPropList(key, ',')
-    }
-
-    // get property value as a list
-    List<String> getListProp (String key, String delim) {
-        List<String> list = []
-        String val = checkKey(key)
-        if (val != null && val.length() > 0) {
-            delim = delim == null ? ',' : delim
-            for (String str in val.split(delim)) {
-                String tstr = str.trim()
-                if (tstr.length() > 0) {
-                    list << tstr
-                }
-            }
-        }
-        list
-    }
-
-    // get property value as a list (csv)
-    List<String> getPropList (String key) {
+    List getListProp (String key) {
         getListProp(key, ',')
     }
 
     // get property value as a list
-    List<String> getPropList (String key, String delim) {
-        getListProp(key, delim)
+    List getListProp (String key, String delim) {
+        String value = checkKey(key)
+        value.split(delim ?: ',',-1) as List
+    }
+
+    List getListProp (String key, String delim, List defaultValue) {
+        String value = this.getProperty(key)
+        value == null ? defaultValue : (value.split(delim ?: ',',-1) as List)
     }
 
     Boolean getBooleanProp (String key) {
@@ -70,7 +56,7 @@ class Properties2 extends Properties {
         defaultFile
     }
 
-    List<File> getFilePropList (String key) {
+    List getFilePropList (String key) {
         String val = checkKey(key)
         List files = []
         for (String s in val.split(',')) {
@@ -93,9 +79,9 @@ class Properties2 extends Properties {
         Integer.valueOf(this.getProperty(key))
     }
 
-    List<Integer> getIntPropList (String key) {
+    List getIntPropList (String key) {
         String value = checkKey(key)
-        List<Integer> list = []
+        List list = []
         for (String i in value.split(',')) {
             list << Integer.valueOf(i)
         }
@@ -116,9 +102,9 @@ class Properties2 extends Properties {
         Long.valueOf(this.getProperty(key))
     }
 
-    List<Long> getLongPropList (String key) {
+    List getLongPropList (String key) {
         String value = checkKey(key)
-        List<Long> list = []
+        List list = []
         for (String i in value.split(',')) {
             list << Long.valueOf(i)
         }
@@ -134,7 +120,7 @@ class Properties2 extends Properties {
 
     void print () {
         println 'properties {'
-        List<String> keys = this.keySet().sort()
+        List keys = this.keySet().sort()
         for (String key : keys) {
             String val = this.getProperty(key)
             println "    ${key}=${val}"
@@ -146,11 +132,12 @@ class Properties2 extends Properties {
         String validation_prefix = 'validate.'
         List errors = []
         StringValidator validator = new StringValidator()
-        this.each { String vkey, String rule ->
+        for (String vkey in properties.keySet()) {
+            String rule = this.getProperty(vkey)
             if (vkey.startsWith(validation_prefix)) {
                 if (rule && validator.isaRule(rule)) {
                     String key = vkey - validation_prefix
-                    if (key && this.containsKey(key) {
+                    if (key && this.containsKey(key)) {
                         String data = this.getProperty(key)
                         if (!validator.validate(data, rule)) {
                             errors << "property [$key] value [$data] does not validate as [$rule]"
@@ -158,6 +145,7 @@ class Properties2 extends Properties {
                     }
                 }
             }
+
         }
         errors
     }
@@ -204,6 +192,16 @@ class Properties2 extends Properties {
         setProperty('SCRIPT_DIR_PATH', Env.scriptFile.parentFile.path)
         setProperty('SCRIPT_PATH', Env.scriptFile.path)
         setProperty('SCRIPT_NAME', Env.scriptFile.name)
+    }
+
+    @Override
+    String getProperty(String key) {
+        super.getProperty(key)
+    }
+
+    @Override
+    String getProperty(String key, String defaultValue) {
+        super.getProperty(key, defaultValue)
     }
 
 }

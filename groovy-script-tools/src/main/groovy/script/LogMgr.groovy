@@ -1,7 +1,5 @@
 package script
 
-import script.log.EmailAppender
-import script.log.RollingFileAutoStackTraceAppender
 import org.apache.log4j.ConsoleAppender
 import org.apache.log4j.RollingFileAppender
 import org.apache.log4j.PatternLayout
@@ -93,22 +91,6 @@ class LogMgr {
         addConsoleAppender()
     }
 
-    static void addEmailAppender () {
-        String email = Props.instance.getProperty('logger.email')
-        if (email) {
-            try {
-                Logger.getRootLogger().removeAppender(EMAIL_APPENDER_NAME)
-                EmailAppender appender = new EmailAppender()
-                appender.setEmailList(email.split(/,/) as List)
-                appender.setName(EMAIL_APPENDER_NAME)
-                Logger.getRootLogger().addAppender(appender)
-            }
-            catch (e) {
-                throw new Exception("email appender was not created [${e.message}]")
-            }
-        }
-    }
-
     static void addFileAppender () {
         try {
             Props props = Props.instance
@@ -129,7 +111,10 @@ class LogMgr {
                 }
             }
             Logger.getRootLogger().removeAppender(FILE_APPENDER_NAME)
-            RollingFileAutoStackTraceAppender appender = new RollingFileAutoStackTraceAppender()
+            ScriptToolsFileAppender appender = new ScriptToolsFileAppender()
+            if (Props.instance.containsKey('logger.email')) {
+                appender.setEmailList(Props.instance.getListProp('logger.email'))
+            }
             appender.setName(FILE_APPENDER_NAME)
             appender.setFile(file.path)
             appender.setMaxFileSize(props.getProperty('logger.max_file_size', MAX_FILE_SIZE))

@@ -49,25 +49,14 @@ class ScriptTools {
             if (errors.size() > 0) {
                 fatal("framework startup errors = ${errors.join(', ')}")
             }
-            //
-            log.info "begin"
+
             List cliInfo = cli.info()
+            log.info 'begin'
             if (announce) {
-                String toaddr = Props.instance.getProperty('logger.email')
-                if (toaddr) {
-                    try {
-                        Mailer.send {
-                            delegate.to(toaddr.split(',') as List)
-                            delegate.subject(MailUtils.buildSubject('INFO') + ' begin')
-                            delegate.body(cliInfo.join("\n"))
-                        }
-                    }
-                    catch (e) {
-                        errors << e.message
-                    }
-                }
+                email('begin', cliInfo.join("\n"))
             }
             cliInfo.each { log.info it }
+
             acquireRunLock() // (uses properties)
             userStartTime = System.currentTimeMillis()
         }
@@ -131,7 +120,6 @@ class ScriptTools {
     static void initLogger () {
         LogMgr.addConsoleAppender()
         LogMgr.addFileAppender()
-        LogMgr.addEmailAppender()
         LogMgr.overrideLoggerLevels()
         LogMgr.setInfoLevel()
         if (cli.opt.debug) {
@@ -167,42 +155,59 @@ class ScriptTools {
 
     static void end () {
         releaseRunLock()
-        if (log) {
-            try {
-                Boolean debug = Props.instance.getBooleanProp('ScriptTools.debug', false)
-                if (debug || log.isDebugEnabled()) {
-                    long userEndTime = System.currentTimeMillis()
-                    LogMgr.setDebugLevel()
-                    Long jvmStartTime = java.lang.management.ManagementFactory.getRuntimeMXBean().getStartTime()
-                    Date d1 = new Date(jvmStartTime)
-                    String fmt = 'yyyy-MM-dd HH:mm:ss.SSS'
-                    log.debug 'jvm start time [' + d1.format(fmt) + ']'
-                    d1.setTime(scriptStartTime)
-                    log.debug 'framework start time [' + d1.format(fmt) + ']'
-                    d1.setTime(userStartTime)
-                    log.debug 'user start time [' + d1.format(fmt) + ']'
-                    d1.setTime(userEndTime)
-                    log.debug 'user end time [' + d1.format(fmt) + ']'
-                    d1.setTime(scriptStartTime)
-                    Date d2 = new Date(jvmStartTime)
-                    String jvmStartDuration  = TC.minus(d1, d2)
-                    d2.setTime(userStartTime)
-                    String frameworkStartDuration = TC.minus(d2, d1)
-                    log.debug 'groovy startup [' + jvmStartDuration + '] jvm start -> groovy compile'
-                    log.debug 'framework startup [' + frameworkStartDuration+ '] load properties + setup logging + parse options'
-                    d1.setTime(userEndTime)
-                    d2.setTime(jvmStartTime)
-                    String totalRunDuration = TC.minus(d1, d2)
-                    d2.setTime(userStartTime)
-                    String userRunDuration = TC.minus(d1, d2)
-                    log.debug 'user [' + userRunDuration + '] user start time -> user end time'
-                    log.debug 'total [' + totalRunDuration + '] jvm start time -> user end time'
-                }
+        def runTime = TC.minus(new Date(), new Date(scriptStartTime))
+        debug()
+        log?.info "end [$runTime]"
+        if (announce) {
+            email('end', runTime)
+        }
+    }
+
+    static void debug () {
+        try {
+            Boolean debug = Props.instance.getBooleanProp('ScriptTools.debug', false)
+            if (log && (debug || log.isDebugEnabled())) {
+                long userEndTime = System.currentTimeMillis()
+                LogMgr.setDebugLevel()
+                Long jvmStartTime = java.lang.management.ManagementFactory.getRuntimeMXBean().getStartTime()
+                Date d1 = new Date(jvmStartTime)
+                String fmt = 'yyyy-MM-dd HH:mm:ss.SSS'
+                log.debug 'jvm start time [' + d1.format(fmt) + ']'
+                d1.setTime(scriptStartTime)
+                log.debug 'framework start time [' + d1.format(fmt) + ']'
+                d1.setTime(userStartTime)
+                log.debug 'user start time [' + d1.format(fmt) + ']'
+                d1.setTime(userEndTime)
+                log.debug 'user end time [' + d1.format(fmt) + ']'
+                d1.setTime(scriptStartTime)
+                Date d2 = new Date(jvmStartTime)
+                String jvmStartDuration  = TC.minus(d1, d2)
+                d2.setTime(userStartTime)
+                String frameworkStartDuration = TC.minus(d2, d1)
+                log.debug 'groovy startup [' + jvmStartDuration + '] jvm start -> groovy compile'
+                log.debug 'framework startup [' + frameworkStartDuration+ '] load properties + setup logging + parse options'
+                d1.setTime(userEndTime)
+                d2.setTime(jvmStartTime)
+                String totalRunDuration = TC.minus(d1, d2)
+                d2.setTime(userStartTime)
+                String userRunDuration = TC.minus(d1, d2)
+                log.debug 'user [' + userRunDuration + '] user start time -> user end time'
+                log.debug 'total [' + totalRunDuration + '] jvm start time -> user end time'
             }
-            catch (e) {
-                log.error e.message
+        }
+        catch (e) {
+            log.error e.message
+        }
+    }
+
+    static void email (String subject, String message) {
+        String email = Props.instance.getProperty('logger.email')
+        if (email) {
+            Mailer.send {
+                delegate.to(email)
+                delegate.subject(subject)
+                delegate.message(message)
             }
-            log.info "${announce ? '@' : ''}end [${TC.minus(new Date(), new Date(scriptStartTime))}]"
         }
     }
 
