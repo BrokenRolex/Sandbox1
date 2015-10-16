@@ -19,6 +19,7 @@ class ScriptTools {
     static Cli cli
     static Long scriptStartTime
     static Long userStartTime
+    static String email
 
     ScriptTools() {
         throw new Exception('ScriptTools is a static class')
@@ -50,6 +51,7 @@ class ScriptTools {
                 fatal("framework startup errors = ${errors.join(', ')}")
             }
 
+            email = Props.instance.getProperty('logger.email')
             List cliInfo = cli.info()
             log.info 'begin'
             if (announce) {
@@ -201,7 +203,6 @@ class ScriptTools {
     }
 
     static void email (String subject, String message) {
-        String email = Props.instance.getProperty('logger.email')
         if (email) {
             Mailer.send {
                 delegate.to(email)

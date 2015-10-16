@@ -33,43 +33,98 @@ class Meta {
      */
     static void addFileMethods () {
 
-        File.metaClass.remove = { FileUtils.delete(delegate) }
+        File.metaClass.remove = {
+            File f = delegate
+            if (f.exists()) {
+                if (f.isFile()) {
+                    if (!f.delete()) {
+                        throw new Exception("cannot delete file [$f] check permissions")
+                    }
+                }
+                else if (f.isDirectory()) {
+                    if (!f.delete()) {
+                        throw new Exception("cannot delete directory [$f] check permissions")
+                    }
+                }
+                else {
+                    throw new Exception("cannot delete [$f] not a file or a directory")
+                }
+            }
+        }
 
         File.metaClass.copyTo = { dest ->
+            File f = delegate
+            f = !f.parentFile ? new File('.', f.name) : f
+            if (!f.isFile()) {
+                throw new Exception("cannot copy [$f] to [$dest] not a file")
+            }
             if (dest == null) {
-                throw new Exception("cannot copy [$delegate] to [$dest]")
+                throw new Exception("cannot copy [$f] to [$dest]")
             }
+            File destination
             if (dest instanceof String) {
-                return FileUtils.copy(delegate, new File(dest))
+                destination = new File(dest)
             }
-            if (dest instanceof File) {
-                return FileUtils.copy(delegate, dest)
+            else if (dest instanceof File) {
+                destination = dest
             }
-            throw new Exception("cannot copy [$delegate] to [$dest]")
+            else {
+                throw new Exception("cannot copy [$f] to [$dest]")
+            }
+            if (destination.parentFile == null) {
+                destination = new File('.', destination.name)               
+            }
+            if (destination.exists()) {
+                if (destination.isDirectory()) {
+                    destination = new File(destination, f.name)
+                }
+                if (destination.isFile()) {
+                    destination.delete()
+                }
+                else {
+                    throw new Exception("cannot copy [$f] to [$dest]")
+                }
+            }
+            f.withInputStream { destination << it } // perform the copy
         }
 
         File.metaClass.moveTo = { dest ->
-            if (dest == null) {
-                throw new Exception("cannot move [$delegate] to [$dest]")
-            }
-            if (dest instanceof String) {
-                return FileUtils.move(delegate, new File(dest))
-            }
-            if (dest instanceof File) {
-                return FileUtils.move(delegate, dest)
-            }
-            throw new Exception("cannot move [$delegate] to [$dest]")
+            File f = delegate
+            f = !f.parentFile ? new File('.', f.name) : f
+            f.copyTo(dest)
+            f.remove()
         }
 
-        File.metaClass.renameAs = { String dest ->
-            if (dest == null) {
-                throw new Exception("cannot rename [$delegate] as [$dest]")
+
+        // how will this be different form File.renameTo ?
+
+        File.metaClass.renameAs = { String name ->
+            if (!name || name.contains(File.separator)) {
+                throw new Exception("cannot rename [$delegate] as [$name] bad name")
             }
-            FileUtils.rename(delegate, dest)
+            File f = delegate
+            f = !f.parentFile ? new File('.', f.name) : f
+            if (f.exists()) {
+                if (f.isFile() || f.isDirectory()) {
+                    f.renameTo(new File(f.parentFile, name))
+                }
+                else {
+                    throw new Exception("cannot rename [$f] as [name] ?")
+                }
+            }
+            else {
+                throw new Exception("cannot rename [$f] as [name] missing")
+            }
         }
+
+        // unless I use jsch here, these will only work in *nix
 
         File.metaClass.scpTo = { String host, String dest ->
             Proc.scp([delegate.path, "$host:$dest"])
+        }
+
+        File.metaClass.scpFrom = { String host, String dest ->
+
         }
     }
 
