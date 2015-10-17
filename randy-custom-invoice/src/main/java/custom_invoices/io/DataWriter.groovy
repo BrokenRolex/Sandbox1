@@ -3,9 +3,10 @@ package custom_invoices.io
 import custom_invoices.data.*
 import custom_invoices.map.*
 import java.util.regex.*
+import groovy.util.logging.Log4j
 import script.Props
 
-@groovy.util.logging.Log4j
+@Log4j
 class DataWriter {
 
     DataReader dataReader
@@ -47,6 +48,7 @@ class DataWriter {
         wtr.flush()
         wtr.close()
         wtr = null
+        log.info "done"
     }
     
     void write_invoices () {

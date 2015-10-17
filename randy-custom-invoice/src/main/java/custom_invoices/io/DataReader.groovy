@@ -7,6 +7,9 @@ import groovy.util.Node
 import groovy.io.FileType
 
 @groovy.util.logging.Log4j
+import groovy.util.logging.Log4j
+
+@Log4j
 class DataReader {
     List detailPaths = ['invoice.item', 'invoice.tax', 'invoice.charge']
     XmlParser xp = new XmlParser()
@@ -19,10 +22,12 @@ class DataReader {
     
     DataReader (File f) {
         this.inFile = f
+        log.info "reading [$f]"
     }
 
     void readSummary () {
         log.info "reading summary data from [$inFile]"
+        log.info "reading summary data"
         root = xp.parse(inFile)
         Integer invcnt = 0
         Integer itmcnt = 0
@@ -98,6 +103,9 @@ class DataReader {
         custid = summary['buyer.custid']
         log.info "custid [$custid]"
         batchMap = DataDigester.instance.buildBatchMap(custid)
+        log.info "custid = $custid"
+        batchMap = DataDigester.instance.buildBatchMap(custid)
+
     }
 
     void eachInvoice (Closure closure) {
@@ -105,6 +113,7 @@ class DataReader {
             throw new Exception("oops")
         }
         log.info "reading invoices from [$inFile]"
+        log.info "reading invoices"
         root.invoice.each { Node i ->
             Map det
             Map invoice = [:].withDefault{ it = ''}

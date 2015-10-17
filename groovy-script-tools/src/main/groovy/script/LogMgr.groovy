@@ -11,7 +11,6 @@ class LogMgr {
 
     static final String CONSOLE_APPENDER_NAME = 'appender.console'
     static final String FILE_APPENDER_NAME = 'appender.file'
-    static final String EMAIL_APPENDER_NAME = 'appender.email'
     static final String LOGFILE_EXT = '.log'
     //static final String CONSOLE_PATTERN_LAYOUT = '%d{HH:mm:ss,SSS} %-5p %c{1} - %m%n'
     static final String CONSOLE_PATTERN_LAYOUT = '%d{HH:mm:ss,SSS} %-5p %c - %m%n'
@@ -147,10 +146,6 @@ class LogMgr {
         appenderExists(FILE_APPENDER_NAME)
     }
 
-    static boolean emailAppenderExists () {
-        appenderExists(EMAIL_APPENDER_NAME)
-    }
-
     static File getLogFile () {
         File logFile = null
         if (fileAppenderExists()) {
@@ -218,12 +213,6 @@ class LogMgr {
 
     static Level getLevel () {
         Logger.getRootLogger().getLevel()
-    }
-
-    static void removeEmailAppender () {
-        if (emailAppenderExists()) {
-            Logger.getRootLogger().removeAppender(EMAIL_APPENDER_NAME)
-        }
     }
 
     static void removeConsoleAppender () {

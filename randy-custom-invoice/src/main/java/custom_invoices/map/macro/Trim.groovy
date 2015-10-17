@@ -1,4 +1,3 @@
-package custom_invoices.map.macro
 
 import custom_invoices.map.Macro
 
