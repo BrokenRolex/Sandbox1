@@ -63,6 +63,7 @@ class ScriptTools {
             userStartTime = System.currentTimeMillis()
         }
         catch (e) {
+            println e
             errors << e.message
             fatal("framework startup errors [${errors.join(', ')}]")
         }

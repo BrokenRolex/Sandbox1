@@ -132,7 +132,7 @@ class Properties2 extends Properties {
         String validation_prefix = 'validate.'
         List errors = []
         StringValidator validator = new StringValidator()
-        for (String vkey in properties.keySet()) {
+        for (String vkey in this.keySet()) {
             String rule = this.getProperty(vkey)
             if (vkey.startsWith(validation_prefix)) {
                 if (rule && validator.isaRule(rule)) {
@@ -153,13 +153,14 @@ class Properties2 extends Properties {
     List interpolate () {
         List errors = []
         def interpolate_pattern = ~/(\$\{([^\$\{\}]+)\})/
-        for (String key in properties.keySet()) {
+        for (String key in this.keySet()) {
             String val = this.getProperty(key) // property value to interpolate
-            if (val?.contains('${')) {
+            if (val.contains('${')) {
                 try {
+                    Integer matchAttempts = 0
                     String interpolatedValue = val
-                    int matchAttempts = 0
                     while (true) {
+                        matchAttempts++ 
                         def matcher = interpolatedValue =~ interpolate_pattern
                         if (matcher.find()) {
                             String key1 = matcher.group(1) // full replacement var (e.g. ${var})
@@ -170,10 +171,13 @@ class Properties2 extends Properties {
                             }
                             interpolatedValue = interpolatedValue.replace(key1, val2)
                             this.setProperty(key, interpolatedValue)
-                            if ((matchAttempts++) > 99) {
-                                errors << "interpolation: possible circular reference detected in property [$key] value [$val]"
-                                break // stop if infinite loop detected
-                            }
+                        }
+                        else {
+                            break // stop, no match
+                        }
+                        if ((matchAttempts) > 99) {
+                            errors << "interpolation: possible circular reference detected in property [$key] value [$val]"
+                            break // stop
                         }
                     }
                 }
@@ -182,7 +186,6 @@ class Properties2 extends Properties {
                 }
             }
         }
-        errors
     }
 
     void addDefaultProps () {
