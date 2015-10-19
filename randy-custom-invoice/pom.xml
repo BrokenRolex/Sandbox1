@@ -81,5 +81,10 @@
   		<artifactId>commons-net</artifactId>
   		<version>3.3</version>
     </dependency>
+  	<dependency>
+  		<groupId>brokenrolex</groupId>
+  		<artifactId>groovy-script-tools</artifactId>
+  		<version>4.0</version>
+  	</dependency>
   </dependencies>
 </project>

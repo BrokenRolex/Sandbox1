@@ -1,9 +1,7 @@
 customer_filename_template=$custid/_/$begdt/_/$enddt/.csv
 
-<<<<<<< HEAD
 email=To:erick.nelson@hdsupply.com
-#ftp=ftp info
-#copy=/path/to/dir
-#call=/path/script
-=======
->>>>>>> 73d0eaab4b323858027d64521356325fa6157123
+ftp=ftp://host
+sftp=user=abc,pass=password,host=
+copy=/path/to/dir
+call=/path/to/script
