@@ -3,7 +3,7 @@ package ci.map.macro
 import ci.map.Macro
 
 @groovy.util.logging.Log4j
-class DecodeFile extends Macro {
+class Decodefile extends Macro {
     @Override
     String execute (Map data, String s) {
         String so = s

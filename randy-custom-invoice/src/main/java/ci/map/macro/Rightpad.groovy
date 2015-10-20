@@ -3,7 +3,7 @@ package ci.map.macro
 import ci.map.Macro
 
 @groovy.util.logging.Log4j
-class LeftPad extends Macro {
+class Rightpad extends Macro {
 
     @Override
     public String execute(Map data, String s) {
@@ -21,7 +21,7 @@ class LeftPad extends Macro {
             }
         }
         if (valid && s && obj1 && obj2) {
-            so = s.padLeft(obj1, obj2[0]).take(obj1)
+            so = s.padRight(obj1, obj2[0]).take(obj1)
         }
         so
     }

@@ -3,7 +3,7 @@ package ci.map.macro
 import ci.map.Macro
 
 @groovy.util.logging.Log4j
-class SimpleDateformat extends Macro {
+class Simpledateformat extends Macro {
     @Override
     String execute (Map data, String s) {
         String so = s // assumed to be a string of 8 digits

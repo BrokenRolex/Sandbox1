@@ -10,6 +10,7 @@ import ci.map.Macro
 class Substring extends Macro {
     @Override
     public String execute(Map data, String inputString) {
+        println "source=$source"
         // obj1 = offset, obj2 = length
         String outputString = inputString
         if (value != null)  {
@@ -24,14 +25,19 @@ class Substring extends Macro {
                 }
             }
             if (obj1) {
+                println obj1
+                println obj2
                 Integer offset = (Integer) obj1
+println  outputString 
                 if (offset > 0) {
                    outputString = inputString.drop(offset) 
+println  outputString 
                 }
                 if (obj2) {
-                    Integer length = (Integer) obj1
+                    Integer length = (Integer) obj2
                     if (length > 0) {
                          outputString = outputString.take(length)     
+println  outputString 
                     }
                 }
             }
