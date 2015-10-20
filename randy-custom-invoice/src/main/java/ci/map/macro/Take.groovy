@@ -18,6 +18,9 @@ class Take extends Macro {
                 if (length > 0) {
                     outputString = inputString.take(length)
                 }
+                else {
+                    outputString = ''
+                }
             }
         }
         outputString
