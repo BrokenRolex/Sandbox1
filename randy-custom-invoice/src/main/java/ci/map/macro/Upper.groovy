@@ -6,6 +6,6 @@ import ci.map.Macro
 class Upper extends Macro {
     @Override
     public String execute(Map data, String s) {
-        s?.toUpperCase()
+        s== null ? '' : s.toUpperCase()
     }
 }

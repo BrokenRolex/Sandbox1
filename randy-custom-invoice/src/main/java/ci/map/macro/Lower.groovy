@@ -6,6 +6,6 @@ import ci.map.Macro
 class Lower extends Macro {
     @Override
     public String execute(Map data, String s) {
-        s?.toLowerCase()
+        s == null ? '' : s.toLowerCase()
     }
 }
