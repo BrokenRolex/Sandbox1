@@ -1,4 +1,4 @@
-package ci.map
+package ci.map.macro
 
 import org.xml.sax.Attributes
 

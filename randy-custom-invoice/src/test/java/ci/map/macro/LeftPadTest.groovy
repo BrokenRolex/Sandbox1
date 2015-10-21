@@ -8,7 +8,6 @@ import org.junit.BeforeClass
 import org.junit.Test
 
 import ci.map.*
-import ci.map.TestAttributes
 //import org.xml.sax.Attributes
 
 class LeftPadTest {
