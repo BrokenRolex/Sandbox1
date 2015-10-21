@@ -6,7 +6,7 @@ import ci.map.Macro
 class Leftpad extends Macro {
     @Override
     public String execute(Map data, String s) {
-        if (!obj1) {
+        if (obj1 == null) {
             obj1 = value.toInteger()
             if (obj1 < 0)  {
                 obj1 = Integer.valueOf(0)
