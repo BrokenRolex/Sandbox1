@@ -9,8 +9,14 @@ class TestAttributes implements Attributes {
     
         void setValue (String name, String value) {
             if (name) {
-                names << name
-                values << (value ?: '')
+                def index = names.findIndexOf {it == name}
+                if (index >= 0) {
+                    values[index] = value
+                }
+                else {
+                    names << name
+                    values << (value ?: '')
+                }
             }
         }
     

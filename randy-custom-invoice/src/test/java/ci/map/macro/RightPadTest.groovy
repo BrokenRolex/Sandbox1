@@ -11,7 +11,7 @@ import ci.map.*
 import ci.map.TestAttributes
 //import org.xml.sax.Attributes
 
-class LeftPadTest {
+class RightPadTest {
 
     MacroFactory mf
     TestAttributes ta
@@ -29,7 +29,7 @@ class LeftPadTest {
     public void setUp() throws Exception {
         mf = new MacroFactory()
         ta = new TestAttributes()
-        ta.setValue('name', 'leftpad')
+        ta.setValue('name', 'rightpad')
         ta.setValue('value', '20')
         macro = mf.createObject(ta)
     }
