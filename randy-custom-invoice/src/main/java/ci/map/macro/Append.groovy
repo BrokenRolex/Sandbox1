@@ -6,6 +6,6 @@ import ci.map.Macro
 class Append extends Macro {
     @Override
     public String execute(Map data, String s) {
-        (s == null ? '' : s) + sourceData(data)
+        (s == null ? '' : s) + data(data)
     }
 }
