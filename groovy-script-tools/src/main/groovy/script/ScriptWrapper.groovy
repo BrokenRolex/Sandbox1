@@ -10,13 +10,16 @@ abstract class ScriptWrapper extends Script {
     Logger log
     Cli cli // command line options and arguments
     Closure stopWatch
+    ScriptManager sm
 
     @Override
     def run () {
+        ScriptManager sm = new ScriptManager()
         try {
-            ScriptTools.begin(this)           
-            scriptFile = Env.scriptFile
-            cli = ScriptTools.cli
+            //ScriptTools.begin(this)           
+            sm.begin(this)           
+            scriptFile = sm.scriptFile
+            cli = sm.cli
             log = LogMgr.getLogger(this)
             props = Props.instance
             stopWatch = { id, Closure c ->
@@ -25,10 +28,11 @@ abstract class ScriptWrapper extends Script {
                 log.info "$id : ${TimeCategory.minus(new Date(), start)}"
             }
             runUserScript()
-            ScriptTools.end()           
+            //ScriptTools.end()           
+            sm.end()           
         }
         catch (e) {
-            ScriptTools.fatal(e)           
+            sm.fatal(e)           
         }
     }
     

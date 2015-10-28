@@ -378,7 +378,7 @@ class Dataload {
             Boolean log_not_found = true
             dataloadLogDir.eachFile(FileType.FILES) { File file ->
                 if (file.name.startsWith(log_name)) {
-                    String newName = file.name + '.' + DateString.date_yyyyMMddHHmmssSSS()
+                    String newName = file.name + '.' + DateString.ymdtms()
                     File archiveFile = new File(archiveDir, newName)
                     try {
                         log_not_found = false

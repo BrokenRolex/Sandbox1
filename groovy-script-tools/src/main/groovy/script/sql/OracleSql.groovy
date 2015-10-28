@@ -122,6 +122,10 @@ class OracleSql {
         autoCommitOff(Sql.newInstance(map))
     }
 
+    static void withConnection (Map map, Closure c) {
+        Sql.withInstance(map, c)
+    }
+
     @Memoized
     static String url (String alias) {
         Map tns = OracleTnsnames.instance.getAlias(alias)

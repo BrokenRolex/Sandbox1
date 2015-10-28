@@ -39,45 +39,35 @@ class DateString {
      * Get a date string
      * @return date in yyyyMMddHHmmssSSS format
      */
-    static String datetimems () { datetimems(new Date()) }
-    static String datetimems (Date date) { date?.format(DATE_TIME_MS) }
-    static String date_yyyyMMddHHmmssSSS () { datetimems() }
-    static String yyyymmddhhmmsssss () { datetimems() }
+    static String ymdtms () { ymdtms(new Date()) }
+    static String ymdtms (Date date) { date?.format(DATE_TIME_MS) }
 
     /**
      * Get a date string
      * @return date in yyyyMMddHHmmss format
      */
-    static String datetime () { datetime(new Date()) }
-    static String datetime (Date date) { date?.format(DATE_TIME) }
-    static String date_yyyyMMddHHmmss() { datetime() }
-    static String yyyymmddhhmmss() { datetime() }
+    static String ymdt () { ymdt(new Date()) }
+    static String ymdt (Date date) { date?.format(DATE_TIME) }
 
     /**
      * Get a date string
      * @return date in yyyyMMdd format
      */
-    static String date () { date(new Date()) }
-    static String date (Date date) { date?.format(DATE) }
-    static String date_yyyyMMdd() { date() }
-    static String yyyymmdd() { date() }
+    static String ymd () { ymd(new Date()) }
+    static String ymd (Date date) { date?.format(DATE) }
 
     /**
      * Get time string
      * @return time in HHmmss format
      */
-    static String time () { time(new Date()) }
-    static String time (Date date) { date?.format(TIME) }
-    static String time_HHmmss() { time() }
-    static String hhmmss() { time() }
+    static String t () { t(new Date()) }
+    static String t (Date date) { date?.format(TIME) }
     
     /**
      * Get time string
      * @return time in HHmmssSSS format
      */
-    static String timems () { timems(new Date()) }
-    static String timems (Date date) { date.format(TIME_MS) }
-    static String time_HHmmssSSS() { timems() }
-    static String hhmmsssss() { timems() }
+    static String tms () { tms(new Date()) }
+    static String tms (Date date) { date.format(TIME_MS) }
 
 }

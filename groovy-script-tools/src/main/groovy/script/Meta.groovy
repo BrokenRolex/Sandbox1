@@ -119,12 +119,24 @@ class Meta {
 
         // unless I use jsch here, these will only work in *nix
 
-        File.metaClass.scpTo = { String host, String dest ->
-            Proc.scp([delegate.path, "$host:$dest"])
+        /** 
+         * copy a file to another host
+         */
+        File.metaClass.scpTo = { String host, String path ->
+            File file = delegate
+            def proc = "scp -q -oBatchMode=yes ${file.path} ${host}:${path}".execute()
+            proc.waitForProcessOutput()
+            proc.exitValue()
         }
 
-        File.metaClass.scpFrom = { String host, String dest ->
-
+        /** 
+         * copy a file from another host
+         */
+        File.metaClass.scpFrom = { String host, String path ->
+            File file = delegate
+            def proc = "scp -q -oBatchMode=yes ${host}:${path} ${file.path}".execute()
+            proc.waitForProcessOutput()
+            proc.exitValue()
         }
     }
 
