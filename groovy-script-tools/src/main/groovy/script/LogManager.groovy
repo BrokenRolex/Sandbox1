@@ -20,9 +20,9 @@ class LogManager {
     static final Map levels = ['TRACE': Level.TRACE,'DEBUG': Level.DEBUG,'INFO':Level.INFO,'WARN':Level.WARN,'ERROR':Level.ERROR,'FATAL':Level.FATAL]
 
     void addDefaultConsoleAppender () {
-        // tell log4j not to initialize... we will do it manually
         System.setProperty('log4j.defaultInitOverride', 'true')
-        ConsoleAppender appender = new ConsoleAppender(new PatternLayout('%-5p %c{1} - %m%n'))
+        PatternLayout layout = new PatternLayout('%-5p %c{1} - %m%n')
+        ConsoleAppender appender = new ConsoleAppender(layout)
         appender.setName(CONSOLE_APPENDER_NAME)
         appender.activateOptions()
         Logger logger = Logger.getRootLogger()
@@ -73,56 +73,44 @@ class LogManager {
     }
 
     void addConsoleAppender () {
-        try {
-            Logger.getRootLogger().removeAppender(CONSOLE_APPENDER_NAME)
-            String layoutString = Props.instance.getProperty('logger.console_pattern_layout', CONSOLE_PATTERN_LAYOUT)
-            ConsoleAppender appender = new ConsoleAppender(new PatternLayout(layoutString))
-            appender.setName(CONSOLE_APPENDER_NAME)
-            appender.activateOptions()
-            Logger.getRootLogger().addAppender(appender)
-        }
-        catch (Exception e) {
-            throw new Exception("failed to setup a console appender [${e.message}]")
-        }
+        Logger.getRootLogger().removeAppender(CONSOLE_APPENDER_NAME)
+        String layoutString = Props.instance.getProperty('logger.console_pattern_layout', CONSOLE_PATTERN_LAYOUT)
+        PatternLayout layout = new PatternLayout(layoutString)
+        ConsoleAppender appender = new ConsoleAppender(layout)
+        appender.setName(CONSOLE_APPENDER_NAME)
+        appender.activateOptions()
+        Logger.getRootLogger().addAppender(appender)
     }
 
     void addFileAppender () {
-        try {
-            Props props = Props.instance
-            String name = Env.scriptName + LOGFILE_EXT
-            File logDir = Env.scriptFile.parentFile
-            File file = new File(logDir, name)
-            String logger_file_key = 'logger.file'
-            if (props.containsKey(logger_file_key)) {
-                String logger_file = props.getProperty(logger_file_key)
-                if (logger_file.endsWith(LOGFILE_EXT)) {
-                    file = new File(logger_file)
-                }
-                else {
-                    File dir = new File(logger_file)
-                    if (dir.isDirectory()) {
-                        file = new File(dir, name)
-                    }
+        Props props = Props.instance
+        String name = Env.scriptName + LOGFILE_EXT
+        File logDir = Env.scriptFile.parentFile
+        File file = new File(logDir, name)
+        String logger_file_key = 'logger.file'
+        if (props.containsKey(logger_file_key)) {
+            String logger_file = props.getProperty(logger_file_key)
+            if (logger_file.endsWith(LOGFILE_EXT)) {
+                file = new File(logger_file)
+            }
+            else {
+                File dir = new File(logger_file)
+                if (dir.isDirectory()) {
+                    file = new File(dir, name)
                 }
             }
-            Logger.getRootLogger().removeAppender(FILE_APPENDER_NAME)
-            ScriptToolsRollingFileAppender appender = new ScriptToolsRollingFileAppender()
-            if (Props.instance.containsKey('logger.email')) {
-                appender.setEmailList(Props.instance.getListProp('logger.email'))
-            }
-            appender.setName(FILE_APPENDER_NAME)
-            appender.setFile(file.path)
-            appender.setMaxFileSize(props.getProperty('logger.max_file_size', MAX_FILE_SIZE))
-            appender.setMaxBackupIndex(props.getIntProp('logger.max_backup_index', MAX_BACKUP_INDEX))
-            String layoutString = props.getProperty('logger.file_pattern_layout', FILE_PATTERN_LAYOUT)
-            appender.setLayout(new PatternLayout(layoutString))
-            appender.activateOptions()
-            Logger.getRootLogger().addAppender(appender)
         }
-        catch (Exception e) {
-            String errm = "failed to setup a file appender [${e.message}]"
-            throw new Exception(errm)
-        }
+        Logger.getRootLogger().removeAppender(FILE_APPENDER_NAME)
+        ScriptFileAppender appender = new ScriptFileAppender()
+        appender.setEmailTo(Props.instance.getProperty('logger.email'))
+        appender.setName(FILE_APPENDER_NAME)
+        appender.setFile(file.path)
+        appender.setMaxFileSize(props.getProperty('logger.max_file_size', MAX_FILE_SIZE))
+        appender.setMaxBackupIndex(props.getIntProp('logger.max_backup_index', MAX_BACKUP_INDEX))
+        String layoutString = props.getProperty('logger.file_pattern_layout', FILE_PATTERN_LAYOUT)
+        appender.setLayout(new PatternLayout(layoutString))
+        appender.activateOptions()
+        Logger.getRootLogger().addAppender(appender)
     }
 
     Boolean appenderExists (String name) {

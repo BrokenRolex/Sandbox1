@@ -19,10 +19,10 @@ class ScriptManager {
     Cli cli
     Long scriptStartTime
     Long userStartTime
-    String emailto
-    File scriptFile
+    LogManager logMgr
 
     void begin (Script s) {
+        logMgr = new LogManager()
         script = s
         errors = []
         try {
@@ -34,12 +34,11 @@ class ScriptManager {
             // Create a console appender for the RootLogger
             // so we can at least see warn or error messages
             // before proper logging gets setup below.
-            new LogManager()
-            LogMgr.addDefaultConsoleAppender() //
-            log = LogMgr.getLogger(ScriptManager.class)
-            LogMgr.createJulBridge()
+            logMgr.addDefaultConsoleAppender() //
+            log = logMgr.getLogger(ScriptManager.class)
+            logMgr.createJulBridge()
             //
-            scriptFile = Env.findScriptFile(script) // can throw an exception
+            Env.findScriptFile(script) // can throw an exception
             //
             // Next tasks must be done in this order...
             loadProps() // 1. load properties
@@ -49,7 +48,6 @@ class ScriptManager {
                 fatal("framework startup errors = ${errors.join(', ')}")
             }
 
-            emailto = Props.instance.getProperty('logger.email')
             List cliInfo = cli.info()
             log.info 'begin'
             if (announce) {
@@ -83,7 +81,7 @@ class ScriptManager {
         files << new File(Env.scriptFile.parentFile, Env.scriptFile.parentFile.name + ext)
         files << new File(Env.homeDir, 'application' + ext)
         propFilesLoaded = []
-        files.each { file ->
+        files.each { File file ->
             if (file.isFile()) {
                 try {
                     props.load(file)
@@ -119,17 +117,17 @@ class ScriptManager {
     }
 
     void initLogger () {
-        LogMgr.addConsoleAppender()
-        LogMgr.addFileAppender()
-        LogMgr.overrideLoggerLevels()
-        LogMgr.setInfoLevel()
+        logMgr.addConsoleAppender()
+        logMgr.addFileAppender()
+        logMgr.overrideLoggerLevels()
+        logMgr.setInfoLevel()
         if (cli.opt.debug) {
-            LogMgr.setDebugLevel()
+            logMgr.setDebugLevel()
         }
-        if (!cli.opt.verbose && !cli.opt.debug && LogMgr.fileAppenderExists()) {
-            LogMgr.removeConsoleAppender()
+        if (!cli.opt.verbose && !cli.opt.debug && logMgr.fileAppenderExists()) {
+            logMgr.removeConsoleAppender()
         }
-        log = LogMgr.getLogger(ScriptManager.class)
+        log = logMgr.getLogger(ScriptManager.class)
         announce = Props.instance.getBooleanProp('ScriptTools.announce', false)
         // turn off announce for help or test
         if (announce && (cli.opt.help || cli.opt.test)) {
@@ -169,7 +167,7 @@ class ScriptManager {
             Boolean debug = Props.instance.getBooleanProp('ScriptTools.debug', false)
             if (log && (debug || log.isDebugEnabled())) {
                 long userEndTime = System.currentTimeMillis()
-                LogMgr.setDebugLevel()
+                logMgr.setDebugLevel()
                 Long jvmStartTime = java.lang.management.ManagementFactory.getRuntimeMXBean().getStartTime()
                 Date d1 = new Date(jvmStartTime)
                 String fmt = 'yyyy-MM-dd HH:mm:ss.SSS'
@@ -202,6 +200,7 @@ class ScriptManager {
     }
 
     void email (String subject, String message) {
+        String emailto = Props.instance.getProperty('logger.email')
         if (emailto) {
             Mailer.send {
                 delegate.to(emailto)

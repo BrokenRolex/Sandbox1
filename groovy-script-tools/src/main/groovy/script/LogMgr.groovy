@@ -110,7 +110,7 @@ class LogMgr {
                 }
             }
             Logger.getRootLogger().removeAppender(FILE_APPENDER_NAME)
-            ScriptToolsRollingFileAppender appender = new ScriptToolsRollingFileAppender()
+            ScriptFileAppender appender = new ScriptFileAppender()
             if (Props.instance.containsKey('logger.email')) {
                 appender.setEmailList(Props.instance.getListProp('logger.email'))
             }

@@ -2,34 +2,12 @@ package script
 
 class FileMeta {
 
-    private Meta () {
+    private FileMeta () {
         throw new Exception("FileMeta is a static class")
     }
 
     /**
-     * Add more methods to the File class<p>
-     * Methods added...
-     * <ul>
-     * <li>remove()
-     *     <ul>Deletes a file or directory.
-     *     Throws an exception if the delete was not successful.</ul>
-     * </li>
-     * <li>copy(File)
-     *     <ul>Copies a file to another File.
-     *     The source file cannot be a directory.
-     *     If the destination file is a directory then the source name will be used.
-     *     Any errors cause an exception to be thrown.
-     *     </ul>
-     * </li>
-     * <li>move(File)
-     *     <ul>Performs a copy(File) then a remove()</ul>
-     * </li>
-     * <li>rename(String)
-     *     <ul>Renames a file or directory.
-     *     Does not allow a file or directory to be moved.
-     *     Any errors cause an exception to be thrown.</ul>
-     * </li>
-     * </ul>
+     * Add more methods to the File class
      */
     static void add () {
 

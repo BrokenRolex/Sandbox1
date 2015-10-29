@@ -14,12 +14,12 @@ import org.apache.log4j.spi.LoggingEvent
  * 4. In all cases, if the first character is an @, it is removed.
  */
 @groovy.transform.CompileStatic
-class ScriptToolsRollingFileAppender extends RollingFileAppender {
+class ScriptFileAppender extends RollingFileAppender {
 
-    List email
+    String emailto
 
-    void setEmailList (List list) {
-        email = list
+    void setEmailTo (String emailto) {
+        this.emailto = emailto
     }
 
     @Override
@@ -43,13 +43,13 @@ class ScriptToolsRollingFileAppender extends RollingFileAppender {
             message = message.drop(1) // remove @ sign
         }
 
-        if (email) {
+        if (emailto) {
             Level level = event.getLevel()
             Integer li = level.toInt()
             if ((li > Level.DEBUG_INT && atSign) || (li > Level.WARN_INT)) {
                 try {
                     SMTPMailer m = new SMTPMailer()
-                    m.setTo(email)
+                    m.setTo(emailto)
                     String message1 = message.take(30).readLines()[0] ?: ''
                     m.setSubject(level.toString(), message1)
                     m.setMessage(message)
