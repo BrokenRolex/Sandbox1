@@ -28,8 +28,9 @@ class ScriptManager {
         try {
             scriptStartTime = System.currentTimeMillis()
             //
-            Meta.addFileMethods()
-            Meta.addStringMethods()
+            FileMetaClass.add()
+            StringMetaClass.add()
+            DateMetaClass.add()
             //
             // Create a console appender for the RootLogger
             // so we can at least see warn or error messages

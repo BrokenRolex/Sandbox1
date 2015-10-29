@@ -195,10 +195,6 @@ class LogManager {
         Logger.getRootLogger().setLevel(Level.FATAL)
     }
 
-    Level getLevel () {
-        Logger.getRootLogger().getLevel()
-    }
-
     void removeConsoleAppender () {
         if (consoleAppenderExists()) {
             Logger.getRootLogger().removeAppender(CONSOLE_APPENDER_NAME)

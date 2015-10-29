@@ -1,8 +1,8 @@
 package script
 
-class FileMeta {
+class FileMetaClass {
 
-    private FileMeta () {
+    private FileMetaClass() {
         throw new Exception("FileMeta is a static class")
     }
 

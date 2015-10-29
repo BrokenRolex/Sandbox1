@@ -1,12 +1,13 @@
 package script
 
-class DateMeta {
+class DateMetaClass {
 
-    private DateMeta () {
+    private DateMetaClass() {
         throw new Exception("DateMeta is a static class")
     }
 
     static void add () {
+        Date.metaClass.ymd = { DateString.ymd() }
     }
 
 }

@@ -1,8 +1,8 @@
 package script
 
-class StringMeta {
+class StringMetaClass {
 
-    private StringMeta () {
+    private StringMetaClass() {
         throw new Exception("StringMeta is a static class")
     }
 
