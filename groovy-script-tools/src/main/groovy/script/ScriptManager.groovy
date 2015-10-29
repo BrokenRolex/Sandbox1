@@ -27,36 +27,43 @@ class ScriptManager {
         errors = []
         try {
             scriptStartTime = System.currentTimeMillis()
-            //
+
             FileMetaClass.add()
             StringMetaClass.add()
             DateMetaClass.add()
-            //
+
             // Create a console appender for the RootLogger
             // so we can at least see warn or error messages
             // before proper logging gets setup below.
             logMgr.addDefaultConsoleAppender() //
             log = logMgr.getLogger(ScriptManager.class)
             logMgr.createJulBridge()
-            //
+
             Env.findScriptFile(script) // can throw an exception
-            //
+
             // Next tasks must be done in this order...
-            loadProps() // 1. load properties
-            initCli() // 2. initialize cli (uses properties)
-            initLogger() // 3. initialize the logger (uses properties and cli)
+            _load_properties()
+            _init_cli()
+            _init_logger()
             if (errors.size() > 0) {
                 fatal("framework startup errors = ${errors.join(', ')}")
             }
 
-            List cliInfo = cli.info()
             log.info 'begin'
+            List clii = cli.info()
             if (announce) {
-                email('begin', cliInfo.join("\n"))
+                email('begin', clii.join("\n"))
             }
-            cliInfo.each { log.info it }
+            clii.each { log.info it }
 
-            acquireRunLock() // (uses properties)
+            if (Props.instance.getBooleanProp('ScriptTools.runlock', false)) {
+                try {
+                    lock = new Lock().acquireHiddenForBin()
+                }
+                catch (Exception e) {
+                    log.warn "cannot acquire a run lock [${e.message}]"
+                }
+            }
             userStartTime = System.currentTimeMillis()
         }
         catch (e) {
@@ -74,7 +81,7 @@ class ScriptManager {
      2. load /a/dir/dir.properites
      3. load /homedir/application.properties
      */
-    void loadProps () {
+    private void _load_properties () {
         Props props = Props.instance
         String ext = '.properties'
         Set files = [] as LinkedHashSet
@@ -106,7 +113,7 @@ class ScriptManager {
         }
     }
 
-    void initCli () {
+    private void _init_cli () {
         cli = new Cli(script)
         cli.createDefaultOptions()
         cli.createCustomOptions()
@@ -117,7 +124,7 @@ class ScriptManager {
         }
     }
 
-    void initLogger () {
+    private void _init_logger () {
         logMgr.addConsoleAppender()
         logMgr.addFileAppender()
         logMgr.overrideLoggerLevels()
@@ -136,25 +143,10 @@ class ScriptManager {
         }
     }
 
-    void releaseRunLock () {
+    void end () {
         if (lock) {
             try { lock.release() } finally { lock = null }
         }
-    }
-
-    void acquireRunLock () {
-        if (Props.instance.getBooleanProp('ScriptTools.runlock', false)) {
-            try {
-                lock = new Lock().acquireHiddenForBin()
-            }
-            catch (Exception e) {
-                throw new Exception("cannot acquire a run lock [${e.message}]")
-            }
-        }
-    }
-
-    void end () {
-        releaseRunLock()
         def runTime = TC.minus(new Date(), new Date(scriptStartTime))
         debug()
         log?.info "end [$runTime]"

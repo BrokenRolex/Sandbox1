@@ -201,10 +201,6 @@ class LogManager {
         }
     }
 
-    void setQuiet () {
-        removeConsoleAppender()
-    }
-
     void removeFileAppender () {
         if (fileAppenderExists()) {
             Logger.getRootLogger().removeAppender(FILE_APPENDER_NAME)
