@@ -1,39 +1,33 @@
 package script
 
-import groovy.time.TimeCategory
+//import groovy.time.TimeCategory
 import org.apache.log4j.Logger
 
 abstract class ScriptWrapper extends Script {
     
     File scriptFile 
+    String title
+    String env
+    String host
     Props props
     Logger log
-    Cli cli // command line options and arguments
+    Cli cli
     Closure stopWatch
-    ScriptManager scriptMgr
-    LogManager logMgr
+    Smgr smgr
 
     @Override
     def run () {
-        scriptMgr = new ScriptManager()
+        smgr = new Smgr()
         try {
-            scriptMgr.begin(this)           
-            scriptFile = Env.scriptFile
-            logMgr = scriptMgr.logMgr
-            log = scriptMgr.log
-            cli = scriptMgr.cli
-            props = Props.instance
-            stopWatch = { id, Closure c ->
-                Date start = new Date()
-                c.call()
-                log.info "$id : ${TimeCategory.minus(new Date(), start)}"
-            }
+            smgr.begin(this)           
             runScript()
-            scriptMgr.end()           
+            smgr.end()           
         }
         catch (e) {
-            scriptMgr.fatal(e)           
+            println e
+            smgr.fatal(e)           
         }
+        println 'done'
     }
     
     abstract def runScript()

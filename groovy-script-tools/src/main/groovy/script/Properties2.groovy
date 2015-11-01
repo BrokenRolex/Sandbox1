@@ -1,5 +1,6 @@
 package script
 
+@groovy.util.logging.Log4j
 @groovy.transform.CompileStatic
 class Properties2 extends Properties {
 
@@ -130,6 +131,7 @@ class Properties2 extends Properties {
 
     List validate () {
         String validation_prefix = 'validate.'
+        Boolean good = true
         List errors = []
         StringValidator validator = new StringValidator()
         for (String vkey in this.keySet()) {
@@ -140,7 +142,10 @@ class Properties2 extends Properties {
                     if (key && this.containsKey(key)) {
                         String data = this.getProperty(key)
                         if (!validator.validate(data, rule)) {
-                            errors << "property [$key] value [$data] does not validate as [$rule]"
+                            String errmsg = "property [$key] value [$data] does not validate as [$rule]"
+                            log.error errmsg
+                            errors << errmsg
+                            good = false
                         }
                     }
                 }
@@ -176,13 +181,17 @@ class Properties2 extends Properties {
                             break // stop, no match
                         }
                         if ((matchAttempts) > 99) {
-                            errors << "interpolation: possible circular reference detected in property [$key] value [$val]"
+                            String errmsg = "interpolation: possible circular reference detected in property [$key] value [$val]"
+                            log.error errmsg
+                            errors << errmsg
                             break // stop
                         }
                     }
                 }
                 catch (Exception e) {
-                    errors << "cannot interpolate property [$key] value [$val] error [${e.message}]"
+                    String errmsg = "cannot interpolate property [$key] value [$val] error [${e.message}]"
+                    log.error errmsg
+                    errors << errmsg
                 }
             }
         }

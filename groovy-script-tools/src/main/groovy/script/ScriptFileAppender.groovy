@@ -51,7 +51,16 @@ class ScriptFileAppender extends RollingFileAppender {
                     SMTPMailer m = new SMTPMailer()
                     m.setTo(emailto)
                     String message1 = message.take(30).readLines()[0] ?: ''
-                    m.setSubject(level.toString(), message1)
+
+                    /*
+                    String env = Env.name ?: '?'
+                    String host = Env.hostname ?: '?'
+                    String program = Env.scriptFile?.path ?: '?'
+                    String title = Props.instance.getProp('program.title','?')
+                    "[$title] [$env] [$host:$program]"
+                    */
+
+                    m.setSubject(level.toString() + message1)
                     m.setMessage(message)
                     m.send()
                 }

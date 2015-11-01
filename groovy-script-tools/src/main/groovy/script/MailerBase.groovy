@@ -16,7 +16,6 @@ abstract class MailerBase {
     def cc = []
     def bcc = []
     def attach = []
-    Boolean smartSubject = true // assemble subject
 
     /**
      * Reset the internal state
@@ -113,29 +112,11 @@ abstract class MailerBase {
      * @param subject of the email
      */
     void setSubject (String s) {
-        if (s) {
-            subject = s
-            if (smartSubject) {
-                String env = Env.name ?: '?'
-                String host = Env.hostname ?: '?'
-                String program = Env.scriptFile?.path ?: '?'
-                String title = Props.instance.getProperty('program.title','?')
-                subject = "$s [$title] [$env] [$host:$program]"
-            }
-        }
-    }
-
-    void setSubject (String s, String m) {
-         setSubject(s)
-         subject += ' ' + m
+        subject = s
     }
 
     void subject (String s) {
         setSubject(s)
-    }
-
-    void subject (String s, String m) {
-        setSubject(s, m)
     }
 
     /**

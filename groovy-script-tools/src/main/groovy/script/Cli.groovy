@@ -8,23 +8,27 @@ class Cli {
     CliBuilder builder
     OptionAccessor opt
     Map implied = [:].withDefault{[] as Set}
-    Script script 
+    Script script
 
     Cli (Script s) {
+        script = s
+        Props props = Props.instance
         builder = new CliBuilder(
                 usage: "${Env.scriptName} [options] args" as String,
-                header: (Props.instance.getProperty('cli.header') ?: 'options:'),
-                footer: (Props.instance.getProperty('cli.footer') ?: ''),
+                header: (props.getProperty('cli.header') ?: 'options:'),
+                footer: (props.getProperty('cli.footer') ?: ''),
                 )
-        script = s
+        createDefaultOptions()
+        createCustomOptions()
+        parse()
+        addImpliedOptions()
     }
 
     void parse () {
         opt = builder.parse(script.args)
-        addImpliedOptions(script)
     }
 
-    void addImpliedOptions (Script script) {
+    void addImpliedOptions () {
         Set add = []
         for (Option o in builder.options.getOptions()) {
             String ok = (o.opt ?: o.longOpt) // option key
@@ -61,7 +65,7 @@ class Cli {
 
     void createOption (String s) {
         Map map = pipedString2Map(s)
-        
+
         // validate the option
         Integer slen = map.opt.length() // short opt length
         Integer llen = map.longOpt.length() // long opt length
@@ -72,7 +76,7 @@ class Cli {
         if (slen) {
             if (builder.options.getOption(map.opt)) {
                 log.warn "opt already used [$s]"
-                return 
+                return
             }
         }
         if (llen) {
@@ -127,7 +131,7 @@ class Cli {
             def (key, val) = it.split(/=/, 2)
             val = val.trim()
             if (val && map.containsKey(key)) {
-                if (key in ['name','arg']) { // arg name
+                if (key in ['name', 'arg']) { // arg name
                     map.args = 1
                     map.name = val
                 }
@@ -145,7 +149,7 @@ class Cli {
     void usage () {
         builder.usage()
     }
-    
+
     List optVals () {
         List optVals = []
         builder.options.getOptions().each { option ->
@@ -154,7 +158,7 @@ class Cli {
         }
         optVals
     }
-    
+
     List info () {
         List lines = []
         if (script.args) {
@@ -169,5 +173,5 @@ class Cli {
         }
         lines
     }
-    
+
 }

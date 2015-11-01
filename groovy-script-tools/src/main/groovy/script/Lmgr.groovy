@@ -7,28 +7,16 @@ import org.apache.log4j.Logger
 import org.apache.log4j.Level
 import org.slf4j.bridge.SLF4JBridgeHandler as BridgeHandler
 
-class LogManager {
+class Lmgr {
 
     static final String CONSOLE_APPENDER_NAME = 'appender.console'
     static final String FILE_APPENDER_NAME = 'appender.file'
     static final String LOGFILE_EXT = '.log'
-    //static final String CONSOLE_PATTERN_LAYOUT = '%d{HH:mm:ss,SSS} %-5p %c{1} - %m%n'
-    static final String CONSOLE_PATTERN_LAYOUT = '%d{HH:mm:ss,SSS} %-5p %c - %m%n'
+    static final String CONSOLE_PATTERN_LAYOUT = '%d{HH:mm:ss,SSS} %-5p %c{1} - %m%n'
     static final String FILE_PATTERN_LAYOUT = '%d %-5p %c{1} - %m%n'
     static final String MAX_FILE_SIZE = '5MB'
-    static final int MAX_BACKUP_INDEX = 2
-    static final Map levels = ['TRACE': Level.TRACE,'DEBUG': Level.DEBUG,'INFO':Level.INFO,'WARN':Level.WARN,'ERROR':Level.ERROR,'FATAL':Level.FATAL]
-
-    void addDefaultConsoleAppender () {
-        System.setProperty('log4j.defaultInitOverride', 'true')
-        PatternLayout layout = new PatternLayout('%-5p %c{1} - %m%n')
-        ConsoleAppender appender = new ConsoleAppender(layout)
-        appender.setName(CONSOLE_APPENDER_NAME)
-        appender.activateOptions()
-        Logger logger = Logger.getRootLogger()
-        logger.addAppender(appender)
-        logger.setLevel(Level.WARN)
-    }
+    static final Integer MAX_BACKUP_INDEX = 2
+    static final Map LEVELS = ['TRACE': Level.TRACE,'DEBUG': Level.DEBUG,'INFO':Level.INFO,'WARN':Level.WARN,'ERROR':Level.ERROR,'FATAL':Level.FATAL]
 
     void removeAllAppenders () {
         Logger.getRootLogger().removeAllAppenders()
@@ -62,27 +50,42 @@ class LogManager {
         Props.instance.each { String key, String val ->
             if (key.startsWith(logger_override_)) {
                 String level = val.toUpperCase()
-                if (levels.containsKey(level)) {
+                if (LEVELS.containsKey(level)) {
                     String clazz = key - logger_override_
                     Logger logger = Logger.getLogger(clazz)
                     logger.setAdditivity(true) // necessary ?
-                    logger.setLevel(levels[level])
+                    logger.setLevel(LEVELS[level])
                 }
             }
         }
     }
 
+    void addDefaultConsoleAppender () {
+        System.setProperty('log4j.defaultInitOverride', 'true')
+        Logger logger = Logger.getRootLogger()
+        logger.removeAppender(CONSOLE_APPENDER_NAME)
+        PatternLayout layout = new PatternLayout('%-5p %c{1} - %m%n')
+        ConsoleAppender appender = new ConsoleAppender(layout)
+        appender.setName(CONSOLE_APPENDER_NAME)
+        appender.activateOptions()
+        logger.addAppender(appender)
+        logger.setLevel(Level.WARN)
+    }
+
     void addConsoleAppender () {
-        Logger.getRootLogger().removeAppender(CONSOLE_APPENDER_NAME)
+        Logger logger = Logger.getRootLogger()
+        logger.removeAppender(CONSOLE_APPENDER_NAME)
         String layoutString = Props.instance.getProperty('logger.console_pattern_layout', CONSOLE_PATTERN_LAYOUT)
         PatternLayout layout = new PatternLayout(layoutString)
         ConsoleAppender appender = new ConsoleAppender(layout)
         appender.setName(CONSOLE_APPENDER_NAME)
         appender.activateOptions()
-        Logger.getRootLogger().addAppender(appender)
+        logger.addAppender(appender)
     }
 
     void addFileAppender () {
+        Logger logger = Logger.getRootLogger()
+        logger.removeAppender(FILE_APPENDER_NAME)
         Props props = Props.instance
         String name = Env.scriptName + LOGFILE_EXT
         File logDir = Env.scriptFile.parentFile
@@ -100,7 +103,6 @@ class LogManager {
                 }
             }
         }
-        Logger.getRootLogger().removeAppender(FILE_APPENDER_NAME)
         ScriptFileAppender appender = new ScriptFileAppender()
         appender.setEmailTo(Props.instance.getProperty('logger.email'))
         appender.setName(FILE_APPENDER_NAME)
@@ -110,9 +112,10 @@ class LogManager {
         String layoutString = props.getProperty('logger.file_pattern_layout', FILE_PATTERN_LAYOUT)
         appender.setLayout(new PatternLayout(layoutString))
         appender.activateOptions()
-        Logger.getRootLogger().addAppender(appender)
+        logger.addAppender(appender)
     }
 
+    /*
     Boolean appenderExists (String name) {
         for (def appender in Logger.getRootLogger().getAllAppenders()) {
             if (appender.name == name) {
@@ -121,24 +124,15 @@ class LogManager {
         }
         false
     }
-
-    boolean consoleAppenderExists () {
-        appenderExists(CONSOLE_APPENDER_NAME)
-    }
-
-    boolean fileAppenderExists () {
-        appenderExists(FILE_APPENDER_NAME)
-    }
-
+    */
+    
     File getLogFile () {
         File logFile = null
-        if (fileAppenderExists()) {
-            RollingFileAppender fileAppender = (RollingFileAppender) Logger.getRootLogger().getAppender(FILE_APPENDER_NAME)
-            if (fileAppender) {
-                String file = fileAppender.getFile()
-                if (file) {
-                    logFile = new File(file)
-                }
+        RollingFileAppender fileAppender = (RollingFileAppender) Logger.getRootLogger().getAppender(FILE_APPENDER_NAME)
+        if (fileAppender) {
+            String file = fileAppender.getFile()
+            if (file) {
+                logFile = new File(file)
             }
         }
         logFile
@@ -193,18 +187,6 @@ class LogManager {
 
     void setFatalLevel () {
         Logger.getRootLogger().setLevel(Level.FATAL)
-    }
-
-    void removeConsoleAppender () {
-        if (consoleAppenderExists()) {
-            Logger.getRootLogger().removeAppender(CONSOLE_APPENDER_NAME)
-        }
-    }
-
-    void removeFileAppender () {
-        if (fileAppenderExists()) {
-            Logger.getRootLogger().removeAppender(FILE_APPENDER_NAME)
-        }
     }
 
     Logger getLogger (Object obj) {
