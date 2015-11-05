@@ -65,12 +65,13 @@ abstract class SCRIPT extends Script {
             //DateMetaClass.add()
             // do not change the order of the  next 4 tasks
             _load_property_files()
+            if (errors.size() > 0) {
+                fatal("startup errors ${errors}")
+            }
             _parse_command_line_options() // uses properties
             _setup_logging() // uses cli and properties
+            
             _acquire_runlock()
-            if (errors.size() > 0) {
-                fatal("ScriptManager startup errors ${errors}")
-            }
             log.info 'begin'
             cli.info().with {
                 it.each { log.info it }
@@ -98,9 +99,7 @@ abstract class SCRIPT extends Script {
                 lock = new Lock().acquireHiddenForBin()
             }
             catch (Exception e) {
-                String errmsg  = "cannot acquire a run lock [${e.message}]"
-                errors << errmsg
-                log.error errmsg
+                fatal("cannot acquire a run lock [${e.message}]")
             }
         }
     }
@@ -150,6 +149,10 @@ abstract class SCRIPT extends Script {
 
     private void _parse_command_line_options () {
         cli = new Cli(script)
+        cli.createDefaultOptions()
+        cli.createCustomOptions()
+        cli.parseArgs()
+        cli.addImpliedOptions()
         script.cli = cli
         if (cli.opt == null || cli.opt.help) {
             cli.usage()

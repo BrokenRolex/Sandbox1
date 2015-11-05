@@ -18,13 +18,9 @@ class Cli {
                 header: (props.getProperty('cli.header') ?: 'options:'),
                 footer: (props.getProperty('cli.footer') ?: ''),
                 )
-        createDefaultOptions()
-        createCustomOptions()
-        parse()
-        addImpliedOptions()
     }
 
-    void parse () {
+    void parseArgs () {
         opt = builder.parse(script.args)
     }
 
@@ -64,8 +60,14 @@ class Cli {
     }
 
     void createOption (String s) {
-        Map map = pipedString2Map(s)
-
+        Map map = [opt: '', longOpt: '', argName: '', desc: '', implied: '']
+        s.split(/\|/).each {
+            def (key, val) = it.split(/=/, 2)
+            val = val.trim()
+            if (val && map.containsKey(key)) {
+                map[key] = val
+            }
+        }
         // validate the option
         Integer slen = map.opt.length() // short opt length
         Integer llen = map.longOpt.length() // long opt length
@@ -85,21 +87,19 @@ class Cli {
                 return
             }
         }
-
         // add the option
-        Map m = [:]
+        Map builderOption = [:]
         if (llen > 0) {
-            m.longOpt = map.longOpt
+            builderOption.longOpt = map.longOpt
         }
         if (slen > 0) {
-            m.opt = map.opt
+            builderOption.opt = map.opt
         }
-        if (map.args > 0) {
-            m.args = 1
-            m.argName = map.name ?: 'arg'
+        if (map.argName) {
+            builderOption.args = 1
+            builderOption.argName = map.argName
         }
-        builder."${map.opt ?: '_'}"(m, map.desc ?: '')
-
+        builder."${map.opt ?: '_'}"(builderOption, map.desc)
         // collect implied options
         map.implied.split(/,/).each {
             String i = it.trim()
@@ -112,12 +112,12 @@ class Cli {
                 }
             }
         }
-
     }
 
+    // cli.opt.name=
     void createCustomOptions () {
         Properties p = Props.instance
-        def pattern = ~/(?:cli(?:Builder)?)\.opt(?:ion)?\.\p{Alnum}+/
+        def pattern = ~/cli\.opt\.\p{Alnum}+/
         p.each { String key, String val ->
             if (key ==~ pattern) {
                 createOption(val)
@@ -125,38 +125,8 @@ class Cli {
         }
     }
 
-    Map pipedString2Map (String s) {
-        Map map = [opt: '', longOpt: '', name: '', arg: '', args: 0, desc: '', implied: '']
-        s.split(/\|/).each {
-            def (key, val) = it.split(/=/, 2)
-            val = val.trim()
-            if (val && map.containsKey(key)) {
-                if (key in ['name', 'arg']) { // arg name
-                    map.args = 1
-                    map.name = val
-                }
-                else if (key == 'args') {
-                    // skip this, will be set if here is an arg name
-                }
-                else {
-                    map[key] = val
-                }
-            }
-        }
-        map
-    }
-
     void usage () {
         builder.usage()
-    }
-
-    List optVals () {
-        List optVals = []
-        builder.options.getOptions().each { option ->
-            String nm = "${option.longOpt ?: option.opt}"
-            optVals << ("$nm = ${opt.getProperty(nm)}" as String)
-        }
-        optVals
     }
 
     List info () {
@@ -167,7 +137,13 @@ class Cli {
         if (opt.arguments()) {
             lines << "opt.arguments ${opt.arguments()}" as String
         }
-        List optVals = optVals()
+
+        List optVals = []
+        builder.options.getOptions().each { option ->
+            String nm = "${option.longOpt ?: option.opt}"
+            optVals << ("$nm = ${opt.getProperty(nm)}" as String)
+        }
+
         if (optVals) {
             lines << "cli options $optVals" as String
         }

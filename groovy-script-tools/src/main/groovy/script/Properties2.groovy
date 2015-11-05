@@ -198,7 +198,6 @@ class Properties2 extends Properties {
     }
 
     void addDefaultProps () {
-        setProperty('DTTM', new Date().format('yyyyMMddHHmmss'))
         setProperty('HOSTNAME', Host.getName())
         setProperty('SCRIPT_DIR_NAME', Env.scriptFile.parentFile.name)
         setProperty('SCRIPT_DIR_PATH', Env.scriptFile.parentFile.path)

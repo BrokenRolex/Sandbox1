@@ -71,7 +71,6 @@ class ScriptFileAppender extends RollingFileAppender {
             }
         }
 
-        // build a new logging event that contains the stack trace as the message
         LoggingEvent newEvent = new LoggingEvent(
                 event.getFQNOfLoggerClass(),
                 event.getLogger(),
