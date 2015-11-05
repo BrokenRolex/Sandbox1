@@ -10,30 +10,30 @@ import ci.map.Macro
 class Substring extends Macro {
     @Override
     public String execute(Map data, String inputString) {
-        // value = offset,length
-        //    or = offset
+        // value = 'offset,length' or 'offset'
         // obj1 = offset
         // obj2 = length
         String outputString = inputString
         if (value != null)  {
-            if (!obj1) {
+            value = value.replaceAll(' ','')
+            if (obj1 == null) {
                 if (value.contains(',')) {
-                    def (offset, length) = value.replaceAll(' ','').split(/,/,2)
+                    def (offset, length) = value.split(/,/,2)
                     obj1 = offset.toInteger()
                     obj2 = length.toInteger()
+                    obj2 = (((Integer) obj2) < 0) ? Integer.valueOf(0) : obj2
                 }
                 else {
-                    obj1 = value.replaceAll(' ','').toInteger()
+                    obj1 = value.toInteger()
                 }
+                obj1 = (((Integer) obj1) < 0) ? Integer.valueOf(0) : obj1
             }
-            if (obj1) {
-                println obj1
-                println obj2
+            if (obj1 != null) {
                 Integer offset = (Integer) obj1
                 if (offset > 0) {
                    outputString = inputString.drop(offset) 
                 }
-                if (obj2) {
+                if (obj2 != null) {
                     Integer length = (Integer) obj2
                     if (length > 0) {
                          outputString = outputString.take(length)     

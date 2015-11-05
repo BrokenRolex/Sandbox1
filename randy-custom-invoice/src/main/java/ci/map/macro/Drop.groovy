@@ -8,17 +8,19 @@ import ci.map.Macro
 class Drop extends Macro {
     @Override
     public String execute(Map data, String inputString) {
+        inputString = inputString == null ? '' : inputString
         String outputString = inputString
-        if (value != null)  {
-            if (!obj1) {
-                obj1 = value.toInteger()
+        if (obj1 == null) {
+            try {
+                obj1 = (value == null) ? Integer.valueOf(0) : value.toInteger()
             }
-            if (obj1) {
-                Integer length = (Integer) obj1
-                if (length > 0) {
-                    outputString = inputString.drop(length)
-                }
+            catch (e) {
+                obj1 = Integer.valueOf(0)
             }
+        }
+        if (obj1 != null) {
+            Integer length = (Integer) obj1
+            outputString = inputString.drop(length < 1 ? 0 : length)
         }
         outputString
     }

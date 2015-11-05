@@ -3,7 +3,7 @@ import ci.io.*
 
 //@Grab('brokenrolex:groovy-script-tools:4.0')
 import org.xml.sax.Attributes
-@groovy.transform.BaseScript(script.ScriptWrapper)
+@groovy.transform.BaseScript(script.SCRIPT)
 import script.*
 
 /*

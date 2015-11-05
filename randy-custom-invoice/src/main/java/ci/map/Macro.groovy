@@ -6,7 +6,7 @@ abstract class Macro extends Data {
     Object obj1
     Object obj2
     Macro () { }
-    abstract String execute (Map data, String s)
+    abstract String execute (Map m, String s)
     String toString () {
         "macro[${this.getClass().getSimpleName()}, value=\"${value}\", source=\"${source}\"]"
     }

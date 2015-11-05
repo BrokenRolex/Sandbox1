@@ -1,15 +1,13 @@
 package ci.map.macro
 
-import static org.junit.Assert.*;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import static org.junit.Assert.*
+import org.junit.After
+import org.junit.AfterClass
+import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Test
-
 import ci.map.Macro;
-import ci.map.MacroFactory;;
+import ci.map.MacroFactory
 
 class PrefixTest {
 
@@ -44,13 +42,17 @@ class PrefixTest {
         assert macro.execute([:], 'abc') == 'xyzabc'
         assert macro.execute([:], '') == 'xyz'
         assert macro.execute([:], null) == 'xyz'
-        ta.setValue('value', 'ilike')
+        //
+        ta.setValue('value', null)
+        macro = mf.createObject(ta)
+        assert macro.execute([:], 'abc') == 'abc'
+        assert macro.execute([:], '') == ''
+        assert macro.execute([:], null) == ''
+        //
+        ta.setValue('value', 'key')
         ta.setValue('source', 'data')
         macro = mf.createObject(ta)
-        assert macro.execute([ilike:'toast'], 'banana') == 'toastbanana'
-        assert macro.execute([ilike:'toast'], '') == 'toast'
-        assert macro.execute([ilike:'toast'], null) == 'toast'
-        //fail("Not yet implemented");
+        assert macro.execute([key:'123'], 'abc') == '123abc'
     }
 
 }

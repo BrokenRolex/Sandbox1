@@ -6,12 +6,15 @@ import org.junit.runners.Suite.SuiteClasses
 
 @RunWith(Suite.class)
 @SuiteClasses([
-     AppendTest.class,
-     LeftPadTest.class,
-     LowerTest.class,
-     PrefixTest.class,
-     RightPadTest.class,
-     UpperTest.class,
-      ])
+    AppendTest.class,
+    DropTest.class,
+    LeftPadTest.class,
+    LowerTest.class,
+    PrefixTest.class,
+    RightPadTest.class,
+    SubstringTest.class,
+    TakeTest.class,
+    UpperTest.class,
+])
 class AllMacroTests {
 }
